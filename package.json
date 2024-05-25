@@ -4,9 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "postinstall": "pnpm prisma:generate",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prepare": "husky",
+    "typecheck": "tsc --noEmit",
+    "prisma:generate": "pnpx prisma generate",
+    "prisma:migrate": "pnpx prisma migrate dev",
+    "prisma:seed": "pnpx prisma db seed",
+    "prisma:studio": "pnpx prisma studio"
   },
   "husky": {
     "hooks": {
@@ -14,6 +22,7 @@
     }
   },
   "dependencies": {
+    "@prisma/client": "5.14.0",
     "@tanstack/react-query": "^5.39.0",
     "@trpc/client": "11.0.0-rc.374",
     "@trpc/next": "11.0.0-rc.374",
@@ -24,6 +33,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.5",
+    "tailwind-merge": "^2.3.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {

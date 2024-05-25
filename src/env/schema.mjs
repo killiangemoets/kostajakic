@@ -8,12 +8,7 @@ import { z } from "zod";
 export const serverSchema = z.object({
   APP_ENV: z.enum(["development", "test", "production", "preview"]),
   NODE_ENV: z.enum(["development", "test", "production"]),
-  DOCKER_POSTGRES_PORT: z
-    .string()
-    .optional()
-    .transform((port) => (port ? parseInt(port) : undefined)),
   DATABASE_URL: z.string().url(),
-  DATABASE_URL_UNPOOLED: z.string().url(),
   NEXTAUTH_SECRET: z.string().min(1),
   JWT_SECRET: z.string().min(1),
 });
@@ -26,9 +21,7 @@ export const serverSchema = z.object({
 export const serverEnv = {
   APP_ENV: process.env.APP_ENV,
   NODE_ENV: process.env.NODE_ENV,
-  DOCKER_POSTGRES_PORT: process.env.DOCKER_POSTGRES_PORT,
   DATABASE_URL: process.env.DATABASE_URL,
-  DATABASE_URL_UNPOOLED: process.env.DATABASE_URL_UNPOOLED,
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   JWT_SECRET: process.env.JWT_SECRET,
 };
