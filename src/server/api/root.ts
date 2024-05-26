@@ -1,5 +1,5 @@
-import { createCallerFactory, router } from "./trpc";
 import { usersRouter } from "./routers/users";
+import { createCallerFactory, router } from "./trpc";
 
 export const appRouter = router({
   users: usersRouter,
@@ -8,7 +8,6 @@ export const appRouter = router({
 // Export type router type signature,
 // NOT the router itself.
 export type AppRouter = typeof appRouter;
-
 
 /**
  * Create a server-side caller for the tRPC API.

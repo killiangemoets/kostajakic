@@ -1,6 +1,5 @@
-import { prisma } from "@/server/db";
 import { getServerAuthSession } from "@/server/auth";
-
+import { prisma } from "@/server/db";
 
 export const createTRPCContext = async (opts: { headers: Headers }) => {
   const session = await getServerAuthSession();
@@ -12,5 +11,4 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
   };
 };
 
-
-export type TRPCContext = Awaited<ReturnType<(typeof createTRPCContext)>>;
+export type TRPCContext = Awaited<ReturnType<typeof createTRPCContext>>;

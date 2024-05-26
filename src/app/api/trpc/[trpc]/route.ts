@@ -1,8 +1,8 @@
-import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
-import { createTRPCContext } from "@/server/api/context";
-import { appRouter } from "@/server/api/root"
 import { env } from "@/env/server.mjs";
-import {type  NextRequest } from "next/server";
+import { createTRPCContext } from "@/server/api/context";
+import { appRouter } from "@/server/api/root";
+import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+import { type NextRequest } from "next/server";
 
 /**
  * This wraps the `createTRPCContext` helper and provides the required context for the tRPC API when
@@ -14,7 +14,6 @@ const createContext = async (req: NextRequest) => {
   });
 };
 
-
 const handler = (req: NextRequest) =>
   fetchRequestHandler({
     endpoint: "/api/trpc",
@@ -22,13 +21,11 @@ const handler = (req: NextRequest) =>
     router: appRouter,
     createContext: () => createContext(req),
     onError:
-    env.NODE_ENV === "development"
-      ? ({ path, error }) => {
-          console.error(
-            `❌ tRPC failed on ${path ?? "<no-path>"}: ${error.message}`,
-          );
-        }
-      : undefined,
+      env.NODE_ENV === "development"
+        ? ({ path, error }) => {
+            console.error(`❌ tRPC failed on ${path ?? "<no-path>"}: ${error.message}`);
+          }
+        : undefined,
     batching: {
       enabled: true, // allows to group multiple queries or mutations into a single request
     },

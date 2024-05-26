@@ -26,7 +26,6 @@ export const isAuthenticated = t.middleware(async ({ ctx, next }) => {
  */
 export const createCallerFactory = t.createCallerFactory;
 
-
 /**
  * Export reusable router and procedure helpers
  * that can be used throughout the router

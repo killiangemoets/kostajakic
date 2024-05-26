@@ -16,5 +16,4 @@ export const usersRouter = router({
         where: { id: input.id },
       });
     }),
- 
 });
