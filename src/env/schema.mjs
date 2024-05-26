@@ -8,6 +8,7 @@ import { z } from "zod";
 export const serverSchema = z.object({
   APP_ENV: z.enum(["development", "test", "production", "preview"]),
   NODE_ENV: z.enum(["development", "test", "production"]),
+  APP_URL: z.string(),
   DATABASE_URL: z.string().url(),
   NEXTAUTH_SECRET: z.string().min(1),
   JWT_SECRET: z.string().min(1),
@@ -21,6 +22,7 @@ export const serverSchema = z.object({
 export const serverEnv = {
   APP_ENV: process.env.APP_ENV,
   NODE_ENV: process.env.NODE_ENV,
+  APP_URL: process.env.APP_URL,
   DATABASE_URL: process.env.DATABASE_URL,
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   JWT_SECRET: process.env.JWT_SECRET,
