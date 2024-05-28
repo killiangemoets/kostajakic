@@ -1,3 +1,4 @@
+import { Layout } from "@/components/layout";
 import "@/styles/globals.css";
 import { TRPCReactProvider } from "@/trpc/react";
 import type { Metadata } from "next";
@@ -17,9 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
-      </body>
+      <TRPCReactProvider>
+        <Layout.Body className={inter.className}>{children}</Layout.Body>
+      </TRPCReactProvider>
     </html>
   );
 }
