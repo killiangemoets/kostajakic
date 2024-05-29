@@ -3,22 +3,24 @@ import clsx from "clsx";
 
 export const Navbar = () => {
   return (
-    <div>
-      <Button variant="ghost" href="/about">
-        About
-      </Button>
-      <Button variant="ghost" href="/concerts">
-        Concerts
-      </Button>
-      <Button variant="ghost" href="/contact">
-        Contact
-      </Button>
-      <Button variant="ghost" href="/gallery">
-        Gallery
-      </Button>
-      <Button variant="ghost" href="/projects">
-        Projects
-      </Button>
+    <div className="flex flex-col gap-16">
+      <div className="flex gap-8">
+        <Button className="mt-12" variant="ghost" href="/about">
+          About
+        </Button>
+        <Button variant="ghost" href="/concerts">
+          Concerts
+        </Button>
+        <Button className="mt-8" variant="ghost" href="/contact">
+          Contact
+        </Button>
+        <Button className="mt-16" variant="ghost" href="/gallery">
+          Gallery
+        </Button>
+        <Button className="mt-4" variant="ghost" href="/projects">
+          Projects
+        </Button>
+      </div>
     </div>
   );
 };
@@ -39,8 +41,7 @@ export const Layout = {
       {...props}
     >
       <Navbar />
-      <main>{children}</main>
-      {/* {children} */}
+      <main className="h-full">{children}</main>
     </div>
   ),
 };
