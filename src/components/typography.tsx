@@ -23,11 +23,6 @@ export const Typography = {
       {children}
     </h4>
   ),
-  h5: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"h5">) => (
-    <h5 className={cn("text-heading-5", className)} {...props}>
-      {children}
-    </h5>
-  ),
   body: ({
     className,
     fontWeight = "400",

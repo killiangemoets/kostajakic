@@ -15,10 +15,9 @@ const config: Config = {
       },
       fontSize: {
         "heading-1": ["52px", { lineHeight: "56px", fontWeight: "700" }],
-        "heading-2": ["33px", { lineHeight: "40px", fontWeight: "700" }],
+        "heading-2": ["26px", { lineHeight: "36px", fontWeight: "700" }],
         "heading-3": ["24px", { lineHeight: "33px", fontWeight: "700" }],
-        "heading-4": ["23px", { lineHeight: "28px", fontWeight: "600" }],
-        "heading-5": ["19px", { lineHeight: "23px", fontWeight: "600" }],
+        "heading-4": ["20px", { lineHeight: "28px", fontWeight: "500" }],
       },
     },
   },

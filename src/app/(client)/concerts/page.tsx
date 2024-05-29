@@ -74,7 +74,7 @@ export const ConcertsSection = ({ title, concerts }: { title: string; concerts: 
       <div className="flex flex-col gap-4">
         {concerts.map((concert) => (
           <div key={concert.id}>
-            <Typography.h3>{concert.title}</Typography.h3>
+            <Typography.h4>{concert.title}</Typography.h4>
             <Typography.body>{concert.description}</Typography.body>
           </div>
         ))}
