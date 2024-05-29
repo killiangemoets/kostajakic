@@ -1,10 +1,9 @@
 import { Layout } from "@/components/layout";
 import "@/styles/globals.css";
-import { TRPCReactProvider } from "@/trpc/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], preload: true });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,11 +15,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <TRPCReactProvider>
-        <Layout.Body className={inter.className}>{children}</Layout.Body>
-      </TRPCReactProvider>
-    </html>
-  );
+  return <Layout.Body className={inter.className}>{children}</Layout.Body>;
 }

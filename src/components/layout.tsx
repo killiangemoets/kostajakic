@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
+import clsx from "clsx";
 
 export const Navbar = () => {
   return (
-    <>
+    <div>
       <Button variant="ghost" href="/about">
         About
       </Button>
@@ -18,14 +19,14 @@ export const Navbar = () => {
       <Button variant="ghost" href="/projects">
         Projects
       </Button>
-    </>
+    </div>
   );
 };
 
 export const Layout = {
-  Body: ({ children, backgroundImgSrc }: { backgroundImgSrc?: string } & React.ComponentPropsWithoutRef<"body">) => (
-    <body
-      className="min-h-screen"
+  Body: ({ children, backgroundImgSrc, className, ...props }: { backgroundImgSrc?: string } & React.ComponentPropsWithoutRef<"div">) => (
+    <div
+      className={clsx("min-h-screen p-8", className)}
       style={
         !!backgroundImgSrc
           ? {
@@ -35,9 +36,11 @@ export const Layout = {
             }
           : {}
       }
+      {...props}
     >
       <Navbar />
       <main>{children}</main>
-    </body>
+      {/* {children} */}
+    </div>
   ),
 };
