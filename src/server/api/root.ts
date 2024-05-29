@@ -1,8 +1,8 @@
-import { usersRouter } from "./routers/users";
+import { adminsRouter } from "./routers/admins";
 import { createCallerFactory, router } from "./trpc";
 
 export const appRouter = router({
-  users: usersRouter,
+  admins: adminsRouter,
 });
 
 // Export type router type signature,
