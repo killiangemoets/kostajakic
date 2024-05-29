@@ -38,4 +38,9 @@ export const Typography = {
       {children}
     </p>
   ),
+  error: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"p">) => (
+    <p className={cn("text-destructive text-sm font-medium tracking-wide", className)} {...props}>
+      {children}
+    </p>
+  ),
 };

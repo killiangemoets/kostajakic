@@ -5,12 +5,11 @@ import Link from "next/link";
 import * as React from "react";
 
 const buttonVariants = cva(
-  "uppercase inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  " duration-300 ease-in-out uppercase inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        // TODO: change the classes
-        default: "",
+        default: "bg-gray-600/60 hover:bg-gray-600/90",
         destructive: "",
         outline: "border-[1px] ",
         ghost: "font-bold text-2xl",
