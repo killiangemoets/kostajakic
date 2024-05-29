@@ -1,12 +1,9 @@
 import "@/styles/globals.css";
 import { TRPCReactProvider } from "@/trpc/react";
+import clsx from "clsx";
 import type { Metadata } from "next";
-// import { Inter, Poppins, Roboto, Rubik } from "next/font/google";
 import { Roboto } from "next/font/google";
 
-// const inter = Inter({ subsets: ["latin"], preload: true });
-// const inter = Rubik({ subsets: ["latin"], preload: true });
-// const inter = Poppins({ weight: ["400", "500", "600", "700", "800", "900"], subsets: ["latin"], preload: true });
 const inter = Roboto({ weight: ["300", "400", "500", "700", "900"], subsets: ["latin"], preload: true });
 
 export const metadata: Metadata = {
@@ -21,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={clsx(inter.className, "min-h-screen")}>
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
     </html>

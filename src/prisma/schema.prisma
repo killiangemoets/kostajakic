@@ -25,8 +25,8 @@ model User {
 
 model Concert {
   id          String   @id @default(cuid())
-  date        DateTime
-  time        DateTime
+  date        String
+  time        String
   location    String
   title       String
   description String?
