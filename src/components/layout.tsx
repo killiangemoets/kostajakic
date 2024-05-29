@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import clsx from "clsx";
 
-export const Navbar = () => {
+export const Navbar = ({ className }: { className?: string }) => {
   return (
-    <div className="flex flex-col gap-16">
+    <div className={clsx("flex flex-col gap-16", className)}>
       <div className="flex gap-8">
         <Button className="mt-12" variant="ghost" href="/about">
           About
@@ -28,7 +28,7 @@ export const Navbar = () => {
 export const Layout = {
   Body: ({ children, backgroundImgSrc, className, ...props }: { backgroundImgSrc?: string } & React.ComponentPropsWithoutRef<"div">) => (
     <div
-      className={clsx("min-h-screen p-8 overflow-hidden flex flex-col gap-8 bg-fixed", className)}
+      className={clsx("min-h-screen px-8 pt-8 pb-16 overflow-hidden flex flex-col gap-8 bg-fixed", className)}
       style={
         !!backgroundImgSrc
           ? {
@@ -41,7 +41,7 @@ export const Layout = {
       {...props}
     >
       <Navbar />
-      <main className="h-full relative">{children}</main>
+      <main className="h-full relative px-20 overflow-hidden">{children}</main>
     </div>
   ),
 };

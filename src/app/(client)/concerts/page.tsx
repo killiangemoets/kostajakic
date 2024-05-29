@@ -104,7 +104,7 @@ export const ConcertsSection = ({ title, concerts }: { title: string; concerts: 
 
 export default async function Concerts() {
   return (
-    <div className="flex flex-col gap-8 items-center w-[50%]">
+    <div className="flex flex-col gap-8 items-center w-[56%]">
       <ConcertsSection title="Upcoming Concerts" concerts={upcomingConcert} />
       <p className="text-heading-1 font-light pr-[124px]">ф</p>
       <ConcertsSection title="Past Concerts" concerts={pastConcert} />
