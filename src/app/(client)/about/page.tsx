@@ -2,7 +2,7 @@ import { Typography } from "@/components/typography";
 
 export default async function Concerts() {
   return (
-    <div className="w-[50%] flex flex-col gap-4">
+    <div className="flex flex-col gap-4 w-[50%]">
       <Typography.body>
         <span className="font-semibold">Kosta Jakic</span> lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem aspernatur
         officiis provident maiores repellendus id iusto doloremque accusamus animi culpa est, quibusdam natus adipisci saepe rem amet

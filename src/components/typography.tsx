@@ -28,7 +28,7 @@ export const Typography = {
     fontWeight = "400",
     children,
     ...props
-  }: React.ComponentPropsWithoutRef<"p"> & { fontWeight?: "400" | "500" | "700" }) => (
+  }: React.ComponentPropsWithoutRef<"p"> & { fontWeight?: "300" | "400" | "500" | "700" }) => (
     <p className={cn("text-lg", getFontWeightClassName(fontWeight), className)} {...props}>
       {children}
     </p>

@@ -28,7 +28,7 @@ export const Navbar = () => {
 export const Layout = {
   Body: ({ children, backgroundImgSrc, className, ...props }: { backgroundImgSrc?: string } & React.ComponentPropsWithoutRef<"div">) => (
     <div
-      className={clsx("min-h-screen p-8 overflow-hidden flex flex-col gap-8", className)}
+      className={clsx("min-h-screen p-8 overflow-hidden flex flex-col gap-8 bg-fixed", className)}
       style={
         !!backgroundImgSrc
           ? {
