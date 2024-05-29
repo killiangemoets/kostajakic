@@ -91,7 +91,7 @@ export const ConcertCard = ({ concert }: { concert: Concert }) => {
 
 export const ConcertsSection = ({ title, concerts }: { title: string; concerts: Concert[] }) => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 w-full">
       <Typography.h2>{title}</Typography.h2>
       <div className="flex flex-col gap-8">
         {concerts.map((concert) => (

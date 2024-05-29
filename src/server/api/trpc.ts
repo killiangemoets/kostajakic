@@ -1,4 +1,5 @@
 import type { TRPCContext } from "./context";
+import { getAdminById } from "./utils/admins";
 import { TRPCError, initTRPC } from "@trpc/server";
 import superjson from "superjson";
 
@@ -15,8 +16,11 @@ export const t = initTRPC.context<TRPCContext>().create({
 
 export const isAuthenticated = t.middleware(async ({ ctx, next }) => {
   if (!ctx.session?.user) throw new TRPCError({ code: "UNAUTHORIZED" });
-
-  return next({ ctx: { ...ctx, session: ctx.session } });
+  else {
+    const admin = await getAdminById(ctx.session.user.id);
+    if (!admin) throw new TRPCError({ code: "UNAUTHORIZED" });
+    else return next({ ctx: { ...ctx, session: ctx.session } });
+  }
 });
 
 /**
@@ -32,4 +36,4 @@ export const createCallerFactory = t.createCallerFactory;
  */
 export const router = t.router;
 export const publicProcedure = t.procedure;
-export const appProcedure = t.procedure.use(isAuthenticated);
+export const adminProcedure = t.procedure.use(isAuthenticated);

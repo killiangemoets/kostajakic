@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Please provide email and password");
         }
 
-        const user = await prisma.user.findUnique({
+        const user = await prisma.admin.findUnique({
           where: { email: credentials.email },
         });
 
@@ -37,7 +37,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid credentials");
         }
 
-        return { name: user.name, email: credentials.email, id: user.id };
+        return { email: credentials.email, id: user.id };
       },
     }),
   ],

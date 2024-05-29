@@ -1,9 +1,10 @@
 import { publicProcedure, router } from "../trpc";
+import { prisma } from "@/server/db";
 import { z } from "zod";
 
 export const usersRouter = router({
-  list: publicProcedure.query(async ({ ctx }) => {
-    return await ctx.prisma.concert.findMany();
+  list: publicProcedure.query(async () => {
+    return await prisma.concert.findMany();
   }),
   byId: publicProcedure
     .input(
@@ -11,8 +12,8 @@ export const usersRouter = router({
         id: z.string().uuid(),
       })
     )
-    .query(async ({ input, ctx }) => {
-      return await ctx.prisma.concert.findUnique({
+    .query(async ({ input }) => {
+      return await prisma.concert.findUnique({
         where: { id: input.id },
       });
     }),

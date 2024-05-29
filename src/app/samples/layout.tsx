@@ -1,3 +1,4 @@
+import bgBackoffice from "@/assets/images/bg-backoffice.jpg";
 import { Layout } from "@/components/layout";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
@@ -15,5 +16,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <Layout.Body className={inter.className}>{children}</Layout.Body>;
+  return (
+    <Layout.Body className={inter.className} backgroundImgSrc={bgBackoffice.src}>
+      {children}
+    </Layout.Body>
+  );
 }

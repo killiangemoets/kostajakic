@@ -1,6 +1,12 @@
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
+const primary = {};
+
+const destructive = {
+  DEFAULT: "#ce2525",
+};
+
 const config: Config = {
   darkMode: ["class"],
   content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
@@ -18,6 +24,10 @@ const config: Config = {
         "heading-2": ["26px", { lineHeight: "36px", fontWeight: "700" }],
         "heading-3": ["24px", { lineHeight: "33px", fontWeight: "700" }],
         "heading-4": ["20px", { lineHeight: "28px", fontWeight: "500" }],
+      },
+      colors: {
+        primary,
+        destructive,
       },
     },
   },
