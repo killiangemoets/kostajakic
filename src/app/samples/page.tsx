@@ -11,7 +11,6 @@ export default function Samples() {
         <h2>Buttons</h2>
         <div>
           <Button>Default</Button>
-          <Button variant="secondary">Secondary</Button>
           <Button variant="destructive">Destructive</Button>
           <Button variant="outline">Outline</Button>
           <Button variant="ghost">Ghost</Button>
@@ -24,7 +23,6 @@ export default function Samples() {
           <Typography.h2>Title H2</Typography.h2>
           <Typography.h3>Title H3</Typography.h3>
           <Typography.h4>Title H4</Typography.h4>
-          <Typography.h5>Title H5</Typography.h5>
           <Typography.body>Body content</Typography.body>
           <Typography.note>Note content</Typography.note>
         </div>
