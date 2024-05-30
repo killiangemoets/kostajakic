@@ -77,7 +77,25 @@ export const SignupForm = () => {
 
   const onSubmit = async (data: SignupFormData) => {
     const { email, password } = data;
+
+    // OPTION 1: Using TRPC Client-Side Mutation
+    // Keeps server-side and client-side logic separate,
+    // Easier to manage client-side state updates and caching with TRPC.
+    // Slightly more complex due to the need to handle TRPC hooks and context.
+    // const createAdminMutation = trpc.admins.create.useMutation({
+    //   onSuccess: async () => {
+    //     await utils.admins.isExisting.invalidate();
+    //     redirect("/auth?signup=success");
+    //   },
+    // });
+
     try {
+      // await createAdminMutation.mutateAsync({ email, password });
+
+      // OPTION 2: Using a Server Action
+      // Directly utilizes server-side logic, and Keeps the form handling code relatively straightforward
+      // BUT Mixes server-side logic with client-side component code
+      // and Less flexible for client-side operations, such as caching or optimistic updates
       await signUpServerAction({ email, password });
     } catch (e) {
       const error = e as Error; // FIXME: use a better type guard
