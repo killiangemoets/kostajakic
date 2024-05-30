@@ -1,15 +1,15 @@
 "use client";
 
+import { signUpServerAction } from "./actions";
 import { RHFLabeledTextInput } from "@/components//rhf/inputs/text";
 import { Button } from "@/components//ui/button";
 import { Form } from "@/components/rhf/form";
 import { Typography } from "@/components/typography";
 import { loginFormSchema, signupFormSchema } from "@/schemas/auth";
-import { trpc } from "@/trpc/react";
 import type { LoginFormData, SignupFormData } from "@/types/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { type ReactNode, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -25,7 +25,6 @@ export const LoginForm = () => {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
 
-  // const error = "Something went wrong";
   const methods = useForm<LoginFormData>({
     resolver: zodResolver(loginFormSchema),
   });
@@ -71,27 +70,19 @@ export const LoginForm = () => {
 };
 
 export const SignupForm = () => {
-  const utils = trpc.useContext();
   const methods = useForm<SignupFormData>({
     resolver: zodResolver(signupFormSchema),
   });
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const router = useRouter();
-
-  const createAdminMutation = trpc.admins.create.useMutation({
-    onSuccess: async () => {
-      await utils.admins.isExisting.invalidate();
-      router.push("/auth?signup=success");
-    },
-  });
 
   const onSubmit = async (data: SignupFormData) => {
     const { email, password } = data;
     try {
-      await createAdminMutation.mutateAsync({ email, password });
+      await signUpServerAction({ email, password });
     } catch (e) {
       const error = e as Error; // FIXME: use a better type guard
-      if (error.message.includes("duplicate key")) setErrorMessage("User already exists");
+      if (error.message.includes("already exists")) setErrorMessage("Admin already exists");
+      else if (error.message.includes("duplicate key")) setErrorMessage("This email is already used");
       else setErrorMessage("Something went wrong");
     }
   };
