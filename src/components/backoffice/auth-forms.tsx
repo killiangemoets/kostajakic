@@ -9,7 +9,7 @@ import { trpc } from "@/trpc/react";
 import type { LoginFormData, SignupFormData } from "@/types/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { type ReactNode, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -47,9 +47,9 @@ export const LoginForm = () => {
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-4 items-center">
             <label className="text-[40px] font-bold text-white" htmlFor="email">
-              User Name
+              Email
             </label>
-            <RHFLabeledTextInput name="email" placeholder="Enter your username" className="w-full" required />
+            <RHFLabeledTextInput name="email" placeholder="Enter your email" className="w-full" required />
           </div>
           <div className="flex flex-col gap-4 items-center">
             <label className="text-[40px] font-bold text-white" htmlFor="email">
@@ -76,10 +76,12 @@ export const SignupForm = () => {
     resolver: zodResolver(signupFormSchema),
   });
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const router = useRouter();
 
   const createAdminMutation = trpc.admins.create.useMutation({
     onSuccess: async () => {
       await utils.admins.isExisting.invalidate();
+      router.push("/auth?signup=success");
     },
   });
 
@@ -99,9 +101,9 @@ export const SignupForm = () => {
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-4 items-center">
             <label className="text-[40px] font-bold text-white" htmlFor="email">
-              User Name
+              Email
             </label>
-            <RHFLabeledTextInput name="email" placeholder="Enter your username" className="w-full" required />
+            <RHFLabeledTextInput name="email" placeholder="Enter your email" className="w-full" required />
           </div>
           <div className="flex flex-col gap-4 items-center">
             <label className="text-[40px] font-bold text-white" htmlFor="email">
