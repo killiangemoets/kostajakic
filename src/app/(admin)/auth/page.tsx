@@ -1,28 +1,20 @@
-"use client";
-
 import { LoginForm, SignupForm } from "@/components/backoffice/auth-forms";
-import { trpc } from "@/trpc/react";
-import { useSession } from "next-auth/react";
-import { redirect, useSearchParams } from "next/navigation";
-import { type ReactNode } from "react";
+import { getServerAuthSession } from "@/server/auth";
+import { trpcServer } from "@/trpc/server";
+import { redirect } from "next/navigation";
 
-const Guard = ({ children }: { children: ReactNode }) => {
-  const data = useSession();
+interface PageProps {
+  searchParams: {
+    callbackUrl?: string;
+  };
+}
 
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/backoffice";
+export default async function Auth({ searchParams }: PageProps) {
+  const session = await getServerAuthSession();
+  const callbackUrl = searchParams.callbackUrl || "/backoffice";
+  if (!!session) redirect(callbackUrl);
 
-  if (data.status === "authenticated") redirect(callbackUrl);
-  else if (data.status === "unauthenticated") return <>{children}</>;
+  const isAdmingExising = await trpcServer.admins.isExisting();
 
-  return null;
-};
-
-export default function Auth() {
-  const isAdmingExisingQuery = trpc.admins.isExisting.useQuery();
-  const isAdmingExising = isAdmingExisingQuery.data;
-
-  const hasResult = !isAdmingExisingQuery.isLoading && !isAdmingExisingQuery.error && isAdmingExising !== undefined;
-
-  return <Guard>{hasResult && (isAdmingExising ? <LoginForm /> : <SignupForm />)}</Guard>;
+  return <>{isAdmingExising ? <LoginForm /> : <SignupForm />}</>;
 }

@@ -1,6 +1,4 @@
-import SessionProvider from "./SessionProvider";
 import bgBackoffice from "@/assets/images/bg-backoffice.jpg";
-import { getServerAuthSession } from "@/server/auth";
 import "@/styles/globals.css";
 
 export default async function BackOfficeLayout({
@@ -8,7 +6,6 @@ export default async function BackOfficeLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerAuthSession();
   return (
     <div
       className="min-h-screen px-8 pt-8 pb-16 overflow-hidden flex flex-col gap-8 bg-fixed"
@@ -18,7 +15,7 @@ export default async function BackOfficeLayout({
         backgroundPosition: "top",
       }}
     >
-      <SessionProvider session={session}>{children}</SessionProvider>
+      {children}
     </div>
   );
 }
