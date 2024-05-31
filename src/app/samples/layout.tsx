@@ -1,5 +1,5 @@
 import bgBackoffice from "@/assets/images/bg-backoffice.jpg";
-import { Layout } from "@/components/layout";
+import { Layout } from "@/components/layout/layout";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
