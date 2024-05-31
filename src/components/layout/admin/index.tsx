@@ -21,7 +21,7 @@ export const Navigation = ({ children, extra }: { children: ReactNode; extra?: R
       </div>
       <div className="flex flex-col">
         <Header extra={extra} />
-        <main className="py-8 px-12">{children}</main>
+        <main className="pt-16 py-8 px-12">{children}</main>
       </div>
     </div>
   );
