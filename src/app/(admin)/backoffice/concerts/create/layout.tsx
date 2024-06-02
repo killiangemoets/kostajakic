@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/layout";
 import "@/styles/globals.css";
 
-export default async function BackOfficeLayout({
+export default async function BackOfficeConcertsLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
