@@ -1,6 +1,8 @@
 import { publicProcedure, router } from "../trpc";
 import type { Prisma } from "@/prisma/generated/client";
+import { concertCursorSchema, concertFiltersSchema } from "@/schemas/concerts";
 import { prisma } from "@/server/db";
+import type { ConcertFilters } from "@/types/concerts";
 import { z } from "zod";
 
 type FilterConcertsClause = {
@@ -15,15 +17,8 @@ type FilterConcertsClause = {
   where: Prisma.ConcertWhereInput;
 };
 
-const getFilterConcertsClause = ({
-  minDate,
-  maxDate,
-  orderDates,
-}: {
-  minDate?: Date;
-  maxDate?: Date;
-  orderDates?: "asc" | "desc";
-}): FilterConcertsClause => {
+const getFilterConcertsClause = ({ filters, orderDates }: ConcertFilters): FilterConcertsClause => {
+  const { minDate, maxDate } = filters ?? {};
   return {
     orderBy: [
       { date: orderDates ?? "asc" },
@@ -41,47 +36,24 @@ const getFilterConcertsClause = ({
 };
 
 export const concertsRouter = router({
-  list: publicProcedure
-    .input(
-      z.object({
-        orderDates: z.enum(["asc", "desc"]).optional(),
-        filters: z
-          .object({
-            minDate: z.date().optional(),
-            maxDate: z.date().optional(),
-          })
-          .optional(),
-      })
-    )
-    .query(async ({ input }) => {
-      const { orderDates } = input;
-      const { minDate, maxDate } = input.filters ?? {};
-
-      return await prisma.concert.findMany({
-        ...getFilterConcertsClause({ minDate, maxDate, orderDates }),
-      });
-    }),
+  list: publicProcedure.input(concertFiltersSchema).query(async ({ input }) => {
+    return await prisma.concert.findMany({
+      ...getFilterConcertsClause(input),
+    });
+  }),
 
   infiniteList: publicProcedure
     .input(
-      z.object({
+      concertFiltersSchema.extend({
         limit: z.number().optional(),
-        cursor: z.object({ date: z.date(), id: z.string() }).optional(),
-        orderDates: z.enum(["asc", "desc"]).optional(),
-        filters: z
-          .object({
-            minDate: z.date().optional(),
-            maxDate: z.date().optional(),
-          })
-          .optional(),
+        cursor: concertCursorSchema,
       })
     )
     .query(async ({ input }) => {
-      const { limit = 20, cursor, orderDates } = input;
-      const { minDate, maxDate } = input.filters ?? {};
+      const { limit = 3, cursor, filters, orderDates } = input;
 
       const data = await prisma.concert.findMany({
-        ...getFilterConcertsClause({ minDate, maxDate, orderDates }),
+        ...getFilterConcertsClause({ filters, orderDates }),
         take: limit + 1,
         cursor: cursor
           ? {

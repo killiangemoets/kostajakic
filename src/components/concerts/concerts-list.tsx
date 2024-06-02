@@ -4,6 +4,7 @@ import { Typography } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import type { Concert } from "@/prisma/generated/client";
 import { trpc } from "@/trpc/react";
+import type { ConcertCursor } from "@/types/concerts";
 import { formatDateTime } from "@/utils/datetime";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -41,18 +42,38 @@ const ConcertsList = ({ title, concerts }: { title: string; concerts: Concert[] 
 };
 
 const today = new Date();
-export const UpcomingConcertsSection = () => {
-  const upcomingConcertsQuery = trpc.concerts.list.useQuery({ filters: { minDate: today }, orderDates: "asc" });
+export const UpcomingConcertsSection = ({ initialConcerts }: { initialConcerts: Concert[] }) => {
+  const upcomingConcertsQuery = trpc.concerts.list.useQuery(
+    { filters: { minDate: today }, orderDates: "asc" },
+    { initialData: initialConcerts }
+  );
 
   if (upcomingConcertsQuery.isLoading) return <>Loading...</>;
   if (upcomingConcertsQuery.isError) return <h1>Error...</h1>;
   return <ConcertsList title="Upcoming Concerts" concerts={upcomingConcertsQuery.data ?? []} />;
 };
 
-export const PastConcertsSection = () => {
+export const PastConcertsSection = ({
+  initialConcerts,
+  initialNextCursor,
+}: {
+  initialConcerts: Concert[];
+  initialNextCursor: ConcertCursor;
+}) => {
   const pastConcertsQuery = trpc.concerts.infiniteList.useInfiniteQuery(
     { filters: { maxDate: today }, orderDates: "desc" },
-    { getNextPageParam: (lastPage) => lastPage.nextCursor }
+    {
+      getNextPageParam: (lastPage) => lastPage.nextCursor,
+      initialData: {
+        pages: [
+          {
+            concerts: initialConcerts,
+            nextCursor: initialNextCursor,
+          },
+        ],
+        pageParams: [undefined],
+      },
+    }
   );
   const concerts = pastConcertsQuery.data?.pages.flatMap((page) => page.concerts) ?? [];
 
@@ -67,9 +88,9 @@ export const PastConcertsSection = () => {
       dataLength={concerts.length}
       next={pastConcertsQuery.fetchNextPage}
       hasMore={pastConcertsQuery.hasNextPage}
-      loader={<>Loading...</>}
+      loader={<>===================== LOOOOADDDIIIIIINNNGGGG =========================</>}
     >
-      <ConcertsList title="Past Concerts" concerts={concerts} />;
+      <ConcertsList title="Past Concerts" concerts={concerts} />
     </InfiniteScroll>
   );
 };
