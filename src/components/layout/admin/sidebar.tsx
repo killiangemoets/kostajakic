@@ -36,7 +36,7 @@ export const SidebarLink = ({ name, href, Icon }: { name: string; href: LinkProp
 export const Sidebar = () => {
   return (
     <nav className="flex flex-col justify-between pb-8 px-2 h-full text-sm font-medium lg:px-4 space-y-1">
-      <div className="grid items-start ">
+      <div className="grid gap-2 items-start ">
         {SIDEBAR_ITEMS.map((item) => (
           <SidebarLink key={item.name} name={item.name} href={item.href} Icon={item.icon} />
         ))}
