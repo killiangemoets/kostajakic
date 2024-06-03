@@ -11,8 +11,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function T
       id={props.name}
       ref={forwardedRef}
       className={cn(
-        "rounded-md focus:outline-none py-2.5 text-white placeholder:text-white/80",
-        props.readOnly ? "text-neutral-300 rounded-lg bg-transparent border-none" : "text-white bg-white/20 border-[0.2px] px-5",
+        "rounded-md focus:outline-none py-2.5 text-primary placeholder:text-primary/80",
+        props.readOnly ? "text-neutral-300 rounded-lg bg-transparent border-none" : "text-primary bg-primary/20 border-[0.2px] px-5",
         !props.readOnly && isError ? "border-destructive  border focus:border-required hover:border-destructive" : "border-neutral-300",
         className
       )}

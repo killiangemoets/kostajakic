@@ -1,7 +1,7 @@
 "use client";
 
-import { DatePickerInput } from "@/components/inputs/datepicker";
-import { LabeledTextInput, TextInput } from "@/components/inputs/text";
+import { LabeledDatePickerInput } from "@/components/inputs/datepicker";
+import { LabeledTextInput } from "@/components/inputs/text";
 import { LabeledTextareaInput } from "@/components/inputs/textarea";
 import { Typography } from "@/components/typography";
 import { Button } from "@/components/ui/button";
@@ -82,6 +82,7 @@ const Typographies = () => {
         <Typography.h4>Title H4</Typography.h4>
         <Typography.body>Body content</Typography.body>
         <Typography.note>Note content</Typography.note>
+        <Typography.error>Error message</Typography.error>
       </div>
     </div>
   );
@@ -93,8 +94,7 @@ const Inputs = () => {
   return (
     <div className="flex flex-col gap-8">
       <Typography.h2>Form</Typography.h2>
-      <div className="flex flex-col gap-2">
-        <TextInput name="name" placeholder="enter your full name" required />
+      <div className="flex flex-col gap-4">
         <LabeledTextInput name="email" label="Email" placeholder="enter your email" required error="Entrez un email valide!" />
         <LabeledTextareaInput
           name="description"
@@ -103,7 +103,7 @@ const Inputs = () => {
           required
           error="Entrez un email valide!"
         />
-        <DatePickerInput value={date} onChange={setDate} className="mb-[500px]" />
+        <LabeledDatePickerInput label="Concert date" value={date} onChange={setDate} className="mb-[500px]" />
       </div>
     </div>
   );
