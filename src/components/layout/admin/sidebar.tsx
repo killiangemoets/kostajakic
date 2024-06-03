@@ -41,7 +41,7 @@ export const Sidebar = () => {
           <SidebarLink key={item.name} name={item.name} href={item.href} Icon={item.icon} />
         ))}
       </div>
-      <Button variant="ghost" size="sm" className="w-fit" onClick={() => signOut()}>
+      <Button variant="ghost" className="w-fit" onClick={() => signOut()}>
         <LogoutIcon className="pr-2 w-6 h-6" />
         <p>Log out</p>
       </Button>

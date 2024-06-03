@@ -24,3 +24,10 @@ export type RHFInputProps<TFormValues> = {
 };
 
 export type RHFLabeledInputProps<TFormValues> = RHFInputProps<TFormValues> & InputContainerDefaultProps;
+
+export type DatePickerDefaultProps = {
+  placeholder?: string;
+  value?: Date;
+  onChange?: (value: Date | undefined) => void;
+  className?: string;
+};
