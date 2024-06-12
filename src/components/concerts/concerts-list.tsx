@@ -6,7 +6,7 @@ import type { Concert } from "@/prisma/generated/client";
 import { trpc } from "@/trpc/react";
 import type { ConcertCursor } from "@/types/concerts";
 import { formatDateTime } from "@/utils/datetime";
-import { Pencil, Trash } from "lucide-react";
+import { Pencil, Trash2 as Trash } from "lucide-react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const ConcertCard = ({ concert }: { concert: Concert }) => {
