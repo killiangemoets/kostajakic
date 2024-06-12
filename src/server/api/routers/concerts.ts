@@ -1,6 +1,6 @@
 import { adminProcedure, publicProcedure, router } from "../trpc";
 import type { Prisma } from "@/prisma/generated/client";
-import { concertCursorSchema, concertFiltersSchema, createConcertSchema } from "@/schemas/concerts";
+import { concertCursorSchema, concertFiltersSchema, createConcertSchema, updateConcertSchema } from "@/schemas/concerts";
 import { prisma } from "@/server/db";
 import type { ConcertFilters } from "@/types/concerts";
 import { mergeDateTime } from "@/utils/datetime";
@@ -75,7 +75,7 @@ export const concertsRouter = router({
   byId: publicProcedure
     .input(
       z.object({
-        id: z.string().uuid(),
+        id: z.string().cuid({ message: "Please provide a valid id" }),
       })
     )
     .query(async ({ input }) => {
@@ -86,6 +86,18 @@ export const concertsRouter = router({
   create: adminProcedure.input(createConcertSchema).mutation(async ({ input }) => {
     const dateTime = mergeDateTime(input.date, input.time);
     return await prisma.concert.create({
+      data: {
+        date: dateTime,
+        location: input.location,
+        title: input.title,
+        description: input.description,
+      },
+    });
+  }),
+  update: adminProcedure.input(updateConcertSchema).mutation(async ({ input }) => {
+    const dateTime = mergeDateTime(input.date, input.time);
+    return await prisma.concert.update({
+      where: { id: input.id },
       data: {
         date: dateTime,
         location: input.location,

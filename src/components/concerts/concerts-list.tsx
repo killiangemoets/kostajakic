@@ -6,6 +6,7 @@ import type { Concert } from "@/prisma/generated/client";
 import { trpc } from "@/trpc/react";
 import type { ConcertCursor } from "@/types/concerts";
 import { formatDateTime } from "@/utils/datetime";
+import { Pencil, Trash } from "lucide-react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const ConcertCard = ({ concert }: { concert: Concert }) => {
@@ -23,6 +24,12 @@ const ConcertCard = ({ concert }: { concert: Concert }) => {
       </div>
       <Button variant="outline" className="py-6 px-4">
         More info
+      </Button>
+      <Button href={`/backoffice/concerts/edit/${concert.id}`} variant="ghost" size="icon">
+        <Pencil className="w-5 h-5" />
+      </Button>
+      <Button variant="ghost" size="icon">
+        <Trash className="w-5 h-5" />
       </Button>
     </li>
   );
@@ -48,11 +55,11 @@ const today = new Date();
 export const UpcomingConcertsSection = ({ initialConcerts }: { initialConcerts: Concert[] }) => {
   const upcomingConcertsQuery = trpc.concerts.list.useQuery(
     { filters: { minDate: today }, orderDates: "asc" },
-    { initialData: initialConcerts, refetchOnMount: false, refetchOnReconnect: false, refetchOnWindowFocus: false }
+    { initialData: initialConcerts, refetchOnMount: false, refetchOnWindowFocus: false }
   );
 
-  if (upcomingConcertsQuery.isLoading) return <>Loading...</>;
-  if (upcomingConcertsQuery.isError) return <h1>Error...</h1>;
+  if (upcomingConcertsQuery.isLoading) return <Typography.body>Loading...</Typography.body>;
+  if (upcomingConcertsQuery.isError) return <Typography.error>Something went wrong, please try again!</Typography.error>;
   return <ConcertsList title="Upcoming Concerts" concerts={upcomingConcertsQuery.data} />;
 };
 
@@ -77,14 +84,13 @@ export const PastConcertsSection = ({
         pageParams: [undefined],
       },
       refetchOnMount: false,
-      refetchOnReconnect: false,
       refetchOnWindowFocus: false,
     }
   );
   const concerts = pastConcertsQuery.data?.pages.flatMap((page) => page.concerts) ?? [];
 
-  if (pastConcertsQuery.isLoading) return <>Loading...</>;
-  if (pastConcertsQuery.isError) return <h1>Error...</h1>;
+  if (pastConcertsQuery.isLoading) return <Typography.body>Loading...</Typography.body>;
+  if (pastConcertsQuery.isError) return <Typography.error>Something went wrong, please try again!</Typography.error>;
 
   return (
     <InfiniteScroll

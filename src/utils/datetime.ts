@@ -1,5 +1,5 @@
 import type { MultiOption } from "@/types/inputs";
-import { format, setHours, setMinutes } from "date-fns";
+import { format, setHours, setMinutes, startOfDay } from "date-fns";
 
 const ABITRATY_DATE = "2023-01-01";
 
@@ -31,4 +31,10 @@ const mergeDateTime = (date: Date, time: string) => {
   return dateWithMinutes;
 };
 
-export { formatDateTime, generateTimeOptions, mergeDateTime };
+function splitDateAndTime(dateTime: Date): { date: Date; time: string } {
+  const date = startOfDay(dateTime);
+  const time = format(dateTime, "HH:mm");
+  return { date, time };
+}
+
+export { formatDateTime, generateTimeOptions, mergeDateTime, splitDateAndTime };
