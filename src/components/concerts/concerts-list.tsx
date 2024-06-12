@@ -48,7 +48,7 @@ const today = new Date();
 export const UpcomingConcertsSection = ({ initialConcerts }: { initialConcerts: Concert[] }) => {
   const upcomingConcertsQuery = trpc.concerts.list.useQuery(
     { filters: { minDate: today }, orderDates: "asc" },
-    { initialData: initialConcerts }
+    { initialData: initialConcerts, refetchOnMount: false, refetchOnReconnect: false, refetchOnWindowFocus: false }
   );
 
   if (upcomingConcertsQuery.isLoading) return <>Loading...</>;
@@ -76,6 +76,9 @@ export const PastConcertsSection = ({
         ],
         pageParams: [undefined],
       },
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
     }
   );
   const concerts = pastConcertsQuery.data?.pages.flatMap((page) => page.concerts) ?? [];

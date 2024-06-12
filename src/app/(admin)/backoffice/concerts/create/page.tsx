@@ -24,7 +24,8 @@ const ConcertCreationForm = () => {
 
   const createConcertMutation = trpc.concerts.create.useMutation({
     onSuccess: async () => {
-      utils.concerts.invalidate();
+      utils.concerts.list.refetch();
+      utils.concerts.infiniteList.refetch();
       toast.success("Concert created!", {
         duration: 5000,
         style: {
