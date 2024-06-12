@@ -20,6 +20,8 @@ export const createConcertSchema = z.object({
   description: z.string().trim().optional(),
 });
 
+export const idSchema = z.string().cuid({ message: "Please provide a valid id" });
+
 export const updateConcertSchema = createConcertSchema.extend({
-  id: z.string().cuid({ message: "Please provicde a valid id" }),
+  id: idSchema,
 });

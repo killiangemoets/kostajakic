@@ -1,6 +1,6 @@
 import { adminProcedure, publicProcedure, router } from "../trpc";
 import type { Prisma } from "@/prisma/generated/client";
-import { concertCursorSchema, concertFiltersSchema, createConcertSchema, updateConcertSchema } from "@/schemas/concerts";
+import { concertCursorSchema, concertFiltersSchema, createConcertSchema, idSchema, updateConcertSchema } from "@/schemas/concerts";
 import { prisma } from "@/server/db";
 import type { ConcertFilters } from "@/types/concerts";
 import { mergeDateTime } from "@/utils/datetime";
@@ -75,7 +75,7 @@ export const concertsRouter = router({
   byId: publicProcedure
     .input(
       z.object({
-        id: z.string().cuid({ message: "Please provide a valid id" }),
+        id: idSchema,
       })
     )
     .query(async ({ input }) => {
@@ -104,6 +104,11 @@ export const concertsRouter = router({
         title: input.title,
         description: input.description,
       },
+    });
+  }),
+  delete: adminProcedure.input(z.object({ id: idSchema })).mutation(async ({ input }) => {
+    return await prisma.concert.delete({
+      where: { id: input.id },
     });
   }),
 });

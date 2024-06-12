@@ -7,7 +7,7 @@ export const CONCERTS_TIME_SLOT = {
   TO: "23:45",
 };
 
-export const CONERTS_TIME_OPTIONS: MultiOption<string>[] = generateTimeOptions(
+export const CONCERTS_TIME_OPTIONS: MultiOption<string>[] = generateTimeOptions(
   CONCERTS_TIME_SLOT.FROM,
   CONCERTS_TIME_SLOT.TO,
   SLOT_INTERVAL
