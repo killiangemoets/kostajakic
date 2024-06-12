@@ -6,6 +6,7 @@ const primary = {
   100: "#efefef",
   200: "#dedede",
   600: "#9A9895",
+  700: "#737373",
 };
 
 const destructive = {

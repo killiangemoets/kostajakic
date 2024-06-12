@@ -95,13 +95,13 @@ const Inputs = () => {
     <div className="flex flex-col gap-8">
       <Typography.h2>Form</Typography.h2>
       <div className="flex flex-col gap-4">
-        <LabeledTextInput name="email" label="Email" placeholder="enter your email" required error="Entrez un email valide!" />
+        <LabeledTextInput name="email" label="Email" placeholder="enter your email" required />
         <LabeledTextareaInput
           name="description"
-          label="Descriptiopn"
+          label="Description"
           placeholder="enter your description"
           required
-          error="Entrez un email valide!"
+          // error="Entrez un email valide!"
         />
         <LabeledDatePickerInput label="Concert date" value={date} onChange={setDate} className="mb-[500px]" />
       </div>

@@ -23,8 +23,8 @@ export const SidebarLink = ({ name, href, Icon }: { name: string; href: LinkProp
     <Link
       href={href}
       className={cn(
-        "text-md flex items-center gap-3 rounded-lg px-3 py-3 transition-all duration-300 hover:bg-slate-200",
-        isActive && "bg-slate-200"
+        "text-md flex items-center gap-3 rounded-lg px-3 py-3 transition-all duration-300 hover:bg-primary hover:text-primary-700",
+        isActive && "bg-primary text-primary-700"
       )}
     >
       <Icon className="h-4 w-4" />

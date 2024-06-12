@@ -8,7 +8,7 @@ export default async function AdminLayout({
 }>) {
   return (
     <div
-      className="min-h-screen flex flex-col gap-8 bg-fixed bg-neutral-400"
+      className="min-h-screen flex flex-col gap-8 bg-fixed"
       style={{
         backgroundImage: `url(${bgBackoffice.src})`,
         backgroundSize: "cover",
