@@ -5,8 +5,7 @@ import React from "react";
 import type { FieldError, FieldValues } from "react-hook-form";
 import { useFormContext } from "react-hook-form";
 
-type RHFTextInputProps<TFormValues> = Omit<React.ComponentPropsWithRef<"input">, "name"> &
-  RHFInputProps<TFormValues> & { unstyled?: boolean };
+type RHFTextInputProps<TFormValues> = Omit<React.ComponentPropsWithRef<"input">, "name"> & RHFInputProps<TFormValues>;
 
 export const RHFTextInput = <TFormValues extends FieldValues>({ name, rules = {}, required, ...props }: RHFTextInputProps<TFormValues>) => {
   const {
@@ -19,8 +18,7 @@ export const RHFTextInput = <TFormValues extends FieldValues>({ name, rules = {}
   return <TextInput isError={Boolean(error)} {...props} {...register(name, { ...rules, required })} />;
 };
 
-type RHFLabeledTextInputProps<TFormValues> = React.ComponentPropsWithRef<"input"> &
-  RHFLabeledInputProps<TFormValues> & { unstyled?: boolean };
+type RHFLabeledTextInputProps<TFormValues> = React.ComponentPropsWithRef<"input"> & RHFLabeledInputProps<TFormValues>;
 
 export const RHFLabeledTextInput = <TFormValues extends FieldValues>({
   label,

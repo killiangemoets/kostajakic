@@ -1,8 +1,9 @@
-import { publicProcedure, router } from "../trpc";
+import { adminProcedure, publicProcedure, router } from "../trpc";
 import type { Prisma } from "@/prisma/generated/client";
-import { concertCursorSchema, concertFiltersSchema } from "@/schemas/concerts";
+import { concertCursorSchema, concertFiltersSchema, createConcertSchema } from "@/schemas/concerts";
 import { prisma } from "@/server/db";
 import type { ConcertFilters } from "@/types/concerts";
+import { mergeDateTime } from "@/utils/datetime";
 import { z } from "zod";
 
 type FilterConcertsClause = {
@@ -82,4 +83,15 @@ export const concertsRouter = router({
         where: { id: input.id },
       });
     }),
+  create: adminProcedure.input(createConcertSchema).mutation(async ({ input }) => {
+    const dateTime = mergeDateTime(input.date, input.time);
+    return await prisma.concert.create({
+      data: {
+        date: dateTime,
+        location: input.location,
+        title: input.title,
+        description: input.description,
+      },
+    });
+  }),
 });

@@ -1,11 +1,10 @@
-import type { DropdownSelectInputProps, LabeledDropdownSelectInputProps } from "@/components/inputs/dropdown-select";
 import { DropdownSelectInput, LabeledDropdownSelectInput } from "@/components/inputs/dropdown-select";
-import type { RHFInputProps } from "@/types/inputs";
+import type { DropdownSelectDefaultProps, RHFInputProps, RHFLabeledInputProps } from "@/types/inputs";
 import { get } from "lodash";
 import type { FieldError, FieldValues } from "react-hook-form";
 import { Controller, useFormContext } from "react-hook-form";
 
-type RHFDateSelectInputProps<TValue extends string, TFormValues> = DropdownSelectInputProps<TValue> & RHFInputProps<TFormValues>;
+type RHFDateSelectInputProps<TValue extends string, TFormValues> = DropdownSelectDefaultProps<TValue> & RHFInputProps<TFormValues>;
 
 export const RHFDropdownSelectInput = <TValue extends string, TFormValues extends FieldValues>({
   name,
@@ -40,8 +39,8 @@ export const RHFDropdownSelectInput = <TValue extends string, TFormValues extend
   );
 };
 
-type RHFLabeledDateSelectInputProps<TValue extends string, TFormValues> = LabeledDropdownSelectInputProps<TValue> &
-  RHFInputProps<TFormValues>;
+type RHFLabeledDateSelectInputProps<TValue extends string, TFormValues> = DropdownSelectDefaultProps<TValue> &
+  RHFLabeledInputProps<TFormValues>;
 
 export const RHFLabeledDropdownSelectInput = <TValue extends string, TFormValues extends FieldValues>({
   label,

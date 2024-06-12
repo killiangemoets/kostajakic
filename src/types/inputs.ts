@@ -1,3 +1,4 @@
+import type { SelectProps } from "@radix-ui/react-select";
 import type { Path, RegisterOptions } from "react-hook-form";
 
 type InputDefaultProps = {
@@ -25,6 +26,8 @@ export type RHFInputProps<TFormValues> = {
 
 export type RHFLabeledInputProps<TFormValues> = RHFInputProps<TFormValues> & InputContainerDefaultProps;
 
+export type MultiOption<T extends string> = { value: T; label: string };
+
 export type DatePickerDefaultProps = {
   placeholder?: string;
   value?: Date;
@@ -32,4 +35,7 @@ export type DatePickerDefaultProps = {
   className?: string;
 };
 
-export type MultiOption<T extends string> = { value: T; label: string };
+export type DropdownSelectDefaultProps<T extends string> = SelectProps & {
+  options: MultiOption<T>[];
+  placeholder?: string;
+};

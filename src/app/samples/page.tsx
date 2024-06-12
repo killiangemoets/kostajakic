@@ -109,7 +109,7 @@ const Inputs = () => {
           name="genre"
           label="Genre"
           placeholder="Select a genre"
-          items={[
+          options={[
             { value: "pop", label: "Pop" },
             { value: "rock", label: "Rock" },
             { value: "jazz", label: "Jazz" },
