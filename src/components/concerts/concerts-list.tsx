@@ -21,7 +21,7 @@ const ConcertCard = ({ concert }: { concert: Concert }) => {
           <Typography.body>{concert.description}</Typography.body>
         </div>
       </div>
-      <Button variant="outline" size="lg" className="">
+      <Button variant="outline" className="py-6 px-4">
         More info
       </Button>
     </li>
@@ -37,6 +37,9 @@ const ConcertsList = ({ title, concerts }: { title: string; concerts: Concert[] 
           <ConcertCard key={concert.id} concert={concert} />
         ))}
       </ul>
+      {concerts.length === 0 && (
+        <Typography.body className="my-4 text-center text-2xl text-primary-200 pr-[124px]">No concerts</Typography.body>
+      )}
     </div>
   );
 };
@@ -50,7 +53,7 @@ export const UpcomingConcertsSection = ({ initialConcerts }: { initialConcerts: 
 
   if (upcomingConcertsQuery.isLoading) return <>Loading...</>;
   if (upcomingConcertsQuery.isError) return <h1>Error...</h1>;
-  return <ConcertsList title="Upcoming Concerts" concerts={upcomingConcertsQuery.data ?? []} />;
+  return <ConcertsList title="Upcoming Concerts" concerts={upcomingConcertsQuery.data} />;
 };
 
 export const PastConcertsSection = ({
@@ -80,9 +83,6 @@ export const PastConcertsSection = ({
   if (pastConcertsQuery.isLoading) return <>Loading...</>;
   if (pastConcertsQuery.isError) return <h1>Error...</h1>;
 
-  if (concerts.length === 0) {
-    return <h2 className="my-4 text-center text-2xl text-gray-500">No Past Concerts</h2>;
-  }
   return (
     <InfiniteScroll
       dataLength={concerts.length}
