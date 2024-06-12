@@ -1,29 +1,34 @@
 "use client";
 
-import { LabeledDatePickerInput } from "@/components/inputs/datepicker";
-import { LabeledTextInput } from "@/components/inputs/text";
-import { LabeledTextareaInput } from "@/components/inputs/textarea";
-import { Typography } from "@/components/typography";
-import { useState } from "react";
+import { Form } from "@/components/rhf/form";
+import { RHFLabeledDateSelectInput } from "@/components/rhf/inputs/datepicker";
+import { RHFLabeledTextInput } from "@/components/rhf/inputs/text";
+import { RHFLabeledTextareaInput } from "@/components/rhf/inputs/textarea";
+import { Button } from "@/components/ui/button";
+import { createConcertSchema } from "@/schemas/concerts";
+import type { CreateConcert } from "@/types/concerts";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
 const ConcertCreationForm = () => {
-  const [date, setDate] = useState<Date>();
+  const methods = useForm<CreateConcert>({
+    resolver: zodResolver(createConcertSchema),
+  });
 
+  const onSubmit = async (data: CreateConcert) => {
+    // eslint-disable-next-line no-console
+    console.log("DATA", data);
+  };
   return (
-    <div className="flex flex-col gap-8 w-[80%]">
-      <Typography.h2>Form</Typography.h2>
-      <div className="flex flex-col gap-4">
-        <LabeledTextInput name="email" label="Email" placeholder="enter your email" required />
-        <LabeledTextareaInput
-          name="description"
-          label="Description"
-          placeholder="enter your description"
-          required
-          // error="Entrez un email valide!"
-        />
-        <LabeledDatePickerInput label="Concert date" value={date} onChange={setDate} className="mb-[500px]" />
-      </div>
-    </div>
+    <Form className="flex flex-col gap-12 w-full relative" onSubmit={onSubmit} methods={methods}>
+      <RHFLabeledDateSelectInput name="date" placeholder="Select the date" className="w-full" required />
+      <RHFLabeledTextInput name="location" placeholder="Enter the location" className="w-full" required />
+      <RHFLabeledTextInput name="title" placeholder="Enter the title" className="w-full" required />
+      <RHFLabeledTextareaInput name="description" placeholder="Enter the description" className="w-full" required />
+      <Button type="submit" className="w-full">
+        Create concert
+      </Button>
+    </Form>
   );
 };
 

@@ -31,3 +31,5 @@ export type DatePickerDefaultProps = {
   onChange?: (value: Date | undefined) => void;
   className?: string;
 };
+
+export type MultiOption<T extends string> = { value: T; label: string };

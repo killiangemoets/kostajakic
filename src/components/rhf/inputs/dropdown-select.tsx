@@ -1,17 +1,18 @@
-import { DatePickerInput, LabeledDatePickerInput } from "@/components/inputs/datepicker";
-import type { DatePickerDefaultProps, RHFInputProps, RHFLabeledInputProps } from "@/types/inputs";
+import type { DropdownSelectInputProps, LabeledDropdownSelectInputProps } from "@/components/inputs/dropdown-select";
+import { DropdownSelectInput, LabeledDropdownSelectInput } from "@/components/inputs/dropdown-select";
+import type { RHFInputProps } from "@/types/inputs";
 import { get } from "lodash";
 import type { FieldError, FieldValues } from "react-hook-form";
 import { Controller, useFormContext } from "react-hook-form";
 
-type RHFDateSelectInputProps<TFormValues> = DatePickerDefaultProps & RHFInputProps<TFormValues>;
+type RHFDateSelectInputProps<TValue extends string, TFormValues> = DropdownSelectInputProps<TValue> & RHFInputProps<TFormValues>;
 
-export const RHFDateSelectInput = <TFormValues extends FieldValues>({
+export const RHFDropdownSelectInput = <TValue extends string, TFormValues extends FieldValues>({
   name,
   rules = {},
   required,
   ...props
-}: RHFDateSelectInputProps<TFormValues>) => {
+}: RHFDateSelectInputProps<TValue, TFormValues>) => {
   const {
     control,
     formState: { errors },
@@ -26,11 +27,11 @@ export const RHFDateSelectInput = <TFormValues extends FieldValues>({
       rules={{ ...rules, required }}
       render={({ field }) => {
         return (
-          <DatePickerInput
+          <DropdownSelectInput
             name={name}
             isError={Boolean(error)}
             value={field.value ?? undefined}
-            onChange={(value) => field.onChange(value)}
+            onValueChange={(value) => field.onChange(value)}
             {...props}
           />
         );
@@ -39,16 +40,17 @@ export const RHFDateSelectInput = <TFormValues extends FieldValues>({
   );
 };
 
-type RHFLabeledDateSelectInputProps<TFormValues> = DatePickerDefaultProps & RHFLabeledInputProps<TFormValues>;
+type RHFLabeledDateSelectInputProps<TValue extends string, TFormValues> = LabeledDropdownSelectInputProps<TValue> &
+  RHFInputProps<TFormValues>;
 
-export const RHFLabeledDateSelectInput = <TFormValues extends FieldValues>({
+export const RHFLabeledDropdownSelectInput = <TValue extends string, TFormValues extends FieldValues>({
   label,
   name,
   required,
   containerClassName,
   rules = {},
   ...props
-}: RHFLabeledDateSelectInputProps<TFormValues>) => {
+}: RHFLabeledDateSelectInputProps<TValue, TFormValues>) => {
   const {
     control,
     formState: { errors },
@@ -63,14 +65,14 @@ export const RHFLabeledDateSelectInput = <TFormValues extends FieldValues>({
       rules={{ ...rules, required }}
       render={({ field }) => {
         return (
-          <LabeledDatePickerInput
+          <LabeledDropdownSelectInput
             name={name}
             label={label}
             required={required}
             error={error?.message}
             containerClassName={containerClassName}
             value={field.value ?? undefined}
-            onChange={(value) => field.onChange(value)}
+            onValueChange={(value) => field.onChange(value)}
             {...props}
           />
         );

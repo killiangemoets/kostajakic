@@ -12,7 +12,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn("p-3 bg-primary-700/90 rounded-md", className)}
+      className={cn("p-3 bg-primary-700/90 rounded-md border-[0.5px]", className)}
       classNames={{
         months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
         month: "space-y-4",

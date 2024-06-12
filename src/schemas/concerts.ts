@@ -11,3 +11,11 @@ export const concertFiltersSchema = z.object({
     })
     .optional(),
 });
+
+export const createConcertSchema = z.object({
+  date: z.date({ required_error: "La date est requise" }),
+  time: z.string(),
+  location: z.string().trim().min(1, { message: "La location est requise" }),
+  title: z.string().trim().min(1, { message: "Le titre est requis" }),
+  description: z.string().trim().optional(),
+});

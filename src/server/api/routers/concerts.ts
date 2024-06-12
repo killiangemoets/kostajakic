@@ -41,7 +41,6 @@ export const concertsRouter = router({
       ...getFilterConcertsClause(input),
     });
   }),
-
   infiniteList: publicProcedure
     .input(
       concertFiltersSchema.extend({
