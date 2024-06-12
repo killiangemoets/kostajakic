@@ -1,4 +1,4 @@
-import { LoginForm, SignupForm } from "@/components/backoffice/auth-forms";
+import { LoginForm, SignupForm } from "@/components/auth-forms";
 import { getServerAuthSession } from "@/server/auth";
 import { trpcServer } from "@/trpc/server";
 import { redirect } from "next/navigation";

@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 
 export const AuthCard = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] bg-gray-800/30 px-20 py-12 rounded-xl flex flex-col gap-4 min-w-[480px]">
+    <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] bg-primary-700/50 px-20 py-12 rounded-xl flex flex-col gap-4 min-w-[480px]">
       {children}
     </div>
   );
@@ -59,7 +59,7 @@ export const LoginForm = () => {
         </div>
 
         <div className="flex flex-col items-center gap-4">
-          <Button disabled={methods.formState.isSubmitting} type="submit" className="w-full">
+          <Button variant="default" disabled={methods.formState.isSubmitting} type="submit" className="w-full rounded-md">
             Login
           </Button>
           <Typography.error className="text-l font-medium text-required/90">{error}</Typography.error>
@@ -77,7 +77,25 @@ export const SignupForm = () => {
 
   const onSubmit = async (data: SignupFormData) => {
     const { email, password } = data;
+
+    // OPTION 1: Using TRPC Client-Side Mutation
+    // Keeps server-side and client-side logic separate,
+    // Easier to manage client-side state updates and caching with TRPC.
+    // Slightly more complex due to the need to handle TRPC hooks and context.
+    // const createAdminMutation = trpc.admins.create.useMutation({
+    //   onSuccess: async () => {
+    //     await utils.admins.isExisting.invalidate();
+    //     redirect("/auth?signup=success");
+    //   },
+    // });
+
     try {
+      // await createAdminMutation.mutateAsync({ email, password });
+
+      // OPTION 2: Using a Server Action
+      // Directly utilizes server-side logic, and Keeps the form handling code relatively straightforward
+      // BUT Mixes server-side logic with client-side component code
+      // and Less flexible for client-side operations, such as caching or optimistic updates
       await signUpServerAction({ email, password });
     } catch (e) {
       const error = e as Error; // FIXME: use a better type guard
@@ -106,7 +124,7 @@ export const SignupForm = () => {
         </div>
 
         <div className="flex flex-col items-center gap-4">
-          <Button disabled={methods.formState.isSubmitting} type="submit" className="w-full">
+          <Button disabled={methods.formState.isSubmitting} type="submit" className="w-full rounded-md">
             Sign Up
           </Button>
           <Typography.error>{errorMessage}</Typography.error>

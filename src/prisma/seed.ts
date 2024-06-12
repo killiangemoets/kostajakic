@@ -1,8 +1,14 @@
-import { PrismaClient } from "@/prisma/generated/client";
+import { PrismaClient } from "./generated/client";
+import { concerts } from "./seeds/concerts";
 
 const prisma = new PrismaClient();
 
-async function main() {}
+async function main() {
+  await prisma.concert.createMany({
+    data: concerts,
+    skipDuplicates: true,
+  });
+}
 
 main()
   .then(async () => {
