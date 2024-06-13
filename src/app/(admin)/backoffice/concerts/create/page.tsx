@@ -45,6 +45,6 @@ const ConcertCreationForm = () => {
   return <ConcertForm methods={methods} onSubmit={onSubmit} isLoading={createConcertMutation.isPending} />;
 };
 
-export default function BackofficeConcertsCreate() {
+export default function BackofficeCreateConcert() {
   return <ConcertCreationForm />;
 }

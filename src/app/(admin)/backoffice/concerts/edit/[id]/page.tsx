@@ -60,7 +60,7 @@ const ConcertEditForm = ({ concert }: { concert: Concert }) => {
   return <ConcertForm methods={methods} onSubmit={onSubmit} isLoading={updateConcertMutation.isPending} />;
 };
 
-export default function BackofficeConcertEdit() {
+export default function BackofficeEditConcert() {
   const { id } = useParams<{ id: string }>();
   const concertsQuery = trpc.concerts.byId.useQuery({ id }, { refetchOnMount: false, refetchOnWindowFocus: false });
 
