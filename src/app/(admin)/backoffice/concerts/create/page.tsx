@@ -4,6 +4,7 @@ import { ConcertForm } from "@/components/concerts/concert-form";
 import { createConcertSchema } from "@/schemas/concerts";
 import { trpc } from "@/trpc/react";
 import type { CreateConcert } from "@/types/concerts";
+import { mergeDateTime } from "@/utils/datetime";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -40,7 +41,9 @@ const ConcertCreationForm = () => {
   });
 
   const onSubmit = (data: CreateConcert) => {
-    createConcertMutation.mutate(data);
+    const { date, time, ...rest } = data;
+    const dateTime = mergeDateTime(date, time);
+    createConcertMutation.mutate({ ...rest, date: dateTime });
   };
   return <ConcertForm methods={methods} onSubmit={onSubmit} isLoading={createConcertMutation.isPending} />;
 };

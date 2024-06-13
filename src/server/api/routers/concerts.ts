@@ -1,10 +1,9 @@
 import { adminProcedure, publicProcedure, router } from "../trpc";
 import { CONCERTS_INFINITE_SCROLL_LIMIT } from "@/constants/concerts";
 import type { Prisma } from "@/prisma/generated/client";
-import { concertCursorSchema, concertFiltersSchema, createConcertSchema, idSchema, updateConcertSchema } from "@/schemas/concerts";
+import { concertCursorSchema, concertFiltersSchema, createConcertBESchema, idSchema, updateConcertBESchema } from "@/schemas/concerts";
 import { prisma } from "@/server/db";
 import type { ConcertFilters } from "@/types/concerts";
-import { mergeDateTime } from "@/utils/datetime";
 import { z } from "zod";
 
 type FilterConcertsClause = {
@@ -31,7 +30,7 @@ const getFilterConcertsClause = ({ filters, orderDates }: ConcertFilters): Filte
     where: {
       date: {
         ...(minDate && { gte: minDate }),
-        ...(maxDate && { lte: maxDate }),
+        ...(maxDate && { lt: maxDate }),
       },
     },
   };
@@ -84,23 +83,16 @@ export const concertsRouter = router({
         where: { id: input.id },
       });
     }),
-  create: adminProcedure.input(createConcertSchema).mutation(async ({ input }) => {
-    const dateTime = mergeDateTime(input.date, input.time);
+  create: adminProcedure.input(createConcertBESchema).mutation(async ({ input }) => {
     return await prisma.concert.create({
-      data: {
-        date: dateTime,
-        location: input.location,
-        title: input.title,
-        description: input.description,
-      },
+      data: input,
     });
   }),
-  update: adminProcedure.input(updateConcertSchema).mutation(async ({ input }) => {
-    const dateTime = mergeDateTime(input.date, input.time);
+  update: adminProcedure.input(updateConcertBESchema).mutation(async ({ input }) => {
     return await prisma.concert.update({
       where: { id: input.id },
       data: {
-        date: dateTime,
+        date: input.date,
         location: input.location,
         title: input.title,
         description: input.description,

@@ -7,7 +7,7 @@ import type { Concert } from "@/prisma/generated/client";
 import { updateConcertSchema } from "@/schemas/concerts";
 import { trpc } from "@/trpc/react";
 import type { UpdateConcert } from "@/types/concerts";
-import { splitDateAndTime } from "@/utils/datetime";
+import { mergeDateTime, splitDateAndTime } from "@/utils/datetime";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams, useRouter } from "next/navigation";
 import { useMemo } from "react";
@@ -55,7 +55,9 @@ const ConcertEditForm = ({ concert }: { concert: Concert }) => {
   });
 
   const onSubmit = (data: UpdateConcert) => {
-    updateConcertMutation.mutate(data);
+    const { date, time, ...rest } = data;
+    const dateTime = mergeDateTime(date, time);
+    updateConcertMutation.mutate({ ...rest, date: dateTime });
   };
   return <ConcertForm methods={methods} onSubmit={onSubmit} isLoading={updateConcertMutation.isPending} />;
 };
