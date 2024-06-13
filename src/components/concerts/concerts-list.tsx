@@ -9,6 +9,7 @@ import type { ConcertCursor } from "@/types/concerts";
 import { formatDateTime, getCurrentDateTimeInUTC } from "@/utils/datetime";
 import { Pencil, Trash2 as Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
+import React from "react";
 import toast from "react-hot-toast";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -71,11 +72,11 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
         <div>
           <Typography.h4>{concert.title}</Typography.h4>
           <Typography.body className="italic text-md" fontWeight="300">
-            {concert.description?.split("\n").map((line) => (
-              <>
+            {concert.description?.split("\n").map((line, i) => (
+              <React.Fragment key={i}>
                 {line}
                 <br />
-              </>
+              </React.Fragment>
             ))}
           </Typography.body>
         </div>
