@@ -1,6 +1,7 @@
 "use client";
 
 import { LabeledDatePickerInput } from "@/components/inputs/datepicker";
+import { LabeledDropdownSelectInput } from "@/components/inputs/dropdown-select";
 import { LabeledTextInput } from "@/components/inputs/text";
 import { LabeledTextareaInput } from "@/components/inputs/textarea";
 import { Typography } from "@/components/typography";
@@ -95,7 +96,7 @@ const Inputs = () => {
     <div className="flex flex-col gap-8">
       <Typography.h2>Form</Typography.h2>
       <div className="flex flex-col gap-4">
-        <LabeledTextInput name="email" label="Email" placeholder="enter your email" required />
+        <LabeledTextInput readOnly name="email" label="Email" value="test 1212" placeholder="enter your email" required />
         <LabeledTextareaInput
           name="description"
           label="Description"
@@ -103,7 +104,18 @@ const Inputs = () => {
           required
           // error="Entrez un email valide!"
         />
-        <LabeledDatePickerInput label="Concert date" value={date} onChange={setDate} className="mb-[500px]" />
+        <LabeledDatePickerInput label="Concert date" value={date} onChange={setDate} />
+        <LabeledDropdownSelectInput
+          name="genre"
+          label="Genre"
+          placeholder="Select a genre"
+          options={[
+            { value: "pop", label: "Pop" },
+            { value: "rock", label: "Rock" },
+            { value: "jazz", label: "Jazz" },
+          ]}
+          required
+        />
       </div>
     </div>
   );

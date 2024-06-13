@@ -28,7 +28,7 @@ type InputContainerProps = React.PropsWithChildren<{
 
 export const InputContainer: React.FC<InputContainerProps> = ({ name, label, required, className, error, children }) => {
   return (
-    <div className={clsx("flex w-full gap-2 flex-col", className)}>
+    <div className={clsx("flex gap-2 flex-col", className)}>
       {label && (
         <FormLabel required={required} htmlFor={name}>
           {label}

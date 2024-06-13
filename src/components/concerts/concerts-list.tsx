@@ -6,9 +6,59 @@ import type { Concert } from "@/prisma/generated/client";
 import { trpc } from "@/trpc/react";
 import type { ConcertCursor } from "@/types/concerts";
 import { formatDateTime } from "@/utils/datetime";
+import { Pencil, Trash2 as Trash } from "lucide-react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const ConcertCard = ({ concert }: { concert: Concert }) => {
+const ConcertActionButtons = ({ concertId }: { concertId: string }) => {
+  const utils = trpc.useUtils();
+  const router = useRouter();
+  const deleteConcertMutation = trpc.concerts.delete.useMutation({
+    onSuccess: async () => {
+      utils.concerts.list.refetch();
+      utils.concerts.infiniteList.refetch();
+      toast.success("Concert deleted!", {
+        duration: 5000,
+        style: {
+          fontWeight: 600,
+        },
+      });
+      router.push("/backoffice/concerts");
+    },
+    onError: (error) => {
+      console.error(error.message);
+      toast.error("Something went wrong. Please try again!", {
+        duration: 5000,
+        style: {
+          fontWeight: 600,
+        },
+      });
+    },
+  });
+
+  const deleteConcert = () => {
+    deleteConcertMutation.mutate({ id: concertId });
+  };
+  return (
+    <>
+      <Button href={`/backoffice/concerts/edit/${concertId}`} variant="ghost" size="icon">
+        <Pencil className="w-5 h-5" />
+      </Button>
+      <Button
+        onClick={() => {
+          deleteConcert();
+        }}
+        variant="ghost"
+        size="icon"
+      >
+        <Trash className="w-5 h-5" />
+      </Button>
+    </>
+  );
+};
+
+const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showActions?: boolean }) => {
   return (
     <li className="flex gap-8 items-center">
       <div className="border-t border-b flex flex-col gap-2 w-full">
@@ -24,17 +74,18 @@ const ConcertCard = ({ concert }: { concert: Concert }) => {
       <Button variant="outline" className="py-6 px-4">
         More info
       </Button>
+      {showActions && <ConcertActionButtons concertId={concert.id} />}
     </li>
   );
 };
 
-const ConcertsList = ({ title, concerts }: { title: string; concerts: Concert[] }) => {
+const ConcertsList = ({ title, concerts, showActions }: { title: string; concerts: Concert[]; showActions?: boolean }) => {
   return (
     <div className="flex flex-col gap-6 w-full">
       <Typography.h2>{title}</Typography.h2>
       <ul className="flex flex-col gap-8">
         {concerts.map((concert) => (
-          <ConcertCard key={concert.id} concert={concert} />
+          <ConcertCard key={concert.id} concert={concert} showActions={showActions} />
         ))}
       </ul>
       {concerts.length === 0 && (
@@ -45,23 +96,26 @@ const ConcertsList = ({ title, concerts }: { title: string; concerts: Concert[] 
 };
 
 const today = new Date();
-export const UpcomingConcertsSection = ({ initialConcerts }: { initialConcerts: Concert[] }) => {
+
+export const UpcomingConcertsSection = ({ initialConcerts, showActions }: { initialConcerts: Concert[]; showActions?: boolean }) => {
   const upcomingConcertsQuery = trpc.concerts.list.useQuery(
     { filters: { minDate: today }, orderDates: "asc" },
-    { initialData: initialConcerts }
+    { initialData: initialConcerts, refetchOnMount: false, refetchOnWindowFocus: false }
   );
 
-  if (upcomingConcertsQuery.isLoading) return <>Loading...</>;
-  if (upcomingConcertsQuery.isError) return <h1>Error...</h1>;
-  return <ConcertsList title="Upcoming Concerts" concerts={upcomingConcertsQuery.data} />;
+  if (upcomingConcertsQuery.isLoading) return <Typography.body>Loading...</Typography.body>;
+  if (upcomingConcertsQuery.isError) return <Typography.error>Something went wrong, please try again!</Typography.error>;
+  return <ConcertsList title="Upcoming Concerts" concerts={upcomingConcertsQuery.data} showActions={showActions} />;
 };
 
 export const PastConcertsSection = ({
   initialConcerts,
   initialNextCursor,
+  showActions,
 }: {
   initialConcerts: Concert[];
   initialNextCursor: ConcertCursor;
+  showActions?: boolean;
 }) => {
   const pastConcertsQuery = trpc.concerts.infiniteList.useInfiniteQuery(
     { filters: { maxDate: today }, orderDates: "desc" },
@@ -76,12 +130,14 @@ export const PastConcertsSection = ({
         ],
         pageParams: [undefined],
       },
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
     }
   );
   const concerts = pastConcertsQuery.data?.pages.flatMap((page) => page.concerts) ?? [];
 
-  if (pastConcertsQuery.isLoading) return <>Loading...</>;
-  if (pastConcertsQuery.isError) return <h1>Error...</h1>;
+  if (pastConcertsQuery.isLoading) return <Typography.body>Loading...</Typography.body>;
+  if (pastConcertsQuery.isError) return <Typography.error>Something went wrong, please try again!</Typography.error>;
 
   return (
     <InfiniteScroll
@@ -90,7 +146,7 @@ export const PastConcertsSection = ({
       hasMore={pastConcertsQuery.hasNextPage}
       loader={<>===================== LOOOOADDDIIIIIINNNGGGG =========================</>}
     >
-      <ConcertsList title="Past Concerts" concerts={concerts} />
+      <ConcertsList title="Past Concerts" concerts={concerts} showActions={showActions} />
     </InfiniteScroll>
   );
 };

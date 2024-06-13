@@ -48,13 +48,20 @@ export const LoginForm = () => {
             <label className="text-[40px] font-bold text-white" htmlFor="email">
               Email
             </label>
-            <RHFLabeledTextInput name="email" placeholder="Enter your email" className="w-full" required />
+            <RHFLabeledTextInput name="email" placeholder="Enter your email" className="w-full" containerClassName="w-full" required />
           </div>
           <div className="flex flex-col gap-4 items-center">
             <label className="text-[40px] font-bold text-white" htmlFor="email">
               Password
             </label>
-            <RHFLabeledTextInput type="password" name="password" placeholder="Enter your password" className="w-full" required />
+            <RHFLabeledTextInput
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              className="w-full"
+              containerClassName="w-full"
+              required
+            />
           </div>
         </div>
 
@@ -101,7 +108,7 @@ export const SignupForm = () => {
       const error = e as Error; // FIXME: use a better type guard
       if (error.message.includes("already exists")) setErrorMessage("Admin already exists");
       else if (error.message.includes("duplicate key")) setErrorMessage("This email is already used");
-      else setErrorMessage("Something went wrong");
+      else setErrorMessage("Something went wrong!");
     }
   };
   return (
@@ -112,14 +119,28 @@ export const SignupForm = () => {
             <label className="text-[40px] font-bold text-white" htmlFor="email">
               Email
             </label>
-            <RHFLabeledTextInput name="email" placeholder="Enter your email" className="w-full" required />
+            <RHFLabeledTextInput name="email" placeholder="Enter your email" className="w-full" containerClassName="w-full" required />
           </div>
           <div className="flex flex-col gap-4 items-center">
             <label className="text-[40px] font-bold text-white" htmlFor="email">
               Password
             </label>
-            <RHFLabeledTextInput type="password" name="password" placeholder="Enter your password" className="w-full" required />
-            <RHFLabeledTextInput type="password" name="confirmPassword" placeholder="Confirm your password" className="w-full" required />
+            <RHFLabeledTextInput
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              className="w-full"
+              containerClassName="w-full"
+              required
+            />
+            <RHFLabeledTextInput
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm your password"
+              className="w-full"
+              containerClassName="w-full"
+              required
+            />
           </div>
         </div>
 

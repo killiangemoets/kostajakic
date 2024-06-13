@@ -11,3 +11,17 @@ export const concertFiltersSchema = z.object({
     })
     .optional(),
 });
+
+export const createConcertSchema = z.object({
+  date: z.date({ required_error: "Date is required" }),
+  time: z.string({ required_error: "Time is required" }).trim().min(1, { message: "Time is required" }),
+  location: z.string().trim().min(1, { message: "Location is required" }),
+  title: z.string().trim().min(1, { message: "Title is required" }),
+  description: z.string().trim().optional(),
+});
+
+export const idSchema = z.string().cuid({ message: "Please provide a valid id" });
+
+export const updateConcertSchema = createConcertSchema.extend({
+  id: idSchema,
+});

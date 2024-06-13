@@ -1,12 +1,13 @@
 import { Header } from "./header";
 import { Sidebar } from "./sidebar";
+import { cn } from "@/utils/tailwind";
 import { type ReactNode } from "react";
 
 const Profile = () => {
   return <div>Kosta Jakic</div>;
 };
 
-export const Navigation = ({ children, extra }: { children: ReactNode; extra?: ReactNode }) => {
+export const Navigation = ({ children, extra, className }: { children: ReactNode; extra?: ReactNode; className?: string }) => {
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[200px_1fr] lg:grid-cols-[220px_1fr]">
       <div className="hidden border-r bg-primary-700/70 md:block">
@@ -21,7 +22,7 @@ export const Navigation = ({ children, extra }: { children: ReactNode; extra?: R
       </div>
       <div className="flex flex-col">
         <Header extra={extra} />
-        <main className="pt-16 py-8 px-12">{children}</main>
+        <main className={cn("pt-16 py-8 px-12", className)}>{children}</main>
       </div>
     </div>
   );

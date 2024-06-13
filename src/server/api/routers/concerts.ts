@@ -1,8 +1,9 @@
-import { publicProcedure, router } from "../trpc";
+import { adminProcedure, publicProcedure, router } from "../trpc";
 import type { Prisma } from "@/prisma/generated/client";
-import { concertCursorSchema, concertFiltersSchema } from "@/schemas/concerts";
+import { concertCursorSchema, concertFiltersSchema, createConcertSchema, idSchema, updateConcertSchema } from "@/schemas/concerts";
 import { prisma } from "@/server/db";
 import type { ConcertFilters } from "@/types/concerts";
+import { mergeDateTime } from "@/utils/datetime";
 import { z } from "zod";
 
 type FilterConcertsClause = {
@@ -41,7 +42,6 @@ export const concertsRouter = router({
       ...getFilterConcertsClause(input),
     });
   }),
-
   infiniteList: publicProcedure
     .input(
       concertFiltersSchema.extend({
@@ -75,7 +75,7 @@ export const concertsRouter = router({
   byId: publicProcedure
     .input(
       z.object({
-        id: z.string().uuid(),
+        id: idSchema,
       })
     )
     .query(async ({ input }) => {
@@ -83,4 +83,32 @@ export const concertsRouter = router({
         where: { id: input.id },
       });
     }),
+  create: adminProcedure.input(createConcertSchema).mutation(async ({ input }) => {
+    const dateTime = mergeDateTime(input.date, input.time);
+    return await prisma.concert.create({
+      data: {
+        date: dateTime,
+        location: input.location,
+        title: input.title,
+        description: input.description,
+      },
+    });
+  }),
+  update: adminProcedure.input(updateConcertSchema).mutation(async ({ input }) => {
+    const dateTime = mergeDateTime(input.date, input.time);
+    return await prisma.concert.update({
+      where: { id: input.id },
+      data: {
+        date: dateTime,
+        location: input.location,
+        title: input.title,
+        description: input.description,
+      },
+    });
+  }),
+  delete: adminProcedure.input(z.object({ id: idSchema })).mutation(async ({ input }) => {
+    return await prisma.concert.delete({
+      where: { id: input.id },
+    });
+  }),
 });
