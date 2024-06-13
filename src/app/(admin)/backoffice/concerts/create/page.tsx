@@ -1,6 +1,7 @@
 "use client";
 
 import { ConcertForm } from "@/components/concerts/concert-form";
+import { DEFAULT_TIMEZONE } from "@/constants/datetime";
 import { createConcertSchema } from "@/schemas/concerts";
 import { trpc } from "@/trpc/react";
 import type { CreateConcert } from "@/types/concerts";
@@ -16,7 +17,7 @@ const ConcertCreationForm = () => {
   const methods = useForm<CreateConcert>({
     resolver: zodResolver(createConcertSchema),
     defaultValues: {
-      timezone: "Europe/Brussels",
+      timezone: DEFAULT_TIMEZONE,
     },
   });
 
