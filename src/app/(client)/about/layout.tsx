@@ -4,7 +4,7 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Kosta Jakic - About",
+  title: "About | Kosta Jakic",
   description: "Kosta Jakic's personal website.",
 };
 

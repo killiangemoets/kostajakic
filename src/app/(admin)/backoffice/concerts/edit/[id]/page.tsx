@@ -1,6 +1,7 @@
 "use client";
 
 import { ConcertForm } from "@/components/concerts/concert-form";
+import { Navigation } from "@/components/layout";
 import { Typography } from "@/components/typography";
 import type { Concert } from "@/prisma/generated/client";
 import { updateConcertSchema } from "@/schemas/concerts";
@@ -62,13 +63,16 @@ const ConcertEditForm = ({ concert }: { concert: Concert }) => {
 export default function BackofficeConcertsEdit() {
   const { id } = useParams<{ id: string }>();
   const concertsQuery = trpc.concerts.byId.useQuery({ id }, { refetchOnMount: false, refetchOnWindowFocus: false });
+
   if (concertsQuery.isLoading) return <Typography.body>Loading...</Typography.body>;
   if (concertsQuery.isError) return <Typography.error>Something went wrong, please try again!</Typography.error>;
+
   const concert = concertsQuery.data;
   if (!concert) return <Typography.error>No concert found</Typography.error>;
+
   return (
-    <div className="w-full flex justify-center">
+    <Navigation className="w-full flex justify-center">
       <ConcertEditForm concert={concert} />
-    </div>
+    </Navigation>
   );
 }
