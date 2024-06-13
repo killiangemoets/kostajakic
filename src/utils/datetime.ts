@@ -4,10 +4,11 @@ import { toZonedTime } from "date-fns-tz";
 
 const ABITRATY_DATE = "2023-01-01";
 
-const getCurrentDateTimeInUTC = () => {
+const getBrusselsCurrentDateTimeInUTC = () => {
   const today = new Date();
-  const dateString = format(today, "yyyy-MM-dd");
-  const timeString = format(today, "HH:mm");
+  const todayInBrusssels = toZonedTime(today, "Europe/Brussels");
+  const dateString = format(todayInBrusssels, "yyyy-MM-dd");
+  const timeString = format(todayInBrusssels, "HH:mm");
   return parseISO(`${dateString}T${timeString}.000Z`);
 };
 
@@ -46,4 +47,4 @@ function splitDateAndTime(dateTime: Date): { date: Date; time: string } {
   return { date, time };
 }
 
-export { getCurrentDateTimeInUTC, formatDateTime, generateTimeOptions, mergeDateTime, splitDateAndTime };
+export { getBrusselsCurrentDateTimeInUTC, formatDateTime, generateTimeOptions, mergeDateTime, splitDateAndTime };

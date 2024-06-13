@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import type { Concert } from "@/prisma/generated/client";
 import { trpc } from "@/trpc/react";
 import type { ConcertCursor } from "@/types/concerts";
-import { formatDateTime, getCurrentDateTimeInUTC } from "@/utils/datetime";
+import { formatDateTime, getBrusselsCurrentDateTimeInUTC } from "@/utils/datetime";
 import { Pencil, Trash2 as Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -105,13 +105,13 @@ const ConcertsList = ({ title, concerts, showActions }: { title: string; concert
   );
 };
 
-const now = getCurrentDateTimeInUTC();
+const now = getBrusselsCurrentDateTimeInUTC();
 
 export const UpcomingConcertsSection = ({ initialConcerts, showActions }: { initialConcerts: Concert[]; showActions?: boolean }) => {
   const upcomingConcertsQuery = trpc.concerts.list.useQuery(
     { filters: { minDate: now }, orderDates: "asc" },
     {
-      initialData: initialConcerts.filter((concert) => new Date(concert.date) >= getCurrentDateTimeInUTC()),
+      initialData: initialConcerts,
       refetchOnMount: false,
       refetchOnWindowFocus: false,
     }
@@ -139,8 +139,8 @@ export const PastConcertsSection = ({
       initialData: {
         pages: [
           {
-            concerts: initialConcerts.filter((concert) => new Date(concert.date) < getCurrentDateTimeInUTC()),
-            nextCursor: !!initialNextCursor?.date && initialNextCursor.date < getCurrentDateTimeInUTC() ? initialNextCursor : undefined,
+            concerts: initialConcerts,
+            nextCursor: initialNextCursor,
           },
         ],
         pageParams: [undefined],
