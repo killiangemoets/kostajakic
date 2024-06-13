@@ -1,8 +1,11 @@
-import { ConcertsSection } from "@/components/concerts";
 import { Navigation } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 
-export default function BackofficeConcerts() {
+export default async function BackofficeConcertsLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <Navigation
       className="w-full flex justify-center"
@@ -12,7 +15,7 @@ export default function BackofficeConcerts() {
         </Button>
       }
     >
-      <ConcertsSection className="max-w-[800px]" showActions />
+      {children}
     </Navigation>
   );
 }
