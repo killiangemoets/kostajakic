@@ -70,7 +70,14 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
         </div>
         <div>
           <Typography.h4>{concert.title}</Typography.h4>
-          <Typography.body>{concert.description}</Typography.body>
+          <Typography.body className="italic text-md" fontWeight="300">
+            {concert.description?.split("\n").map((line) => (
+              <>
+                {line}
+                <br />
+              </>
+            ))}
+          </Typography.body>
         </div>
       </div>
       <Button variant="outline" className="py-6 px-4">
