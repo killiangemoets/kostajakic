@@ -12,18 +12,18 @@ export const concertFiltersSchema = z.object({
     .optional(),
 });
 
-export const commonCOnceertSchema = z.object({
+export const commonConcertSchema = z.object({
   location: z.string().trim().min(1, { message: "Location is required" }),
   title: z.string().trim().min(1, { message: "Title is required" }),
   description: z.string().trim().optional(),
 });
 
-export const createConcertSchema = commonCOnceertSchema.extend({
+export const createConcertSchema = commonConcertSchema.extend({
   date: z.date({ required_error: "Date is required" }),
   time: z.string({ required_error: "Time is required" }).trim().min(1, { message: "Time is required" }),
 });
 
-export const createConcertBESchema = commonCOnceertSchema.extend({
+export const createConcertBESchema = commonConcertSchema.extend({
   date: z.date({ required_error: "Date is required" }),
 });
 

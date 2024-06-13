@@ -8,9 +8,7 @@ const getCurrentDateTimeInUTC = () => {
   const today = new Date();
   const dateString = format(today, "yyyy-MM-dd");
   const timeString = format(today, "HH:mm");
-  const combinedDateTimeToISOString = `${dateString}T${timeString}.000Z`;
-  const dateToISO = parseISO(combinedDateTimeToISOString);
-  return dateToISO;
+  return parseISO(`${dateString}T${timeString}.000Z`);
 };
 
 function formatDateTime(dateTime: Date) {
