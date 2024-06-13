@@ -1,5 +1,6 @@
 "use client";
 
+import Spinner from "../ui/spinner";
 import { Typography } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import type { Concert } from "@/prisma/generated/client";
@@ -102,9 +103,9 @@ export const UpcomingConcertsSection = ({ initialConcerts, showActions }: { init
     { filters: { minDate: today }, orderDates: "asc" },
     { initialData: initialConcerts, refetchOnMount: false, refetchOnWindowFocus: false }
   );
-
-  if (upcomingConcertsQuery.isLoading) return <Typography.body>Loading...</Typography.body>;
-  if (upcomingConcertsQuery.isError) return <Typography.error>Something went wrong, please try again!</Typography.error>;
+  if (upcomingConcertsQuery.isLoading) return <Spinner className="pr-[124px]" />;
+  if (upcomingConcertsQuery.isError)
+    return <Typography.error className="pr-[124px] py-6">Something went wrong, please try again!</Typography.error>;
   return <ConcertsList title="Upcoming Concerts" concerts={upcomingConcertsQuery.data} showActions={showActions} />;
 };
 
@@ -136,15 +137,16 @@ export const PastConcertsSection = ({
   );
   const concerts = pastConcertsQuery.data?.pages.flatMap((page) => page.concerts) ?? [];
 
-  if (pastConcertsQuery.isLoading) return <Typography.body>Loading...</Typography.body>;
-  if (pastConcertsQuery.isError) return <Typography.error>Something went wrong, please try again!</Typography.error>;
+  if (pastConcertsQuery.isLoading) return <Spinner className="pr-[124px]" />;
+  if (pastConcertsQuery.isError)
+    return <Typography.error className="pr-[124px] py-6">Something went wrong, please try again!</Typography.error>;
 
   return (
     <InfiniteScroll
       dataLength={concerts.length}
       next={pastConcertsQuery.fetchNextPage}
       hasMore={pastConcertsQuery.hasNextPage}
-      loader={<>===================== LOOOOADDDIIIIIINNNGGGG =========================</>}
+      loader={<Spinner className="pr-[124px]" />}
     >
       <ConcertsList title="Past Concerts" concerts={concerts} showActions={showActions} />
     </InfiniteScroll>

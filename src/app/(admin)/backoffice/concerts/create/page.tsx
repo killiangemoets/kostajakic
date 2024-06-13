@@ -1,7 +1,6 @@
 "use client";
 
 import { ConcertForm } from "@/components/concerts/concert-form";
-import { Navigation } from "@/components/layout";
 import { createConcertSchema } from "@/schemas/concerts";
 import { trpc } from "@/trpc/react";
 import type { CreateConcert } from "@/types/concerts";
@@ -46,10 +45,6 @@ const ConcertCreationForm = () => {
   return <ConcertForm methods={methods} onSubmit={onSubmit} isLoading={createConcertMutation.isPending} />;
 };
 
-export default function BackofficeConcertsCreate() {
-  return (
-    <Navigation className="w-full flex justify-center">
-      <ConcertCreationForm />
-    </Navigation>
-  );
+export default function BackofficeCreateConcert() {
+  return <ConcertCreationForm />;
 }

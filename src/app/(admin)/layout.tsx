@@ -1,5 +1,4 @@
 import bgBackoffice from "@/assets/images/bg-backoffice.jpg";
-import "@/styles/globals.css";
 
 export default async function AdminLayout({
   children,
