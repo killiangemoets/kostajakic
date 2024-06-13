@@ -50,7 +50,7 @@ export const concertsRouter = router({
       })
     )
     .query(async ({ input }) => {
-      const { limit = 20, cursor, filters, orderDates } = input;
+      const { limit = 2, cursor, filters, orderDates } = input;
 
       const data = await prisma.concert.findMany({
         ...getFilterConcertsClause({ filters, orderDates }),

@@ -36,6 +36,23 @@ const config: Config = {
         primary,
         destructive,
       },
+      keyframes: {
+        pulse: {
+          from: {
+            opacity: "1",
+            transform: "scale(1)",
+          },
+          to: {
+            opacity: "0.25",
+            transform: "scale(0.8)",
+          },
+        },
+      },
+      animation: {
+        "pulse-1": "pulse 0.8s ease 0s infinite alternate",
+        "pulse-2": "pulse 0.8s ease 0.4s infinite alternate",
+        "pulse-3": "pulse 0.8s ease 0.8s infinite alternate",
+      },
     },
   },
   plugins: [],

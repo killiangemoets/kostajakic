@@ -6,6 +6,7 @@ import { LabeledTextInput } from "@/components/inputs/text";
 import { LabeledTextareaInput } from "@/components/inputs/textarea";
 import { Typography } from "@/components/typography";
 import { Button } from "@/components/ui/button";
+import Spinner from "@/components/ui/spinner";
 import { useState } from "react";
 
 const Buttons = () => {
@@ -125,6 +126,7 @@ export default function Samples() {
   return (
     <main className="flex flex-col gap-12">
       <Typography.h1 className="text-center">SAMPLES</Typography.h1>
+      <Spinner />
       <Buttons />
       <Typographies />
       <Inputs />
