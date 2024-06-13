@@ -1,4 +1,5 @@
 import { adminProcedure, publicProcedure, router } from "../trpc";
+import { CONCERTS_INFINITE_SCROLL_LIMIT } from "@/constants/concerts";
 import type { Prisma } from "@/prisma/generated/client";
 import { concertCursorSchema, concertFiltersSchema, createConcertSchema, idSchema, updateConcertSchema } from "@/schemas/concerts";
 import { prisma } from "@/server/db";
@@ -50,7 +51,7 @@ export const concertsRouter = router({
       })
     )
     .query(async ({ input }) => {
-      const { limit = 2, cursor, filters, orderDates } = input;
+      const { limit = CONCERTS_INFINITE_SCROLL_LIMIT, cursor, filters, orderDates } = input;
 
       const data = await prisma.concert.findMany({
         ...getFilterConcertsClause({ filters, orderDates }),
