@@ -9,7 +9,7 @@ import { trpc } from "@/trpc/react";
 import type { UpdateConcert } from "@/types/concerts";
 import { mergeDateTime, splitDateAndTime } from "@/utils/datetime";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -62,9 +62,8 @@ const ConcertEditForm = ({ concert }: { concert: Concert }) => {
   return <ConcertForm methods={methods} onSubmit={onSubmit} isLoading={updateConcertMutation.isPending} />;
 };
 
-export default function BackofficeEditConcert() {
-  const { id } = useParams<{ id: string }>();
-  const concertsQuery = trpc.concerts.byId.useQuery({ id }, { refetchOnMount: false, refetchOnWindowFocus: false });
+export default function BackofficeEditConcert({ params }: { params: { id: string } }) {
+  const concertsQuery = trpc.concerts.byId.useQuery({ id: params.id }, { refetchOnMount: false, refetchOnWindowFocus: false });
 
   if (concertsQuery.isLoading) return <Spinner />;
   if (concertsQuery.isError) return <Typography.error className="py-12">Something went wrong, please try again!</Typography.error>;
