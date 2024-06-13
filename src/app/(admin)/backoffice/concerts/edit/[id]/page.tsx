@@ -65,7 +65,7 @@ export default function BackofficeEditConcert() {
   const concertsQuery = trpc.concerts.byId.useQuery({ id }, { refetchOnMount: false, refetchOnWindowFocus: false });
 
   if (concertsQuery.isLoading) return <Spinner />;
-  if (concertsQuery.isError) return <Typography.error>Something went wrong, please try again!</Typography.error>;
+  if (concertsQuery.isError) return <Typography.error className="py-12">Something went wrong, please try again!</Typography.error>;
 
   const concert = concertsQuery.data;
   if (!concert) return <Typography.error>No concert found</Typography.error>;

@@ -104,7 +104,8 @@ export const UpcomingConcertsSection = ({ initialConcerts, showActions }: { init
     { initialData: initialConcerts, refetchOnMount: false, refetchOnWindowFocus: false }
   );
   if (upcomingConcertsQuery.isLoading) return <Spinner className="pr-[124px]" />;
-  if (upcomingConcertsQuery.isError) return <Typography.error>Something went wrong, please try again!</Typography.error>;
+  if (upcomingConcertsQuery.isError)
+    return <Typography.error className="pr-[124px] py-6">Something went wrong, please try again!</Typography.error>;
   return <ConcertsList title="Upcoming Concerts" concerts={upcomingConcertsQuery.data} showActions={showActions} />;
 };
 
@@ -137,7 +138,8 @@ export const PastConcertsSection = ({
   const concerts = pastConcertsQuery.data?.pages.flatMap((page) => page.concerts) ?? [];
 
   if (pastConcertsQuery.isLoading) return <Spinner className="pr-[124px]" />;
-  if (pastConcertsQuery.isError) return <Typography.error>Something went wrong, please try again!</Typography.error>;
+  if (pastConcertsQuery.isError)
+    return <Typography.error className="pr-[124px] py-6">Something went wrong, please try again!</Typography.error>;
 
   return (
     <InfiniteScroll
