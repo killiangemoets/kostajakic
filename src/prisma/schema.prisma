@@ -28,6 +28,7 @@ model Concert {
   location    String
   title       String
   description String?
+  timezone    String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

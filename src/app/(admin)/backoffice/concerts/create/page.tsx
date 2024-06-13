@@ -15,6 +15,9 @@ const ConcertCreationForm = () => {
   const router = useRouter();
   const methods = useForm<CreateConcert>({
     resolver: zodResolver(createConcertSchema),
+    defaultValues: {
+      timezone: "Europe/Brussels",
+    },
   });
 
   const createConcertMutation = trpc.concerts.create.useMutation({

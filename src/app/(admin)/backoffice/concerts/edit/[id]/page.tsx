@@ -27,6 +27,7 @@ const ConcertEditForm = ({ concert }: { concert: Concert }) => {
       location: concert.location,
       title: concert.title,
       description: concert.description ?? undefined,
+      timezone: concert.timezone,
     },
   });
 
