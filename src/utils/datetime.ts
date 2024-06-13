@@ -1,10 +1,19 @@
 import type { MultiOption } from "@/types/inputs";
-import { format, setHours, setMinutes, startOfDay } from "date-fns";
+import { format, parseISO, startOfDay } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
 
 const ABITRATY_DATE = "2023-01-01";
 
+const getCurrentDateTimeInUTC = () => {
+  const today = new Date();
+  const dateString = format(today, "yyyy-MM-dd");
+  const timeString = format(today, "HH:mm");
+  return parseISO(`${dateString}T${timeString}.000Z`);
+};
+
 function formatDateTime(dateTime: Date) {
-  return format(dateTime, "EEE do 'of' MMMM yyyy, HH:mm");
+  const utcDate = toZonedTime(dateTime, "UTC");
+  return format(utcDate, "EEE do 'of' MMMM yyyy, HH:mm");
 }
 
 const generateTimeOptions = (start: string, end: string, gap: number) => {
@@ -25,16 +34,16 @@ const generateTimeOptions = (start: string, end: string, gap: number) => {
 };
 
 const mergeDateTime = (date: Date, time: string) => {
-  const [hours, minutes] = time.split(":").map(Number);
-  const dateWithHours = setHours(date, hours);
-  const dateWithMinutes = setMinutes(dateWithHours, minutes);
-  return dateWithMinutes;
+  const dateString = format(date, "yyyy-MM-dd");
+  const combinedDateTimeToISOString = `${dateString}T${time}:00.000Z`;
+  return parseISO(combinedDateTimeToISOString);
 };
 
 function splitDateAndTime(dateTime: Date): { date: Date; time: string } {
-  const date = startOfDay(dateTime);
-  const time = format(dateTime, "HH:mm");
+  const utcDate = toZonedTime(dateTime, "UTC");
+  const date = startOfDay(utcDate);
+  const time = format(utcDate, "HH:mm");
   return { date, time };
 }
 
-export { formatDateTime, generateTimeOptions, mergeDateTime, splitDateAndTime };
+export { getCurrentDateTimeInUTC, formatDateTime, generateTimeOptions, mergeDateTime, splitDateAndTime };

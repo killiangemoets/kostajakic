@@ -1,17 +1,17 @@
-import { FolderOpen } from "@/assets/icons/folder-open";
-import { PianoIcon } from "@/assets/icons/piano";
-import { VideoIcon } from "@/assets/icons/video";
+import { Video } from "lucide-react";
+import { Piano } from "lucide-react";
+import { FolderOpen } from "lucide-react";
 
 export const SIDEBAR_ITEMS = [
   {
     name: "Concerts",
     href: "/backoffice/concerts",
-    icon: PianoIcon,
+    icon: Piano,
   },
   {
     name: "Gallery",
     href: "/backoffice/gallery",
-    icon: VideoIcon,
+    icon: Video,
   },
   {
     name: "Projects",

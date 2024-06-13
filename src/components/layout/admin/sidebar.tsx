@@ -1,9 +1,9 @@
 "use client";
 
-import { LogoutIcon } from "@/assets/icons/logout";
 import { Button } from "@/components/ui/button";
 import { SIDEBAR_ITEMS } from "@/constants/sidebar";
 import { cn } from "@/utils/tailwind";
+import { LogOut } from "lucide-react";
 import { signOut } from "next-auth/react";
 import type { LinkProps } from "next/link";
 import Link from "next/link";
@@ -42,7 +42,7 @@ export const Sidebar = () => {
         ))}
       </div>
       <Button variant="ghost" className="w-fit" onClick={() => signOut()}>
-        <LogoutIcon className="pr-2 w-6 h-6" />
+        <LogOut className="pr-2 w-6 h-6" />
         <p>Log out</p>
       </Button>
     </nav>

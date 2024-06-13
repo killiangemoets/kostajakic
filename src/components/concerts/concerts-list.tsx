@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import type { Concert } from "@/prisma/generated/client";
 import { trpc } from "@/trpc/react";
 import type { ConcertCursor } from "@/types/concerts";
-import { formatDateTime } from "@/utils/datetime";
+import { formatDateTime, getCurrentDateTimeInUTC } from "@/utils/datetime";
 import { Pencil, Trash2 as Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -47,6 +47,7 @@ const ConcertActionButtons = ({ concertId }: { concertId: string }) => {
         <Pencil className="w-5 h-5" />
       </Button>
       <Button
+        disabled={deleteConcertMutation.isPending}
         onClick={() => {
           deleteConcert();
         }}
@@ -69,7 +70,14 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
         </div>
         <div>
           <Typography.h4>{concert.title}</Typography.h4>
-          <Typography.body>{concert.description}</Typography.body>
+          <Typography.body className="italic text-md" fontWeight="300">
+            {concert.description?.split("\n").map((line) => (
+              <>
+                {line}
+                <br />
+              </>
+            ))}
+          </Typography.body>
         </div>
       </div>
       <Button variant="outline" className="py-6 px-4">
@@ -96,11 +104,11 @@ const ConcertsList = ({ title, concerts, showActions }: { title: string; concert
   );
 };
 
-const today = new Date();
+const now = getCurrentDateTimeInUTC();
 
 export const UpcomingConcertsSection = ({ initialConcerts, showActions }: { initialConcerts: Concert[]; showActions?: boolean }) => {
   const upcomingConcertsQuery = trpc.concerts.list.useQuery(
-    { filters: { minDate: today }, orderDates: "asc" },
+    { filters: { minDate: now }, orderDates: "asc" },
     { initialData: initialConcerts, refetchOnMount: false, refetchOnWindowFocus: false }
   );
   if (upcomingConcertsQuery.isLoading) return <Spinner className="pr-[124px]" />;
@@ -119,7 +127,7 @@ export const PastConcertsSection = ({
   showActions?: boolean;
 }) => {
   const pastConcertsQuery = trpc.concerts.infiniteList.useInfiniteQuery(
-    { filters: { maxDate: today }, orderDates: "desc" },
+    { filters: { maxDate: now }, orderDates: "desc" },
     {
       getNextPageParam: (lastPage) => lastPage.nextCursor,
       initialData: {
