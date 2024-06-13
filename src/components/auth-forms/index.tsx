@@ -108,7 +108,7 @@ export const SignupForm = () => {
       const error = e as Error; // FIXME: use a better type guard
       if (error.message.includes("already exists")) setErrorMessage("Admin already exists");
       else if (error.message.includes("duplicate key")) setErrorMessage("This email is already used");
-      else setErrorMessage("Something went wrong");
+      else setErrorMessage("Something went wrong!");
     }
   };
   return (
