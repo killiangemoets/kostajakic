@@ -110,11 +110,16 @@ const now = getCurrentDateTimeInUTC();
 export const UpcomingConcertsSection = ({ initialConcerts, showActions }: { initialConcerts: Concert[]; showActions?: boolean }) => {
   const upcomingConcertsQuery = trpc.concerts.list.useQuery(
     { filters: { minDate: now }, orderDates: "asc" },
-    { initialData: initialConcerts, refetchOnMount: false, refetchOnWindowFocus: false }
+    {
+      initialData: initialConcerts.filter((concert) => new Date(concert.date) >= getCurrentDateTimeInUTC()),
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    }
   );
   if (upcomingConcertsQuery.isLoading) return <Spinner className="pr-[124px]" />;
   if (upcomingConcertsQuery.isError)
     return <Typography.error className="pr-[124px] py-6">Something went wrong, please try again!</Typography.error>;
+
   return <ConcertsList title="Upcoming Concerts" concerts={upcomingConcertsQuery.data} showActions={showActions} />;
 };
 
@@ -134,8 +139,8 @@ export const PastConcertsSection = ({
       initialData: {
         pages: [
           {
-            concerts: initialConcerts,
-            nextCursor: initialNextCursor,
+            concerts: initialConcerts.filter((concert) => new Date(concert.date) < getCurrentDateTimeInUTC()),
+            nextCursor: !!initialNextCursor?.date && initialNextCursor.date < getCurrentDateTimeInUTC() ? initialNextCursor : undefined,
           },
         ],
         pageParams: [undefined],
