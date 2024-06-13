@@ -27,9 +27,14 @@ export const ConcertForm = <T extends CreateConcert | UpdateConcert>({ methods, 
       <RHFLabeledTextInput label="Title" name="title" placeholder="Enter the title" className="w-full" required />
       <RHFLabeledTextareaInput label="Description" name="description" placeholder="Enter the description" className="w-full" />
 
-      <Button disabled={isLoading} type="submit" className="w-full">
-        Create concert
-      </Button>
+      <div className="mt-6 flex items-center gap-8">
+        <Button disabled={isLoading} variant="outline" className="w-[50%]" type="button" href="/backoffice/concerts">
+          Cancel
+        </Button>
+        <Button disabled={isLoading} type="submit" className="w-full">
+          Submit
+        </Button>
+      </div>
     </Form>
   );
 };

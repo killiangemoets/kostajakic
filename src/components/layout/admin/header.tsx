@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
 const getActiveTitle = (pathname: string) => {
-  const title = SIDEBAR_ITEMS.find((item) => pathname.startsWith(item.href) && item.href.length === pathname.length)?.name;
+  const title = SIDEBAR_ITEMS.find((item) => pathname.startsWith(item.href))?.name;
   return title;
 };
 
