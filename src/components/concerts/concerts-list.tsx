@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import type { Concert } from "@/prisma/generated/client";
 import { trpc } from "@/trpc/react";
 import type { ConcertCursor } from "@/types/concerts";
-import { formatDateTime, getBrusselsCurrentDateTimeInUTC } from "@/utils/datetime";
+import { formatDateTime } from "@/utils/datetime";
 import { Pencil, Trash2 as Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -66,7 +66,7 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
     <li className="flex gap-8 items-center">
       <div className="border-t border-b flex flex-col gap-2 w-full">
         <div className="flex justify-between border-b">
-          <Typography.body>{formatDateTime(concert.date)}</Typography.body>
+          <Typography.body>{formatDateTime(concert.date, concert.timezone)}</Typography.body>
           <Typography.body>{concert.location}</Typography.body>
         </div>
         <div>
@@ -105,7 +105,12 @@ const ConcertsList = ({ title, concerts, showActions }: { title: string; concert
   );
 };
 
-const now = getBrusselsCurrentDateTimeInUTC();
+const now = new Date();
+
+// eslint-disable-next-line no-console
+console.log("now", now);
+// eslint-disable-next-line no-console
+console.log("now", now.toISOString());
 
 export const UpcomingConcertsSection = ({ initialConcerts, showActions }: { initialConcerts: Concert[]; showActions?: boolean }) => {
   const upcomingConcertsQuery = trpc.concerts.list.useQuery(

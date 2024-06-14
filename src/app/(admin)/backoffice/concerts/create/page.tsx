@@ -5,7 +5,7 @@ import { DEFAULT_TIMEZONE } from "@/constants/datetime";
 import { createConcertSchema } from "@/schemas/concerts";
 import { trpc } from "@/trpc/react";
 import type { CreateConcert } from "@/types/concerts";
-import { mergeDateTime } from "@/utils/datetime";
+import { mergeDateTimeWithTimeZone } from "@/utils/datetime";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -46,7 +46,7 @@ const ConcertCreationForm = () => {
 
   const onSubmit = (data: CreateConcert) => {
     const { date, time, ...rest } = data;
-    const dateTime = mergeDateTime(date, time);
+    const dateTime = mergeDateTimeWithTimeZone(date, time, rest.timezone);
     createConcertMutation.mutate({ ...rest, date: dateTime });
   };
   return <ConcertForm methods={methods} onSubmit={onSubmit} isLoading={createConcertMutation.isPending} />;

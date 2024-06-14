@@ -1,10 +1,9 @@
 import { PastConcertsSection, UpcomingConcertsSection } from "./concerts-list";
 import { trpcServer } from "@/trpc/server";
-import { getBrusselsCurrentDateTimeInUTC } from "@/utils/datetime";
 import clsx from "clsx";
 
 export const ConcertsSection = async ({ className, showActions }: { className?: string; showActions?: boolean }) => {
-  const now = getBrusselsCurrentDateTimeInUTC();
+  const now = new Date();
   const upcomingConcerts = await trpcServer.concerts.list({ filters: { minDate: now }, orderDates: "asc" });
   const pastConcerts = await trpcServer.concerts.infiniteList({ filters: { maxDate: now }, orderDates: "desc" });
   return (
