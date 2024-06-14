@@ -7,7 +7,7 @@ import type { Concert } from "@/prisma/generated/client";
 import { updateConcertSchema } from "@/schemas/concerts";
 import { trpc } from "@/trpc/react";
 import type { UpdateConcert } from "@/types/concerts";
-import { mergeDateTime, splitDateAndTime } from "@/utils/datetime";
+import { mergeDateTimeWithTimeZone, splitDateAndTimeInTimezone } from "@/utils/datetime";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 const ConcertEditForm = ({ concert }: { concert: Concert }) => {
-  const { date, time } = useMemo(() => splitDateAndTime(concert.date), [concert.date]);
+  const { date, time } = useMemo(() => splitDateAndTimeInTimezone(concert.date, concert.timezone), [concert.date, concert.timezone]);
   const utils = trpc.useUtils();
   const router = useRouter();
   const methods = useForm<UpdateConcert>({
@@ -27,6 +27,7 @@ const ConcertEditForm = ({ concert }: { concert: Concert }) => {
       location: concert.location,
       title: concert.title,
       description: concert.description ?? undefined,
+      timezone: concert.timezone,
     },
   });
 
@@ -56,7 +57,7 @@ const ConcertEditForm = ({ concert }: { concert: Concert }) => {
 
   const onSubmit = (data: UpdateConcert) => {
     const { date, time, ...rest } = data;
-    const dateTime = mergeDateTime(date, time);
+    const dateTime = mergeDateTimeWithTimeZone(date, time, rest.timezone);
     updateConcertMutation.mutate({ ...rest, date: dateTime });
   };
   return <ConcertForm methods={methods} onSubmit={onSubmit} isLoading={updateConcertMutation.isPending} />;

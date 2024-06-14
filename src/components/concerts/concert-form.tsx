@@ -5,6 +5,7 @@ import { RHFLabeledTextInput } from "../rhf/inputs/text";
 import { RHFLabeledTextareaInput } from "../rhf/inputs/textarea";
 import { Button } from "../ui/button";
 import { CONCERTS_TIME_OPTIONS } from "@/constants/concerts";
+import { TIMEZONES } from "@/constants/datetime";
 import type { CreateConcert, UpdateConcert } from "@/types/concerts";
 import type { SubmitHandler, UseFormReturn } from "react-hook-form";
 
@@ -17,10 +18,16 @@ type ConcertFormProps<T extends CreateConcert | UpdateConcert> = {
 export const ConcertForm = <T extends CreateConcert | UpdateConcert>({ methods, onSubmit, isLoading }: ConcertFormProps<T>) => {
   return (
     <Form className="flex flex-col gap-6 w-[80%] relative" onSubmit={onSubmit} methods={methods}>
-      {/* <input type="hidden" {...methods.register("id", { value: concert.id })} /> */}
       <div className="flex  gap-2">
         <RHFLabeledDateSelectInput label="Date" name="date" placeholder="Select the date" required />
         <RHFLabeledDropdownSelectInput label="Time" name="time" placeholder="Time" required options={CONCERTS_TIME_OPTIONS} />
+        <RHFLabeledDropdownSelectInput
+          label="Timezone"
+          name="timezone"
+          placeholder="Timezone"
+          required
+          options={TIMEZONES.map((timezone) => ({ label: timezone, value: timezone }))}
+        />
       </div>
 
       <RHFLabeledTextInput label="Location" name="location" placeholder="Enter the location" className="w-full" required />

@@ -89,14 +89,10 @@ export const concertsRouter = router({
     });
   }),
   update: adminProcedure.input(updateConcertBESchema).mutation(async ({ input }) => {
+    const { id, ...rest } = input;
     return await prisma.concert.update({
-      where: { id: input.id },
-      data: {
-        date: input.date,
-        location: input.location,
-        title: input.title,
-        description: input.description,
-      },
+      where: { id },
+      data: rest,
     });
   }),
   delete: adminProcedure.input(z.object({ id: idSchema })).mutation(async ({ input }) => {

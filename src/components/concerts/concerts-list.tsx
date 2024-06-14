@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import type { Concert } from "@/prisma/generated/client";
 import { trpc } from "@/trpc/react";
 import type { ConcertCursor } from "@/types/concerts";
-import { formatDateTime, getCurrentDateTimeInUTC } from "@/utils/datetime";
+import { formatDateTime } from "@/utils/datetime";
 import { Pencil, Trash2 as Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -66,7 +66,7 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
     <li className="flex gap-8 items-center">
       <div className="border-t border-b flex flex-col gap-2 w-full">
         <div className="flex justify-between border-b">
-          <Typography.body>{formatDateTime(concert.date)}</Typography.body>
+          <Typography.body>{formatDateTime(concert.date, concert.timezone)}</Typography.body>
           <Typography.body>{concert.location}</Typography.body>
         </div>
         <div>
@@ -105,16 +105,21 @@ const ConcertsList = ({ title, concerts, showActions }: { title: string; concert
   );
 };
 
-const now = getCurrentDateTimeInUTC();
+const now = new Date();
 
 export const UpcomingConcertsSection = ({ initialConcerts, showActions }: { initialConcerts: Concert[]; showActions?: boolean }) => {
   const upcomingConcertsQuery = trpc.concerts.list.useQuery(
     { filters: { minDate: now }, orderDates: "asc" },
-    { initialData: initialConcerts, refetchOnMount: false, refetchOnWindowFocus: false }
+    {
+      initialData: initialConcerts,
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    }
   );
   if (upcomingConcertsQuery.isLoading) return <Spinner className="pr-[124px]" />;
   if (upcomingConcertsQuery.isError)
     return <Typography.error className="pr-[124px] py-6">Something went wrong, please try again!</Typography.error>;
+
   return <ConcertsList title="Upcoming Concerts" concerts={upcomingConcertsQuery.data} showActions={showActions} />;
 };
 
