@@ -107,11 +107,6 @@ const ConcertsList = ({ title, concerts, showActions }: { title: string; concert
 
 const now = new Date();
 
-// eslint-disable-next-line no-console
-console.log("now", now);
-// eslint-disable-next-line no-console
-console.log("now", now.toISOString());
-
 export const UpcomingConcertsSection = ({ initialConcerts, showActions }: { initialConcerts: Concert[]; showActions?: boolean }) => {
   const upcomingConcertsQuery = trpc.concerts.list.useQuery(
     { filters: { minDate: now }, orderDates: "asc" },

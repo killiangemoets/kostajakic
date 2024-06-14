@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import type { MultiOption } from "@/types/inputs";
 import { format, parse, startOfDay } from "date-fns";
 import { fromZonedTime, toZonedTime } from "date-fns-tz";
