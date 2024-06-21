@@ -28,7 +28,7 @@ const DownloadButtons = () => {
 export default async function Concerts() {
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 w-[50%]">
+      <div className="flex flex-col gap-4 w-[50%] min-w-[500px]">
         <Typography.body>
           <span className="font-semibold">Kosta Jakic</span> lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem aspernatur
           officiis provident maiores repellendus id iusto doloremque accusamus animi culpa est, quibusdam natus adipisci saepe rem amet
