@@ -63,7 +63,7 @@ const ConcertActionButtons = ({ concertId }: { concertId: string }) => {
 
 const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showActions?: boolean }) => {
   return (
-    <li className="flex gap-8 items-center">
+    <li className="flex gap-3 sm:gap-8 items-center flex-col sm:flex-row">
       <div className="border-t border-b flex flex-col gap-2 w-full">
         <div className="flex justify-between border-b">
           <Typography.body>{formatDateTime(concert.date, concert.timezone)}</Typography.body>
@@ -81,7 +81,7 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
           </Typography.body>
         </div>
       </div>
-      <Button variant="outline" className="py-6 px-4">
+      <Button variant="outline" className="ml-auto h-9 px-2 sm:py-6 sm:px-4">
         More info
       </Button>
       {showActions && <ConcertActionButtons concertId={concert.id} />}
@@ -99,7 +99,7 @@ const ConcertsList = ({ title, concerts, showActions }: { title: string; concert
         ))}
       </ul>
       {concerts.length === 0 && (
-        <Typography.body className="my-4 text-center text-2xl text-primary-200 pr-[124px]">No concerts</Typography.body>
+        <Typography.body className="my-4 text-center text-2xl text-primary-200 sm:pr-[124px]">No concerts</Typography.body>
       )}
     </div>
   );
@@ -116,9 +116,9 @@ export const UpcomingConcertsSection = ({ initialConcerts, showActions }: { init
       refetchOnWindowFocus: false,
     }
   );
-  if (upcomingConcertsQuery.isLoading) return <Spinner className="pr-[124px]" />;
+  if (upcomingConcertsQuery.isLoading) return <Spinner className="sm:pr-[124px]" />;
   if (upcomingConcertsQuery.isError)
-    return <Typography.error className="pr-[124px] py-6">Something went wrong, please try again!</Typography.error>;
+    return <Typography.error className="sm:pr-[124px] py-6">Something went wrong, please try again!</Typography.error>;
 
   return <ConcertsList title="Upcoming Concerts" concerts={upcomingConcertsQuery.data} showActions={showActions} />;
 };
@@ -151,16 +151,16 @@ export const PastConcertsSection = ({
   );
   const concerts = pastConcertsQuery.data?.pages.flatMap((page) => page.concerts) ?? [];
 
-  if (pastConcertsQuery.isLoading) return <Spinner className="pr-[124px]" />;
+  if (pastConcertsQuery.isLoading) return <Spinner className="sm:pr-[124px]" />;
   if (pastConcertsQuery.isError)
-    return <Typography.error className="pr-[124px] py-6">Something went wrong, please try again!</Typography.error>;
+    return <Typography.error className="sm:pr-[124px] py-6">Something went wrong, please try again!</Typography.error>;
 
   return (
     <InfiniteScroll
       dataLength={concerts.length}
       next={pastConcertsQuery.fetchNextPage}
       hasMore={pastConcertsQuery.hasNextPage}
-      loader={<Spinner className="pr-[124px]" />}
+      loader={<Spinner className="sm:pr-[124px]" />}
     >
       <ConcertsList title="Past Concerts" concerts={concerts} showActions={showActions} />
     </InfiniteScroll>
