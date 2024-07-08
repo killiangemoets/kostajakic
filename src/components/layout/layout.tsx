@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import clsx from "clsx";
+import { cn } from "@/utils/tailwind";
 
 export const Navbar = ({ className }: { className?: string }) => {
   return (
-    <div className={clsx("flex flex-col gap-16", className)}>
+    <div className={cn("flex flex-col gap-16", className)}>
       <div className="flex gap-8">
         <Button size="lg" className="mt-12" variant="ghost" href="/about">
           About
@@ -28,7 +28,7 @@ export const Navbar = ({ className }: { className?: string }) => {
 export const Layout = {
   Body: ({ children, backgroundImgSrc, className, ...props }: { backgroundImgSrc?: string } & React.ComponentPropsWithoutRef<"div">) => (
     <div
-      className={clsx("min-h-screen px-8 pt-8 pb-16 overflow-hidden flex flex-col gap-16 bg-fixed", className)}
+      className="min-h-screen px-8 pt-8 pb-16 overflow-hidden flex flex-col gap-16 bg-fixed"
       style={
         !!backgroundImgSrc
           ? {
@@ -41,7 +41,7 @@ export const Layout = {
       {...props}
     >
       <Navbar />
-      <main className="h-full relative px-20">{children}</main>
+      <main className={cn("relative px-20 flex-1", className)}>{children}</main>
     </div>
   ),
 };
