@@ -1,4 +1,4 @@
-import bgBackoffice from "@/assets/images/bg-backoffice.jpg";
+import bgBackoffice from "@/assets/images/bg-backoffice.webp";
 
 export default async function AdminLayout({
   children,
