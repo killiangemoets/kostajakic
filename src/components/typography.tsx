@@ -4,7 +4,7 @@ import React from "react";
 
 export const Typography = {
   h1: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"h1">) => (
-    <h1 className={cn("text-heading-1 uppercase", className)} {...props}>
+    <h1 className={cn("text-heading-1 2xl:text-[72px] 2xl:leading-[80px] uppercase", className)} {...props}>
       {children}
     </h1>
   ),
