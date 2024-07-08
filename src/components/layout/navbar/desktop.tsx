@@ -4,7 +4,7 @@ import { cn } from "@/utils/tailwind";
 
 export const DesktopNavbar = ({ className }: { className?: string }) => {
   return (
-    <div className={cn("flex flex-col gap-16", className)}>
+    <div className={cn("flex flex-col gap-16 z-10", className)}>
       <div className="flex gap-8">
         <Button size="lg" className="mt-0 bg-slate-400 rounded-full" variant="ghost" href="/">
           LOGO

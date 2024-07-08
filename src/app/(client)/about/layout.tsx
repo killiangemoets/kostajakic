@@ -13,5 +13,9 @@ export default function AboutLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <Layout.Body backgroundImgSrc={bgAbout.src}>{children}</Layout.Body>;
+  return (
+    <Layout.Body className="px-0 sm:px-8 lg:px-20" bgFilter backgroundPosition="top right" backgroundImgSrc={bgAbout.src}>
+      {children}
+    </Layout.Body>
+  );
 }
