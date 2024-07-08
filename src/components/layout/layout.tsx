@@ -41,7 +41,7 @@ export const Layout = {
       {...props}
     >
       <Navbar />
-      <main className="h-full relative px-20">{children}</main>
+      <main className="relative px-20 flex-1 ">{children}</main>
     </div>
   ),
 };
