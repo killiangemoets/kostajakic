@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { NAVBAR_ITEMS } from "@/constants/navigation";
 import { cn } from "@/utils/tailwind";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
@@ -39,56 +40,19 @@ export const PhonseNavbar = ({ className }: { className?: string }) => {
           </Button>
         </div>
         <div className=" flex flex-col items-center gap-8">
-          <Button
-            onClick={() => {
-              setIsMenuOpen(false);
-            }}
-            size="lg"
-            variant="ghost"
-            href="/about"
-          >
-            About
-          </Button>
-          <Button
-            onClick={() => {
-              setIsMenuOpen(false);
-            }}
-            size="lg"
-            variant="ghost"
-            href="/concerts"
-          >
-            Concerts
-          </Button>
-          <Button
-            onClick={() => {
-              setIsMenuOpen(false);
-            }}
-            size="lg"
-            variant="ghost"
-            href="/contact"
-          >
-            Contact
-          </Button>
-          <Button
-            onClick={() => {
-              setIsMenuOpen(false);
-            }}
-            size="lg"
-            variant="ghost"
-            href="/gallery"
-          >
-            Gallery
-          </Button>
-          <Button
-            onClick={() => {
-              setIsMenuOpen(false);
-            }}
-            size="lg"
-            variant="ghost"
-            href="/projects"
-          >
-            Projects
-          </Button>
+          {NAVBAR_ITEMS.map((item) => (
+            <Button
+              onClick={() => {
+                setIsMenuOpen(false);
+              }}
+              key={item.name}
+              size="lg"
+              variant="ghost"
+              href={item.href}
+            >
+              {item.name}
+            </Button>
+          ))}
         </div>
       </div>
     </div>

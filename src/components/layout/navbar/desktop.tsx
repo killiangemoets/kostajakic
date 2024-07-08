@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { NAVBAR_ITEMS } from "@/constants/navigation";
 import { cn } from "@/utils/tailwind";
 
 export const DesktopNavbar = ({ className }: { className?: string }) => {
@@ -8,21 +9,11 @@ export const DesktopNavbar = ({ className }: { className?: string }) => {
         <Button size="lg" className="mt-0 bg-slate-400 rounded-full" variant="ghost" href="/">
           LOGO
         </Button>
-        <Button size="lg" className="mt-12" variant="ghost" href="/about">
-          About
-        </Button>
-        <Button size="lg" variant="ghost" href="/concerts">
-          Concerts
-        </Button>
-        <Button size="lg" className="mt-8" variant="ghost" href="/contact">
-          Contact
-        </Button>
-        <Button size="lg" className="mt-16" variant="ghost" href="/gallery">
-          Gallery
-        </Button>
-        <Button size="lg" className="mt-4" variant="ghost" href="/projects">
-          Projects
-        </Button>
+        {NAVBAR_ITEMS.map((item) => (
+          <Button key={item.name} size="lg" className={item.desktopClassName} variant="ghost" href={item.href}>
+            {item.name}
+          </Button>
+        ))}
       </div>
     </div>
   );

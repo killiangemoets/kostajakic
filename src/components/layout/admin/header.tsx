@@ -1,7 +1,7 @@
 "use client";
 
 import { Typography } from "@/components/typography";
-import { SIDEBAR_ITEMS } from "@/constants/sidebar";
+import { SIDEBAR_ITEMS } from "@/constants/navigation";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
