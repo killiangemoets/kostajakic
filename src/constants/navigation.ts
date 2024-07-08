@@ -6,27 +6,27 @@ export const NAVBAR_ITEMS = [
   {
     name: "About",
     href: "/about",
-    desktopClassName: "mt-12",
+    desktopMarginTop: "3rem",
   },
   {
     name: "Concerts",
     href: "/concerts",
-    desktopClassName: "",
+    desktopMarginTop: "0rem",
   },
   {
     name: "Gallery",
     href: "/gallery",
-    desktopClassName: "mt-8",
+    desktopMarginTop: "2rem",
   },
   {
     name: "Projects",
     href: "/projects",
-    desktopClassName: "mt-16",
+    desktopMarginTop: "4rem",
   },
   {
     name: "Contact",
     href: "/contact",
-    desktopClassName: "mt-4",
+    desktopMarginTop: "1rem",
   },
 ] as const;
 

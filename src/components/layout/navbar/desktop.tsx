@@ -9,11 +9,13 @@ export const DesktopNavbar = ({ className }: { className?: string }) => {
         <Button size="lg" className="mt-0 bg-slate-400 rounded-full" variant="ghost" href="/">
           LOGO
         </Button>
-        {NAVBAR_ITEMS.map((item) => (
-          <Button key={item.name} size="lg" className={item.desktopClassName} variant="ghost" href={item.href}>
-            {item.name}
-          </Button>
-        ))}
+        {NAVBAR_ITEMS.map((item) => {
+          return (
+            <Button key={item.name} size="lg" style={{ marginTop: item.desktopMarginTop }} variant="ghost" href={item.href}>
+              {item.name}
+            </Button>
+          );
+        })}
       </div>
     </div>
   );
