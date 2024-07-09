@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { SIDEBAR_ITEMS } from "@/constants/sidebar";
+import { SIDEBAR_ITEMS } from "@/constants/navigation";
 import { cn } from "@/utils/tailwind";
 import { LogOut } from "lucide-react";
 import { signOut } from "next-auth/react";

@@ -53,6 +53,9 @@ const config: Config = {
         "pulse-2": "pulse 0.8s ease 0.4s infinite alternate",
         "pulse-3": "pulse 0.8s ease 0.8s infinite alternate",
       },
+      screens: {
+        xs: "420px",
+      },
     },
   },
   plugins: [],

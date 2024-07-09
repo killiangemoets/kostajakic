@@ -29,6 +29,8 @@ model Concert {
   title       String
   description String?
   timezone    String
+  url         String?
+  soldout     Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

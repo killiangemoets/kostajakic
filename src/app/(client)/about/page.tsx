@@ -4,7 +4,7 @@ import { ArrowDownToLine } from "lucide-react";
 
 const DownloadButtons = () => {
   return (
-    <div className="space-x-2.5">
+    <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 w-fit items-center gap-2">
       <Button className="normal-case w-[102px]" variant="outline" size="sm">
         <ArrowDownToLine className="h-3.5 w-3.5 mr-2" />
         PDF - en
@@ -27,8 +27,8 @@ const DownloadButtons = () => {
 
 export default async function Concerts() {
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col gap-4 w-[50%] min-w-[500px]">
+    <div className="space-y-6 ">
+      <div className="flex flex-col gap-4 w-full sm:w-[50%] sm:min-w-[500px]">
         <Typography.body>
           <span className="font-semibold">Kosta Jakic</span> lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem aspernatur
           officiis provident maiores repellendus id iusto doloremque accusamus animi culpa est, quibusdam natus adipisci saepe rem amet

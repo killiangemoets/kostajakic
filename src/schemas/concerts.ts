@@ -20,6 +20,8 @@ export const commonConcertSchema = z.object({
   timezone: z.string({ required_error: "Timezone is required" }).refine((value) => TIMEZONES.includes(value), {
     message: "Invalid timezone",
   }),
+  url: z.string().trim().optional(),
+  soldout: z.boolean().default(false),
 });
 
 export const createConcertSchema = commonConcertSchema.extend({

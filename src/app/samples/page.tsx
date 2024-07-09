@@ -1,5 +1,6 @@
 "use client";
 
+import { LabeledCheckboxInput } from "@/components/inputs/checkbox";
 import { LabeledDatePickerInput } from "@/components/inputs/datepicker";
 import { LabeledDropdownSelectInput } from "@/components/inputs/dropdown-select";
 import { LabeledTextInput } from "@/components/inputs/text";
@@ -117,6 +118,7 @@ const Inputs = () => {
           ]}
           required
         />
+        <LabeledCheckboxInput name="soldout" label="Tickets" />
       </div>
     </div>
   );
