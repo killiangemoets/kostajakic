@@ -65,7 +65,7 @@ const ConcertActionButtons = ({ concertId }: { concertId: string }) => {
 const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showActions?: boolean }) => {
   return (
     <li className="flex gap-3 sm:gap-8 items-center flex-col sm:flex-row">
-      <div className="border-t border-b flex flex-col gap-2 w-full">
+      <div className="border-t border-b flex flex-col gap-2 flex-1">
         <div className="flex justify-between border-b">
           <Typography.body>{formatDateTime(concert.date, concert.timezone)}</Typography.body>
           <Typography.body>{concert.location}</Typography.body>
@@ -84,7 +84,8 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
       </div>
       <Button
         variant="outline"
-        className={cn("ml-auto h-9 px-2 sm:py-6 sm:px-4", { "opacity-0 disabled:opacity-0": !concert?.url })}
+        target="_blank"
+        className={cn("h-9 px-2 sm:py-6 sm:px-4 w-[110px]", { "opacity-0 disabled:opacity-0": !concert?.url })}
         {...(concert?.url ? { href: concert.url } : { disabled: true })}
       >
         {concert.soldout ? "Soldout" : "More info"}
