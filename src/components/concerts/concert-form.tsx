@@ -33,6 +33,7 @@ export const ConcertForm = <T extends CreateConcert | UpdateConcert>({ methods, 
       <RHFLabeledTextInput label="Location" name="location" placeholder="Enter the location" className="w-full" required />
       <RHFLabeledTextInput label="Title" name="title" placeholder="Enter the title" className="w-full" required />
       <RHFLabeledTextareaInput label="Description" name="description" placeholder="Enter the description" className="w-full" />
+      <RHFLabeledTextInput label="Url" name="url" placeholder="Enter the url" className="w-full" />
 
       <div className="mt-6 flex items-center gap-8">
         <Button disabled={isLoading} variant="outline" className="w-[50%]" type="button" href="/backoffice/concerts">

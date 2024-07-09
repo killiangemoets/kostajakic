@@ -23,11 +23,13 @@ const ConcertEditForm = ({ concert }: { concert: Concert }) => {
     defaultValues: {
       id: concert.id,
       date: date,
-      time: time,
       location: concert.location,
+      time: time,
       title: concert.title,
       description: concert.description ?? undefined,
       timezone: concert.timezone,
+      url: concert.url ?? undefined,
+      soldout: concert.soldout,
     },
   });
 

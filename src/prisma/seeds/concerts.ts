@@ -7,6 +7,7 @@ export const concerts: Prisma.ConcertCreateInput[] = [
     date: "2024-05-10T19:00:00.000Z",
     location: "Bozar, salle Henri Le Boeuf",
     timezone: "Europe/Brussels",
+    url: "https://www.google.com/",
   },
 
   {
@@ -15,6 +16,7 @@ export const concerts: Prisma.ConcertCreateInput[] = [
     date: "2024-09-17T20:00:00.000Z",
     location: "De Singel, Antwerp",
     timezone: "Europe/Brussels",
+    url: "https://www.google.com/",
   },
   {
     title: "Solo Recital",
@@ -22,6 +24,7 @@ export const concerts: Prisma.ConcertCreateInput[] = [
     date: "2024-06-22T20:00:00.000Z",
     location: "Carnegie Hall, New York",
     timezone: "America/New_York",
+    url: "https://www.google.com/",
   },
   {
     title: "Solo Recital",
@@ -29,6 +32,7 @@ export const concerts: Prisma.ConcertCreateInput[] = [
     date: "2023-05-10T19:00:00.000Z",
     location: "Bozar, salle Henri Le Boeuf",
     timezone: "Europe/Brussels",
+    url: "https://www.google.com/",
   },
   {
     title: "Chamber musical recital",
@@ -36,6 +40,7 @@ export const concerts: Prisma.ConcertCreateInput[] = [
     date: "2023-05-17T20:20:00.000Z",
     location: "De Singel, Antwerp",
     timezone: "Europe/Brussels",
+    url: "https://www.google.com/",
   },
   {
     title: "Solo Recital",
@@ -43,6 +48,8 @@ export const concerts: Prisma.ConcertCreateInput[] = [
     date: "2024-03-22T20:00:00.000Z",
     location: "Carnegie Hall, New York",
     timezone: "America/New_York",
+    url: "https://www.google.com/",
+    soldout: true,
   },
   {
     title: "Solo Recital 2",
@@ -64,6 +71,8 @@ export const concerts: Prisma.ConcertCreateInput[] = [
     date: "2024-01-22T19:00:00.000Z",
     location: "Carnegie Hall, New York",
     timezone: "America/New_York",
+    url: "https://www.google.com/",
+    soldout: true,
   },
   {
     title: "Solo Recital 5",
@@ -71,6 +80,7 @@ export const concerts: Prisma.ConcertCreateInput[] = [
     date: "2024-01-10T20:00:00.000Z",
     location: "Carnegie Hall, New York",
     timezone: "America/New_York",
+    url: "https://www.google.com/",
   },
   {
     title: "Solo Recital 6",
@@ -85,6 +95,8 @@ export const concerts: Prisma.ConcertCreateInput[] = [
     date: "2024-03-22T20:00:00.000Z",
     location: "Carnegie Hall, New York",
     timezone: "America/New_York",
+    url: "https://www.google.com/",
+    soldout: true,
   },
   {
     title: "Solo Recital 8",
@@ -92,6 +104,7 @@ export const concerts: Prisma.ConcertCreateInput[] = [
     date: "2024-08-22T20:00:00.000Z",
     location: "Carnegie Hall, New York",
     timezone: "America/New_York",
+    url: "https://www.google.com/",
   },
   {
     title: "Solo Recital 9",
@@ -99,6 +112,7 @@ export const concerts: Prisma.ConcertCreateInput[] = [
     date: "2024-02-22T20:00:00.000Z",
     location: "Carnegie Hall, New York",
     timezone: "America/New_York",
+    url: "https://www.google.com/",
   },
   {
     title: "Solo Recital 10",

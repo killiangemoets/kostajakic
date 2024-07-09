@@ -7,6 +7,7 @@ import type { Concert } from "@/prisma/generated/client";
 import { trpc } from "@/trpc/react";
 import type { ConcertCursor } from "@/types/concerts";
 import { formatDateTime } from "@/utils/datetime";
+import { cn } from "@/utils/tailwind";
 import { Pencil, Trash2 as Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -81,8 +82,12 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
           </Typography.body>
         </div>
       </div>
-      <Button variant="outline" className="ml-auto h-9 px-2 sm:py-6 sm:px-4">
-        More info
+      <Button
+        variant="outline"
+        className={cn("ml-auto h-9 px-2 sm:py-6 sm:px-4", { "opacity-0 disabled:opacity-0": !concert?.url })}
+        {...(concert?.url ? { href: concert.url } : { disabled: true })}
+      >
+        {concert.soldout ? "Soldout" : "More info"}
       </Button>
       {showActions && <ConcertActionButtons concertId={concert.id} />}
     </li>
