@@ -85,7 +85,7 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
       <Button
         variant="outline"
         target="_blank"
-        className={cn("h-9 px-2 sm:py-6 sm:px-4 w-[110px]", { "opacity-0 disabled:opacity-0": !concert?.url })}
+        className={cn("ml-auto h-9 px-2 sm:py-6 sm:px-4 w-[110px]", { "opacity-0 disabled:opacity-0": !concert?.url })}
         {...(concert?.url ? { href: concert.url } : { disabled: true })}
       >
         {concert.soldout ? "Soldout" : "More info"}
