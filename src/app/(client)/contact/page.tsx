@@ -8,16 +8,16 @@ import { CONTACT_EMAIL, CONTACT_PHONE_NUMBER, FACEBOOK_URL, INSTAGRAM_URL, YOUTU
 export default async function Contact() {
   return (
     <div className="w-full sm:w-[50%] sm:min-w-[500px] pt-32">
-      <Typography.h2>Kosta Jakic</Typography.h2>
+      <Typography.h2 className="mb-1.5">Kosta Jakic</Typography.h2>
       <div className="flex justify-between border-t border-b py-0.5">
-        <Button variant="ghost" className="normal-case p-0 h-fit" href={`mailto:${CONTACT_EMAIL}`}>
+        <Button variant="ghost" className="normal-case font-medium p-0 h-fit" href={`mailto:${CONTACT_EMAIL}`}>
           <Typography.body>{CONTACT_EMAIL}</Typography.body>
         </Button>
-        <Button variant="ghost" className="normal-case p-0 h-fit" href={`tel:${CONTACT_PHONE_NUMBER}`}>
+        <Button variant="ghost" className="normal-case font-medium p-0 h-fit" href={`tel:${CONTACT_PHONE_NUMBER}`}>
           <Typography.body>{CONTACT_PHONE_NUMBER}</Typography.body>
         </Button>
       </div>
-      <div className="mt-12 flex items-center gap-2.5">
+      <div className="mt-12 flex items-center gap-1.5">
         <Button size="icon" className="h-8 w-8 rounded-lg" href={INSTAGRAM_URL} target="_blank">
           <InstagramIcon className="w-6 h-6 text-primary-600" />
         </Button>
