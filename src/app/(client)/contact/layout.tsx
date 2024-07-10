@@ -13,5 +13,9 @@ export default function ConcertsLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <Layout.Body backgroundImgSrc={bgContact.src}>{children}</Layout.Body>;
+  return (
+    <Layout.Body className="px-0 sm:px-8 lg:px-20" backgroundImgSrc={bgContact.src}>
+      {children}
+    </Layout.Body>
+  );
 }

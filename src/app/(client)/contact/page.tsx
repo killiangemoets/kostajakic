@@ -7,7 +7,7 @@ import { CONTACT_EMAIL, CONTACT_PHONE_NUMBER, FACEBOOK_URL, INSTAGRAM_URL, YOUTU
 
 export default async function Contact() {
   return (
-    <div className="w-[50%] pt-32">
+    <div className="w-full sm:w-[50%] sm:min-w-[500px] pt-32">
       <Typography.h2>Kosta Jakic</Typography.h2>
       <div className="flex justify-between border-t border-b py-0.5">
         <Button variant="ghost" className="normal-case p-0 h-fit" href={`mailto:${CONTACT_EMAIL}`}>
