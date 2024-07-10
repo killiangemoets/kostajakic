@@ -1,6 +1,6 @@
 import bgConcerts from "@/assets/images/bg-concerts.webp";
 import { Layout } from "@/components/layout";
-import type { Metadata } from "next";
+import type { Metadata } from "next/types";
 
 export const metadata: Metadata = {
   title: "Concerts | Kosta Jakic",
