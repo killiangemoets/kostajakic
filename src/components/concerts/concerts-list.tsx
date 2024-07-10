@@ -67,12 +67,12 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
     <li className="flex gap-3 sm:gap-8 items-center flex-col sm:flex-row">
       <div className="border-t border-b flex flex-col gap-2 flex-1">
         <div className="flex justify-between border-b">
-          <Typography.body>{formatDateTime(concert.date, concert.timezone)}</Typography.body>
-          <Typography.body>{concert.location}</Typography.body>
+          <Typography.body className="font-medium">{formatDateTime(concert.date, concert.timezone)}</Typography.body>
+          <Typography.body className="font-medium">{concert.location}</Typography.body>
         </div>
         <div>
           <Typography.h4>{concert.title}</Typography.h4>
-          <Typography.body className="italic text-md" fontWeight="300">
+          <Typography.body className="italic text-md">
             {concert.description?.split("\n").map((line, i) => (
               <React.Fragment key={i}>
                 {line}

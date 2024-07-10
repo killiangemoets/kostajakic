@@ -5,14 +5,14 @@ import Link from "next/link";
 import * as React from "react";
 
 const buttonVariants = cva(
-  " duration-300 ease-in-out uppercase inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "duration-300 ease-in-out uppercase inline-flex items-center justify-center whitespace-nowrap text-sm font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default: "bg-primary text-primary-600 hover:bg-primary-100",
         destructive: "bg-destructive text-primary hover:bg-destructive-dark hover:text-primary",
         outline: "border-[1px] hover:text-primary-200 hover:border-primary-200",
-        ghost: "font-bold text-base hover:text-primary-200",
+        ghost: "font-black text-base hover:text-primary-200",
       },
       size: {
         default: "h-10 px-4",

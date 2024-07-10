@@ -1,10 +1,7 @@
 import bgBackoffice from "@/assets/images/bg-backoffice.jpg";
 import { Layout } from "@/components/layout";
-import "@/styles/globals.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"], preload: true });
+import "@/styles/globals.scss";
+import type { Metadata } from "next/types";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,9 +13,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <Layout.Body className={inter.className} backgroundImgSrc={bgBackoffice.src}>
-      {children}
-    </Layout.Body>
-  );
+  return <Layout.Body backgroundImgSrc={bgBackoffice.src}>{children}</Layout.Body>;
 }

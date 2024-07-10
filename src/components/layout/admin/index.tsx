@@ -1,10 +1,15 @@
 import { Header } from "./header";
 import { Sidebar } from "./sidebar";
+import { Typography } from "@/components/typography";
 import { cn } from "@/utils/tailwind";
 import { type ReactNode } from "react";
 
 const Profile = () => {
-  return <div>Kosta Jakic</div>;
+  return (
+    <div>
+      <Typography.body className="font-black">Kosta Jakic</Typography.body>
+    </div>
+  );
 };
 
 export const Navigation = ({ children, extra, className }: { children: ReactNode; extra?: ReactNode; className?: string }) => {

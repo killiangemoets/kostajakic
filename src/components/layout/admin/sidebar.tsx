@@ -23,7 +23,7 @@ export const SidebarLink = ({ name, href, Icon }: { name: string; href: LinkProp
     <Link
       href={href}
       className={cn(
-        "text-md flex items-center gap-3 rounded-lg px-3 py-3 transition-all duration-300 hover:bg-primary hover:text-primary-700",
+        "text-md font-bold flex items-center gap-3 rounded-lg px-3 py-3 transition-all duration-300 hover:bg-primary hover:text-primary-700",
         isActive && "bg-primary text-primary-700"
       )}
     >
@@ -41,7 +41,7 @@ export const Sidebar = () => {
           <SidebarLink key={item.name} name={item.name} href={item.href} Icon={item.icon} />
         ))}
       </div>
-      <Button variant="ghost" className="w-fit" onClick={() => signOut()}>
+      <Button variant="ghost" className="w-fit font-bold" onClick={() => signOut()}>
         <LogOut className="pr-2 w-6 h-6" />
         <p>Log out</p>
       </Button>

@@ -1,6 +1,5 @@
 import bgContact from "@/assets/images/bg-contact.webp";
 import { Layout } from "@/components/layout";
-import "@/styles/globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,5 +12,9 @@ export default function ConcertsLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <Layout.Body backgroundImgSrc={bgContact.src}>{children}</Layout.Body>;
+  return (
+    <Layout.Body className="px-0 sm:px-8 lg:px-20" backgroundImgSrc={bgContact.src}>
+      {children}
+    </Layout.Body>
+  );
 }

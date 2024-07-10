@@ -22,7 +22,7 @@ export const CheckboxInput = forwardRef<HTMLInputElement, CheckboxInputProps>(fu
         )}
         {...props}
       />
-      <label htmlFor={props.name} className={cn("cursor-pointer capitalize", { "text-destructive": isError })}>
+      <label htmlFor={props.name} className={cn("cursor-pointer capitalize font-medium", { "text-destructive": isError })}>
         {props.name}
       </label>
     </div>

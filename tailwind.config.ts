@@ -24,13 +24,15 @@ const config: Config = {
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        sans: ["Inter", ...fontFamily.sans],
+        sans: [...fontFamily.sans],
+        "din-pro": ["DIN Pro", ...fontFamily.sans],
+        "din-pro-cond": ["DIN Pro Cond", "DIN Pro", ...fontFamily.sans],
       },
       fontSize: {
         "heading-1": ["52px", { lineHeight: "56px", fontWeight: "700" }],
-        "heading-2": ["26px", { lineHeight: "36px", fontWeight: "700" }],
+        "heading-2": ["26px", { lineHeight: "36px", fontWeight: "900" }],
         "heading-3": ["24px", { lineHeight: "33px", fontWeight: "700" }],
-        "heading-4": ["20px", { lineHeight: "28px", fontWeight: "500" }],
+        "heading-4": ["20px", { lineHeight: "28px", fontWeight: "700" }],
       },
       colors: {
         primary,
