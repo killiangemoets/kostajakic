@@ -1,6 +1,6 @@
 import bgContact from "@/assets/images/bg-contact.webp";
 import { Layout } from "@/components/layout";
-import type { Metadata } from "next";
+import type { Metadata } from "next/types";
 
 export const metadata: Metadata = {
   title: "Contact | Kosta Jakic",
@@ -13,7 +13,7 @@ export default function ConcertsLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Layout.Body className="px-0 sm:px-8 lg:px-20" backgroundImgSrc={bgContact.src}>
+    <Layout.Body className="px-0 sm:px-8 lg:px-20" backgroundPosition="top right" backgroundImgSrc={bgContact.src}>
       {children}
     </Layout.Body>
   );
