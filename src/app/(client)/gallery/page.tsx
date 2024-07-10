@@ -14,7 +14,7 @@ import Image from "next/image";
 const Videos = () => {
   return (
     <div>
-      <Typography.body className="border-b font-bold">Videos</Typography.body>
+      <Typography.h3 className="border-b font-bold normal-case">Videos</Typography.h3>
     </div>
   );
 };
@@ -30,7 +30,7 @@ const Photo = ({ src, alt }: { src: StaticImageData; alt: string }) => {
 const Photos = () => {
   return (
     <div className="space-y-4">
-      <Typography.body className="border-b font-bold">Photos</Typography.body>
+      <Typography.h3 className="border-b font-bold normal-case">Photos</Typography.h3>
       <div className="grid grid-cols-4 w-full gap-4">
         <Photo src={gallery1} alt="project" />
         <Photo src={gallery2} alt="project" />

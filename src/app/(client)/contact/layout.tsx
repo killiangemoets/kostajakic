@@ -13,7 +13,7 @@ export default function ConcertsLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Layout.Body className="px-0 sm:px-8 lg:px-20" backgroundPosition="bottom right" backgroundImgSrc={bgContact.src}>
+    <Layout.Body className="px-0 sm:px-8 lg:px-20" backgroundPosition="top right" backgroundImgSrc={bgContact.src}>
       {children}
     </Layout.Body>
   );

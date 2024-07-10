@@ -28,7 +28,7 @@ export const Typography = {
     </p>
   ),
   note: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"p">) => (
-    <p className={cn("text-sm font-semibold", className)} {...props}>
+    <p className={cn("text-sm font-medium", className)} {...props}>
       {children}
     </p>
   ),
