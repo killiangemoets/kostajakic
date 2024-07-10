@@ -16,7 +16,7 @@ export const DropdownSelectInput = <T extends string>({
     <Select.Root disabled={readOnly} {...props}>
       <Select.Trigger
         className={cn(
-          "min-w-[240px] bg-primary-700/70 rounded-md text-primary border-[0.5px] px-4 py-2 h-10",
+          "min-w-[240px] bg-primary-700/70 rounded-md text-primary font-medium border-[0.5px] px-4 py-2 h-10",
           !props.value && "text-primary/80",
           isError ? "border-destructive border focus:border-destructive hover:border-destructive" : " border-neutral-300"
         )}

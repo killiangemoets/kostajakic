@@ -19,7 +19,7 @@ export const DatePickerInput: FC<DatePickerInputProps> = ({ name, placeholder, v
         <Button
           variant={"outline"}
           className={cn(
-            "w-[240px] rounded-md focus:outline-none py-2.5 text-primary justify-start text-left",
+            "w-[240px] rounded-md focus:outline-none py-2.5 text-primary font-medium justify-start text-left",
             readOnly ? "rounded-lg bg-transparent border-none" : "bg-primary-700/70 border-[0.5px] px-5",
             !value && "text-primary/80",
             !readOnly && isError ? "border-destructive  border focus:border-destructive hover:border-destructive" : "border-neutral-300"

@@ -8,7 +8,7 @@ export const FormLabel: React.FC<
 > = ({ children, required, className, ...props }) => (
   <label
     className={clsx(
-      "text-lg font-metropolis font-semibold whitespace-nowrap",
+      "text-lg font-metropolis font-bold whitespace-nowrap",
       required && "after:text-required after:content-['_*']",
       className
     )}
