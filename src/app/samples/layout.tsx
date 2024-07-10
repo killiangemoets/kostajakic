@@ -1,6 +1,6 @@
 import bgBackoffice from "@/assets/images/bg-backoffice.jpg";
 import { Layout } from "@/components/layout";
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 import type { Metadata } from "next/types";
 
 export const metadata: Metadata = {
