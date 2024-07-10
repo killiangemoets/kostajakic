@@ -1,11 +1,8 @@
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 import { TRPCReactProvider } from "@/trpc/react";
 import clsx from "clsx";
-import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import type { Metadata } from "next/types";
 import { Toaster } from "react-hot-toast";
-
-const inter = Roboto({ weight: ["300", "400", "500", "700", "900"], subsets: ["latin"], preload: true });
 
 export const metadata: Metadata = {
   title: "Kosta Jakic | Pianist",
@@ -20,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <TRPCReactProvider>
-        <body className={clsx(inter.className, "min-h-screen")}>
+        <body className={clsx("min-h-screen")}>
           {children}
           <Toaster position="bottom-right" />
         </body>

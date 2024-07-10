@@ -24,7 +24,9 @@ const config: Config = {
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        sans: ["Inter", ...fontFamily.sans],
+        sans: [...fontFamily.sans],
+        "din-pro": ["DIN Pro", ...fontFamily.mono],
+        "din-pro-cond": ["DIN Pro Cond", "DIN Pro", ...fontFamily.mono],
       },
       fontSize: {
         "heading-1": ["52px", { lineHeight: "56px", fontWeight: "700" }],

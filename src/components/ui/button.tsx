@@ -12,7 +12,7 @@ const buttonVariants = cva(
         default: "bg-primary text-primary-600 hover:bg-primary-100",
         destructive: "bg-destructive text-primary hover:bg-destructive-dark hover:text-primary",
         outline: "border-[1px] hover:text-primary-200 hover:border-primary-200",
-        ghost: "font-bold text-base hover:text-primary-200",
+        ghost: "font-black text-base hover:text-primary-200",
       },
       size: {
         default: "h-10 px-4",

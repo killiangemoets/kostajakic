@@ -1,4 +1,3 @@
-import { getFontWeightClassName } from "@/utils/fonts";
 import { cn } from "@/utils/tailwind";
 import React from "react";
 
@@ -23,13 +22,8 @@ export const Typography = {
       {children}
     </h4>
   ),
-  body: ({
-    className,
-    fontWeight = "400",
-    children,
-    ...props
-  }: React.ComponentPropsWithoutRef<"p"> & { fontWeight?: "300" | "400" | "500" | "700" }) => (
-    <p className={cn("text-md md:text-lg xl:text-xl", getFontWeightClassName(fontWeight), className)} {...props}>
+  body: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"p">) => (
+    <p className={cn("text-md md:text-lg xl:text-xl", className)} {...props}>
       {children}
     </p>
   ),

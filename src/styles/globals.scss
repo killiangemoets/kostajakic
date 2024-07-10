@@ -1,6 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "fonts.scss";
+
+@layer base {
+  html {
+    @apply font-din-pro text-white;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+}
 
 
 body {
