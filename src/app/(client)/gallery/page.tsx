@@ -21,8 +21,10 @@ const Videos = () => {
 
 const Photo = ({ src, alt }: { src: StaticImageData; alt: string }) => {
   return (
-    <div className="relative w-full pb-[100%]">
-      <Image className="absolute top-0 left-0 w-full h-full object-cover object-center" src={src} alt={alt} priority />
+    <div className="relative w-full pb-[100%] group cursor-pointer">
+      <figure className="absolute top-0 left-0 overflow-hidden w-full h-full">
+        <Image className="w-full h-full object-cover object-center group-hover:scale-110 duration-300" src={src} alt={alt} priority />
+      </figure>
     </div>
   );
 };

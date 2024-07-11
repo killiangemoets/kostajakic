@@ -6,15 +6,18 @@ import Link from "next/link";
 
 const ProjectCard = ({ project }: { project: Project }) => {
   return (
-    <Link className="space-y-2" href={`/projects/${project.slug}`}>
+    <Link className="space-y-2 group" href={`/projects/${project.slug}`}>
       <div className="relative w-full pb-[100%]">
-        <Image
-          className="absolute top-0 left-0 w-full h-full object-cover object-center"
-          src={project.image}
-          alt={project.title}
-          priority
-        />
+        <figure className="absolute top-0 left-0 overflow-hidden w-full h-full">
+          <Image
+            className="w-full h-full object-cover object-center group-hover:scale-110 duration-300"
+            src={project.image}
+            alt={project.title}
+            priority
+          />
+        </figure>
       </div>
+
       <Typography.note className="border-b">{project.title}</Typography.note>
     </Link>
   );
