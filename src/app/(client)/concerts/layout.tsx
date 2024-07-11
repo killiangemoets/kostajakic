@@ -1,4 +1,4 @@
-import bgConcerts from "@/assets/images/bg-concerts.webp";
+import bgConcerts from "@/assets/images/backgrounds/bg-concerts.webp";
 import { Layout } from "@/components/layout";
 import type { Metadata } from "next/types";
 

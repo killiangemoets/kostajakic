@@ -1,4 +1,4 @@
-import bgContact from "@/assets/images/bg-contact.webp";
+import bgContact from "@/assets/images/backgrounds/bg-contact.webp";
 import { Layout } from "@/components/layout";
 import type { Metadata } from "next/types";
 

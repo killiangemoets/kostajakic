@@ -1,4 +1,4 @@
-import bgAbout from "@/assets/images/bg-about.webp";
+import bgAbout from "@/assets/images/backgrounds/bg-about.webp";
 import { Layout } from "@/components/layout";
 import type { Metadata } from "next";
 

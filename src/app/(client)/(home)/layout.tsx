@@ -1,4 +1,4 @@
-import bgHome from "@/assets/images/bg-home.webp";
+import bgHome from "@/assets/images/backgrounds/bg-home.webp";
 import { Layout } from "@/components/layout";
 
 export default function HomeLayout({
