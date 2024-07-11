@@ -17,7 +17,7 @@ export const DialogGroup = {
         <DialogPrimitive.Content className={cn("relative outline-none", className)} {...props}>
           {children}
           {showCloseButton && (
-            <DialogPrimitive.Close className="absolute right-7 top-7">
+            <DialogPrimitive.Close className="absolute right-7 top-7 z-10">
               <X className="h-6 w-6 text-primary hover:text-primary-200 duration-300 ease-in-out" />
             </DialogPrimitive.Close>
           )}

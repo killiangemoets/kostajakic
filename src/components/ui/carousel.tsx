@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "./button";
+import { useScreenWidth } from "@/hooks/useScreenWidth";
 import { useSwiperReactive } from "@/hooks/useSwiperReactive";
 import { cn } from "@/utils/tailwind";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
@@ -86,6 +87,8 @@ const Carousel = ({
   autoplay,
 }: CarouselProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<TSwiper | null>(null);
+  const { widthSize } = useScreenWidth();
+  const isSmall = ["xxs", "xs", "sm"].includes(widthSize);
 
   return (
     <div>
@@ -125,8 +128,8 @@ const Carousel = ({
         <Swiper
           onSwiper={setThumbsSwiper}
           loop={true}
-          spaceBetween={10}
-          slidesPerView={5}
+          spaceBetween={2}
+          slidesPerView={isSmall ? 4 : 5}
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}

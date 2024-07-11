@@ -5,14 +5,13 @@ import { Button } from "@/components/ui/button";
 import Carousel from "@/components/ui/carousel";
 import { Dialog } from "@/components/ui/dialog";
 import { GALLERY_PHOTOS } from "@/constants/gallery";
+import { useScreenWidth } from "@/hooks/useScreenWidth";
 import type { GalleryPhoto } from "@/types/gallery";
 import { cn } from "@/utils/tailwind";
 import { FileDown } from "lucide-react";
 import Image from "next/image";
+import type { KeyboardEvent } from "react";
 import { useState } from "react";
-
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 
 const DownloadPhotoButton = ({ downloadLink, small }: { downloadLink: string; small?: boolean }) => {
   const handleDownload = async (downloadLink: string) => {
@@ -44,7 +43,7 @@ const DownloadPhotoButton = ({ downloadLink, small }: { downloadLink: string; sm
 
 const CarouselPhoto = ({ photo, showDownloadButton }: { photo: GalleryPhoto; showDownloadButton?: boolean }) => {
   return (
-    <div className="relative w-full pb-[100%]">
+    <div className="relative w-full pb-[120%] sm:pb-[100%]">
       {showDownloadButton && <DownloadPhotoButton downloadLink={photo.downloadLink} />}
       <figure className="absolute top-0 left-0 pb-9 flex justify-center items-center overflow-hidden w-full h-full">
         <Image className="w-full h-full object-contain" src={photo.src} alt={photo.alt} priority />
@@ -54,12 +53,14 @@ const CarouselPhoto = ({ photo, showDownloadButton }: { photo: GalleryPhoto; sho
 };
 
 const PhotosCarousel = ({ initialSlide }: { initialSlide?: number }) => {
+  const { widthSize } = useScreenWidth();
+  const isSmall = ["xxs", "xs", "sm"].includes(widthSize);
   return (
     <div className="w-full scale-100">
       <Carousel
         initialSlide={initialSlide}
-        prevButtonClassName="fixed top-[50%] -translate-y-[42px] left-0 translate-x-[-46px] z-[1]"
-        nextButtonClassName="fixed top-[50%] -translate-y-[42px] right-0 translate-x-[46px] z-[1]"
+        prevButtonClassName={cn("fixed top-[50%] -translate-y-[42px] left-0 translate-x-[-46px] z-[1]", { hidden: isSmall })}
+        nextButtonClassName={cn("fixed top-[50%] -translate-y-[42px] right-0 translate-x-[46px] z-[1]", { hidden: isSmall })}
         thumbs={GALLERY_PHOTOS.map((photo) => (
           <CarouselPhoto key={photo.alt} photo={photo} />
         ))}
@@ -85,8 +86,8 @@ const PhotosDialog = ({
       open={open}
       onOpenChange={onOpenChange}
       modal={
-        <div className="w-[54vw] h-[100vh] flex items-center justify-center">
-          <div className="relative w-[40vw] flex items-center justify-center">
+        <div className="w-[100vw] xs:w-[100vw] sm:w-[96vw] md:w-[84vw] lg:w-[70vw] xl:w-[54vw] 2xl:w-[54vw] h-full py-10 md:py-0 px-8 xs:px-16 sm:px-16 md:px-20 lg:px-24 2xl:px-28 flex items-center justify-center">
+          <div className="relative w-full flex items-center justify-center">
             <PhotosCarousel initialSlide={initialSlide} />
           </div>
         </div>
@@ -96,9 +97,20 @@ const PhotosDialog = ({
 };
 
 const GalleryPhoto = ({ photo, onClick }: { photo: GalleryPhoto; onClick: () => void }) => {
+  const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      onClick();
+    }
+  };
   return (
     <>
-      <div className="relative w-full pb-[100%] group" onClick={onClick}>
+      <div
+        className="relative w-full pb-[100%] group cursor-pointer"
+        onClick={onClick}
+        onKeyPress={handleKeyPress}
+        role="button"
+        tabIndex={0}
+      >
         <figure className="absolute top-0 left-0 overflow-hidden w-full h-full">
           <Image
             className="w-full h-full object-cover object-center group-hover:scale-110 duration-300"
