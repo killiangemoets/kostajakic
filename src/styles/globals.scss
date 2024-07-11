@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "fonts.scss";
+@import "carousel.scss";
 
 @layer base {
   html {
@@ -26,3 +27,4 @@ body {
 .infinite-scroll-component__outerdiv{
   width: 100%;
 }
+
