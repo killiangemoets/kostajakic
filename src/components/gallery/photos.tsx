@@ -1,35 +1,17 @@
 "use client";
 
-import gallery1 from "@/assets/images/gallery/gallery_1.webp";
-import gallery2 from "@/assets/images/gallery/gallery_2.webp";
-import gallery3 from "@/assets/images/gallery/gallery_3.webp";
-import gallery4 from "@/assets/images/gallery/gallery_4.webp";
-import gallery5 from "@/assets/images/gallery/gallery_5.webp";
-import gallery6 from "@/assets/images/gallery/gallery_6.webp";
-import gallery7 from "@/assets/images/gallery/gallery_7.webp";
-import gallery8 from "@/assets/images/gallery/gallery_8.webp";
-import gallery9 from "@/assets/images/gallery/gallery_9.webp";
 import { Typography } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import Carousel from "@/components/ui/carousel";
 import { Dialog } from "@/components/ui/dialog";
 import { GALLERY_PHOTOS } from "@/constants/gallery";
+import type { GalleryPhoto } from "@/types/gallery";
+import { cn } from "@/utils/tailwind";
 import { FileDown } from "lucide-react";
-import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import { useState } from "react";
 
-const CarouselPhoto = ({
-  src,
-  alt,
-  downloadLink,
-  showDownloadButton,
-}: {
-  src: StaticImageData;
-  alt: string;
-  downloadLink: string;
-  showDownloadButton?: boolean;
-}) => {
+const DownloadPhotoButton = ({ downloadLink, small }: { downloadLink: string; small?: boolean }) => {
   const handleDownload = async (downloadLink: string) => {
     const response = await fetch(`/${downloadLink}`);
     const blob = await response.blob();
@@ -43,21 +25,26 @@ const CarouselPhoto = ({
     window.URL.revokeObjectURL(url);
   };
   return (
+    <Button
+      onClick={(e) => {
+        e.stopPropagation();
+        handleDownload(downloadLink);
+      }}
+      variant="ghost"
+      size="icon"
+      className="absolute bottom-0 right-0 z-10"
+    >
+      <FileDown className={cn(small ? "w-5 h-5" : "w-7 h-7")} />
+    </Button>
+  );
+};
+
+const CarouselPhoto = ({ photo, showDownloadButton }: { photo: GalleryPhoto; showDownloadButton?: boolean }) => {
+  return (
     <div className="relative w-full pb-[100%]">
-      {showDownloadButton && (
-        <Button
-          onClick={() => {
-            handleDownload(downloadLink);
-          }}
-          variant="ghost"
-          size="icon"
-          className="absolute bottom-0 right-0 z-10"
-        >
-          <FileDown className="w-7 h-7" />
-        </Button>
-      )}
+      {showDownloadButton && <DownloadPhotoButton downloadLink={photo.downloadLink} />}
       <figure className="absolute top-0 left-0 pb-9 flex justify-center items-center overflow-hidden w-full h-full">
-        <Image className="w-full h-full object-contain" src={src} alt={alt} priority />
+        <Image className="w-full h-full object-contain" src={photo.src} alt={photo.alt} priority />
       </figure>
     </div>
   );
@@ -70,57 +57,11 @@ const PhotosCarousel = ({ initialSlide }: { initialSlide?: number }) => {
         initialSlide={initialSlide}
         prevButtonClassName="fixed top-[50%] -translate-y-[42px] left-0 translate-x-[-46px] z-[1]"
         nextButtonClassName="fixed top-[50%] -translate-y-[42px] right-0 translate-x-[46px] z-[1]"
-        thumbs={[
-          <div key={1} className="relative w-full flex gap-2 justify-center ">
-            <div className="relative w-full pb-[100%]">
-              <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-                <Image className="w-full h-full object-contain" src={gallery1} alt="project" priority />
-              </figure>
-            </div>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={2}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full object-contain" src={gallery2} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={3}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full  object-contain" src={gallery3} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={4}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full object-contain" src={gallery4} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={5}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full object-contain" src={gallery5} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={6}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full object-contain" src={gallery6} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={7}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full object-contain" src={gallery7} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={8}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full object-contain" src={gallery8} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={9}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full  object-contain" src={gallery9} alt="project" priority />
-            </figure>
-          </div>,
-        ]}
+        thumbs={GALLERY_PHOTOS.map((photo) => (
+          <CarouselPhoto key={photo.alt} photo={photo} />
+        ))}
         elements={GALLERY_PHOTOS.map((photo) => (
-          <CarouselPhoto key={photo.alt} src={photo.src} alt={photo.alt} downloadLink={photo.downloadLink} showDownloadButton />
+          <CarouselPhoto key={photo.alt} photo={photo} showDownloadButton />
         ))}
       />
     </div>
@@ -151,12 +92,20 @@ const PhotosDialog = ({
   );
 };
 
-const GalleryPhoto = ({ src, alt, onClick }: { src: StaticImageData; alt: string; onClick: () => void }) => {
+const GalleryPhoto = ({ photo, onClick }: { photo: GalleryPhoto; onClick: () => void }) => {
   return (
     <button className="relative w-full pb-[100%] group" onClick={onClick}>
       <figure className="absolute top-0 left-0 overflow-hidden w-full h-full">
-        <Image className="w-full h-full object-cover object-center group-hover:scale-110 duration-300" src={src} alt={alt} priority />
+        <Image
+          className="w-full h-full object-cover object-center group-hover:scale-110 duration-300"
+          src={photo.src}
+          alt={photo.alt}
+          priority
+        />
       </figure>
+      <div className="opacity-0 duration-300 ease-in-out group-hover:opacity-100">
+        <DownloadPhotoButton small downloadLink={photo.downloadLink} />
+      </div>
     </button>
   );
 };
@@ -172,8 +121,7 @@ const PhotosGallery = () => {
         {photos.map((photo, i) => (
           <GalleryPhoto
             key={photo.alt}
-            src={photo.src}
-            alt={photo.alt}
+            photo={photo}
             onClick={() => {
               setInitialSlide(i);
               setIsDialogOpen(true);
