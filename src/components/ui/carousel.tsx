@@ -67,6 +67,7 @@ type CarouselProps = {
   mousewheel?: boolean;
   cssMode?: boolean;
   autoplay?: boolean | AutoplayOptions;
+  initialSlide?: number;
 };
 
 const Carousel = ({
@@ -81,6 +82,7 @@ const Carousel = ({
   loop = true,
   prevButtonClassName,
   nextButtonClassName,
+  initialSlide = 0,
   autoplay,
 }: CarouselProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<TSwiper | null>(null);
@@ -90,7 +92,7 @@ const Carousel = ({
       <Swiper
         className="relative flex justify-center items-center"
         thumbs={{ swiper: thumbsSwiper?.activeIndex !== undefined ? thumbsSwiper : undefined }}
-        initialSlide={0}
+        initialSlide={initialSlide}
         modules={[Pagination, Keyboard, FreeMode, Mousewheel, Autoplay, Thumbs]}
         autoplay={autoplay}
         freeMode={freeMode}
