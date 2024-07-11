@@ -123,7 +123,7 @@ const PhotosGallery = () => {
   return (
     <div className="space-y-4">
       <Typography.h3 className="border-b font-bold normal-case">Photos</Typography.h3>
-      <div className="grid grid-cols-4 w-full gap-4">
+      <div className="grid grid-cols-2  sm:grid-cols-4 w-full gap-4">
         {photos.map((photo, i) => (
           <GalleryPhoto
             key={photo.alt}

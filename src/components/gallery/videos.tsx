@@ -8,9 +8,7 @@ import { useState } from "react";
 const Video = ({ src, title }: { src: string; title: string }) => {
   return (
     <iframe
-      className="w-full"
-      // width="560"
-      height="240"
+      className="w-full h-[220px] sm:h-[180px] md:h-[180px] lg:h-[200px] xl:h-[220px] 2xl:h-[260px]"
       src={src}
       title={title}
       // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -24,7 +22,7 @@ const VideosGallery = () => {
   return (
     <div className="space-y-4">
       <Typography.h3 className="border-b font-bold normal-case">Videos</Typography.h3>
-      <div className="grid grid-cols-2 w-full gap-4">
+      <div className="grid grid-col-1 sm:grid-cols-2 w-full gap-4">
         {videos.map((video, i) => (
           <Video key={i} src={video.src} title={video.title} />
         ))}
