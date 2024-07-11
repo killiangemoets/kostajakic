@@ -3,12 +3,33 @@ import { PROJECTS } from "@/constants/projects";
 import Image from "next/image";
 import React from "react";
 
-const project = PROJECTS[1];
+export const dynamicParams = false;
 
-export default async function Projects() {
+export async function generateMetadata({ params }: Readonly<{ params: { slug: string } }>) {
+  const project = PROJECTS.find((project) => project.slug === params.slug);
+
+  return {
+    title: `${project?.title} | Kosta Jakic`,
+    description: "Kosta Jakic's personal website.",
+  };
+}
+
+export function generateStaticParams() {
+  return PROJECTS.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
+function getProject(slug: string) {
+  return PROJECTS.find((project) => project.slug === slug);
+}
+
+export default async function Projects({ params }: Readonly<{ params: { slug: string } }>) {
+  const project = getProject(params.slug);
+  if (!project) return <Typography.body>Project not found</Typography.body>;
   return (
     <div className="w-full sm:w-[50%] sm:min-w-[500px] space-y-8">
-      <Typography.h3 className="border-b font-bold normal-case">Project</Typography.h3>
+      <Typography.h3 className="border-b font-bold normal-case">{project.title}</Typography.h3>
       <div className="flex gap-4">
         <Typography.body className="font-medium">
           {project.description?.split("\n").map((line, i) => (
