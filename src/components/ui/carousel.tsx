@@ -90,7 +90,7 @@ const Carousel = ({
   return (
     <div>
       <Swiper
-        className="relative flex justify-center items-center"
+        className="relative flex justify-center items-center outline-none"
         thumbs={{ swiper: thumbsSwiper?.activeIndex !== undefined ? thumbsSwiper : undefined }}
         initialSlide={initialSlide}
         modules={[Pagination, Keyboard, FreeMode, Mousewheel, Autoplay, Thumbs]}

@@ -14,7 +14,7 @@ export const DialogGroup = {
   Modal: ({ showCloseButton = true, children, className, ...props }: ModalProps) => (
     <DialogPrimitive.Portal>
       <DialogPrimitive.Overlay className="fixed inset-0 backdrop-blur-md z-10 flex items-center justify-center">
-        <DialogPrimitive.Content className={cn("relative", className)} {...props}>
+        <DialogPrimitive.Content className={cn("relative outline-none", className)} {...props}>
           {children}
           {showCloseButton && (
             <DialogPrimitive.Close className="absolute right-7 top-7">
