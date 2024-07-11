@@ -5,3 +5,8 @@ export type GalleryPhoto = {
   alt: string;
   downloadLink: string;
 };
+
+export type GalleryVideo = {
+  src: string;
+  title: string;
+};

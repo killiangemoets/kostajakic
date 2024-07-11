@@ -1,4 +1,4 @@
-import type { GalleryPhoto } from "../types/gallery";
+import type { GalleryPhoto, GalleryVideo } from "../types/gallery";
 import gallery1 from "@/assets/images/gallery/gallery_1.webp";
 import gallery2 from "@/assets/images/gallery/gallery_2.webp";
 import gallery3 from "@/assets/images/gallery/gallery_3.webp";
@@ -54,5 +54,28 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     src: gallery9,
     alt: "Gallery 9",
     downloadLink: "photos/gallery_9.jpg",
+  },
+] as const;
+
+export const GALLERY_VIDEOS: GalleryVideo[] = [
+  {
+    src: "https://www.youtube.com/embed/r_yV5S3GI74?si=387y1RaR4hkT4mAR",
+    title: "Piano 1",
+  },
+  {
+    src: "https://www.youtube.com/embed/8nDTK4JNiIA?si=RBjWH35svytvKAvQ",
+    title: "Piano 2",
+  },
+  {
+    src: "https://www.youtube.com/embed/EoO1BF4ueDE?si=3edjN3KGgQrtyVa8",
+    title: "Piano 3",
+  },
+  {
+    src: "https://www.youtube.com/embed/i-uWHczt1Ro?si=RUB-OXgrMmBnM0KV",
+    title: "Piano 4",
+  },
+  {
+    src: "https://www.youtube.com/embed/nYOZvj7GHtg?si=a1HWF-PcNZs61ULX",
+    title: "Piano 5",
   },
 ] as const;

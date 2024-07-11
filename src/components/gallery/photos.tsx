@@ -11,6 +11,9 @@ import { FileDown } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
 const DownloadPhotoButton = ({ downloadLink, small }: { downloadLink: string; small?: boolean }) => {
   const handleDownload = async (downloadLink: string) => {
     const response = await fetch(`/${downloadLink}`);
@@ -94,19 +97,21 @@ const PhotosDialog = ({
 
 const GalleryPhoto = ({ photo, onClick }: { photo: GalleryPhoto; onClick: () => void }) => {
   return (
-    <button className="relative w-full pb-[100%] group" onClick={onClick}>
-      <figure className="absolute top-0 left-0 overflow-hidden w-full h-full">
-        <Image
-          className="w-full h-full object-cover object-center group-hover:scale-110 duration-300"
-          src={photo.src}
-          alt={photo.alt}
-          priority
-        />
-      </figure>
-      <div className="opacity-0 duration-300 ease-in-out group-hover:opacity-100">
-        <DownloadPhotoButton small downloadLink={photo.downloadLink} />
+    <>
+      <div className="relative w-full pb-[100%] group" onClick={onClick}>
+        <figure className="absolute top-0 left-0 overflow-hidden w-full h-full">
+          <Image
+            className="w-full h-full object-cover object-center group-hover:scale-110 duration-300"
+            src={photo.src}
+            alt={photo.alt}
+            priority
+          />
+        </figure>
+        <div className="opacity-0 duration-300 ease-in-out group-hover:opacity-100">
+          <DownloadPhotoButton small downloadLink={photo.downloadLink} />
+        </div>
       </div>
-    </button>
+    </>
   );
 };
 
@@ -114,6 +119,7 @@ const PhotosGallery = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [initialSlide, setInitialSlide] = useState(0);
   const [photos, setPhotos] = useState(GALLERY_PHOTOS.slice(0, 8));
+
   return (
     <div className="space-y-4">
       <Typography.h3 className="border-b font-bold normal-case">Photos</Typography.h3>
