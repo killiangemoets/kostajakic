@@ -2,7 +2,7 @@
 
 import { Button } from "./button";
 import { useSwiperReactive } from "@/hooks/useSwiperReactive";
-import clsx from "clsx";
+import { cn } from "@/utils/tailwind";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useState } from "react";
 import "swiper/css";
@@ -19,11 +19,11 @@ const SlidePrevButton = ({ className }: { className?: string }) => {
       variant="ghost"
       size="icon"
       aria-label="Previous slide"
-      className={clsx(className ?? " absolute left-0 top-1/2 z-[2] transform -translate-y-1/2")}
+      className={cn("absolute left-0 top-1/2 z-[2] transform -translate-y-1/2", className)}
       onClick={() => swiper.slidePrev()}
     >
       <ChevronLeftIcon
-        className={clsx(
+        className={cn(
           "w-12 h-12",
           swiper.isBeginning && !swiper.loopedSlides ? "text-white/50" : "text-primary duration-300 ease-in-out hover:text-primary-200"
         )}
@@ -40,11 +40,11 @@ const SlideNextButton = ({ className }: { className?: string }) => {
       variant="ghost"
       size="icon"
       aria-label="Next slide"
-      className={clsx(className ?? "absolute z-[2] transform -translate-y-1/2 right-0 top-1/2")}
+      className={cn("absolute z-[2] transform -translate-y-1/2 right-0 top-1/2", className)}
       onClick={() => swiper.slideNext()}
     >
       <ChevronRightIcon
-        className={clsx(
+        className={cn(
           "w-12 h-12 ",
           swiper.isEnd && !swiper.loopedSlides ? "text-white/50" : "text-primary duration-300 ease-in-out hover:text-primary-200"
         )}
@@ -59,6 +59,7 @@ type CarouselProps = {
   slidesPerView?: number;
   navigation?: boolean;
   pagination?: boolean;
+  thumbs?: boolean;
   loop?: boolean;
   prevButtonClassName?: string;
   nextButtonClassName?: string;
@@ -72,7 +73,8 @@ const Carousel = ({
   elements,
   spaceBetween = 100,
   slidesPerView = 1,
-  pagination = true,
+  pagination = false,
+  thumbs = false,
   freeMode = false,
   mousewheel = false,
   cssMode = false,
@@ -87,7 +89,6 @@ const Carousel = ({
     <div>
       <Swiper
         className="relative flex justify-center items-center"
-        style={{}}
         thumbs={{ swiper: thumbsSwiper?.activeIndex !== undefined ? thumbsSwiper : undefined }}
         initialSlide={0}
         modules={[Pagination, Keyboard, FreeMode, Mousewheel, Autoplay, Thumbs]}
@@ -118,22 +119,24 @@ const Carousel = ({
 
         <SlideNextButton className={nextButtonClassName} />
       </Swiper>
-      <Swiper
-        onSwiper={setThumbsSwiper}
-        loop={true}
-        spaceBetween={10}
-        slidesPerView={6}
-        freeMode={true}
-        watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="relative flex justify-center items-center"
-      >
-        {elements.map((el, i) => (
-          <SwiperSlide style={{ display: "flex" }} key={i} className=" items-center justify-center">
-            {el}
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {thumbs && (
+        <Swiper
+          onSwiper={setThumbsSwiper}
+          loop={true}
+          spaceBetween={10}
+          slidesPerView={5}
+          freeMode={true}
+          watchSlidesProgress={true}
+          modules={[FreeMode, Navigation, Thumbs]}
+          className="thumbs relative flex justify-center items-center"
+        >
+          {elements.map((el, i) => (
+            <SwiperSlide style={{ display: "flex" }} key={i} className=" items-center justify-center">
+              {el}
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </div>
   );
 };
