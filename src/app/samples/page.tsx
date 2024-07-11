@@ -17,6 +17,7 @@ import { LabeledTextareaInput } from "@/components/inputs/textarea";
 import { Typography } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import Carousel from "@/components/ui/carousel";
+import { Dialog } from "@/components/ui/dialog";
 import Spinner from "@/components/ui/spinner";
 import Image from "next/image";
 import { useState } from "react";
@@ -137,60 +138,77 @@ const Inputs = () => {
 
 const CarouselDemo = () => {
   return (
-    <div className="w-[50%] scale-100">
+    <div className="w-full scale-100">
       <Carousel
         prevButtonClassName="fixed top-[50%] -translate-y-[42px] left-0 translate-x-[-46px] z-[1]"
         nextButtonClassName="fixed top-[50%] -translate-y-[42px] right-0 translate-x-[46px] z-[1]"
         thumbs
+        // pagination
         elements={[
           <div className="relative w-full pb-[100%]" key={1}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full pb-12">
-              <Image className="w-full h-full object-cover object-center" src={gallery1} alt="project" priority />
+            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
+              <Image className="w-full h-full object-contain" src={gallery1} alt="project" priority />
             </figure>
           </div>,
           <div className="relative w-full pb-[100%]" key={2}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full pb-12">
-              <Image className="w-fit h-full object-cover object-center" src={gallery2} alt="project" priority />
+            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
+              <Image className="w-full h-full object-contain" src={gallery2} alt="project" priority />
             </figure>
           </div>,
-          <div className="relative w-full pb-[100%]" key={2}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full pb-12">
-              <Image className="w-fit h-full object-cover object-center" src={gallery3} alt="project" priority />
+          <div className="relative w-full pb-[100%]" key={3}>
+            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
+              <Image className="w-full h-full  object-contain" src={gallery3} alt="project" priority />
             </figure>
           </div>,
-          <div className="relative w-full pb-[100%]" key={2}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full pb-12">
-              <Image className="w-fit h-full object-cover object-center" src={gallery4} alt="project" priority />
+          <div className="relative w-full pb-[100%]" key={4}>
+            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
+              <Image className="w-full h-full object-contain" src={gallery4} alt="project" priority />
             </figure>
           </div>,
-          <div className="relative w-full pb-[100%]" key={2}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full pb-12">
-              <Image className="w-fit h-full object-cover object-center" src={gallery5} alt="project" priority />
+          <div className="relative w-full pb-[100%]" key={5}>
+            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
+              <Image className="w-full h-full object-contain" src={gallery5} alt="project" priority />
             </figure>
           </div>,
-          <div className="relative w-full pb-[100%]" key={2}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full pb-12">
-              <Image className="w-fit h-full object-cover object-center" src={gallery6} alt="project" priority />
+          <div className="relative w-full pb-[100%]" key={6}>
+            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
+              <Image className="w-full h-full object-contain" src={gallery6} alt="project" priority />
             </figure>
           </div>,
-          <div className="relative w-full pb-[100%]" key={2}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full pb-12">
-              <Image className="w-fit h-full object-cover object-center" src={gallery7} alt="project" priority />
+          <div className="relative w-full pb-[100%]" key={7}>
+            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
+              <Image className="w-full h-full object-contain" src={gallery7} alt="project" priority />
             </figure>
           </div>,
-          <div className="relative w-full pb-[100%]" key={2}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full pb-12">
-              <Image className="w-fit h-full object-cover object-center" src={gallery8} alt="project" priority />
+          <div className="relative w-full pb-[100%]" key={8}>
+            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
+              <Image className="w-full h-full object-contain" src={gallery8} alt="project" priority />
             </figure>
           </div>,
-          <div className="relative w-full pb-[100%]" key={2}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center  overflow-hidden w-full h-full pb-12">
-              <Image className="w-full h-fit object-cover object-center" src={gallery9} alt="project" priority />
+          <div className="relative w-full pb-[100%]" key={9}>
+            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
+              <Image className="w-full h-full  object-contain" src={gallery9} alt="project" priority />
             </figure>
           </div>,
         ]}
       />
     </div>
+  );
+};
+
+const DialogDemo = () => {
+  return (
+    <Dialog
+      modal={
+        <div className="w-[60vw] h-[100vh] flex items-center justify-center">
+          <div className="relative w-[40vw] flex items-center justify-center">
+            <CarouselDemo />
+          </div>
+        </div>
+      }
+    >
+      <Button type="button">Edit</Button>
+    </Dialog>
   );
 };
 
@@ -202,7 +220,8 @@ export default function Samples() {
       <Buttons />
       <Typographies />
       <Inputs />
-      <CarouselDemo />
+      {/* <CarouselDemo /> */}
+      <DialogDemo />
     </main>
   );
 }

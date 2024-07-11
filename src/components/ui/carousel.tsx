@@ -112,7 +112,7 @@ const Carousel = ({
       >
         <SlidePrevButton className={prevButtonClassName} />
         {elements.map((el, i) => (
-          <SwiperSlide style={{ display: "flex" }} key={i} className=" items-center justify-center">
+          <SwiperSlide style={{ display: "flex" }} key={i} className={cn("items-center justify-center max-h-[80vh]", thumbs && "pb-3")}>
             {el}
           </SwiperSlide>
         ))}
@@ -131,7 +131,7 @@ const Carousel = ({
           className="thumbs relative flex justify-center items-center"
         >
           {elements.map((el, i) => (
-            <SwiperSlide style={{ display: "flex" }} key={i} className=" items-center justify-center">
+            <SwiperSlide style={{ display: "flex" }} key={i} className="items-center justify-center">
               {el}
             </SwiperSlide>
           ))}
