@@ -142,7 +142,7 @@ const CarouselDemo = () => {
       <Carousel
         prevButtonClassName="fixed top-[50%] -translate-y-[42px] left-0 translate-x-[-46px] z-[1]"
         nextButtonClassName="fixed top-[50%] -translate-y-[42px] right-0 translate-x-[46px] z-[1]"
-        thumbs
+        // thumbs
         // pagination
         elements={[
           <div className="relative w-full pb-[100%]" key={1}>
