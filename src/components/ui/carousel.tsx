@@ -59,7 +59,7 @@ type CarouselProps = {
   slidesPerView?: number;
   navigation?: boolean;
   pagination?: boolean;
-  thumbs?: boolean;
+  thumbs?: React.ReactNode[];
   loop?: boolean;
   prevButtonClassName?: string;
   nextButtonClassName?: string;
@@ -75,7 +75,7 @@ const Carousel = ({
   spaceBetween = 100,
   slidesPerView = 1,
   pagination = false,
-  thumbs = false,
+  thumbs,
   freeMode = false,
   mousewheel = false,
   cssMode = false,
@@ -114,14 +114,14 @@ const Carousel = ({
       >
         <SlidePrevButton className={prevButtonClassName} />
         {elements.map((el, i) => (
-          <SwiperSlide style={{ display: "flex" }} key={i} className={cn("items-center justify-center max-h-[80vh]", thumbs && "pb-3")}>
+          <SwiperSlide style={{ display: "flex" }} key={i} className={cn("items-center justify-center max-h-[80vh]", !!thumbs && "pb-3")}>
             {el}
           </SwiperSlide>
         ))}
 
         <SlideNextButton className={nextButtonClassName} />
       </Swiper>
-      {thumbs && (
+      {!!thumbs && (
         <Swiper
           onSwiper={setThumbsSwiper}
           loop={true}
@@ -132,7 +132,7 @@ const Carousel = ({
           modules={[FreeMode, Navigation, Thumbs]}
           className="thumbs relative flex justify-center items-center"
         >
-          {elements.map((el, i) => (
+          {thumbs.map((el, i) => (
             <SwiperSlide style={{ display: "flex" }} key={i} className="items-center justify-center">
               {el}
             </SwiperSlide>

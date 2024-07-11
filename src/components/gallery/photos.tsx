@@ -13,9 +13,55 @@ import { Typography } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import Carousel from "@/components/ui/carousel";
 import { Dialog } from "@/components/ui/dialog";
+import { GALLERY_PHOTOS } from "@/constants/gallery";
+import { FileDown } from "lucide-react";
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import { useState } from "react";
+
+const CarouselPhoto = ({
+  src,
+  alt,
+  downloadLink,
+  showDownloadButton,
+}: {
+  src: StaticImageData;
+  alt: string;
+  downloadLink: string;
+  showDownloadButton?: boolean;
+}) => {
+  const handleDownload = async (downloadLink: string) => {
+    const response = await fetch(`/${downloadLink}`);
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", downloadLink.replace("photos/", ""));
+    document.body.appendChild(link);
+    link.click();
+    link?.parentNode?.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  };
+  return (
+    <div className="relative w-full pb-[100%]">
+      {showDownloadButton && (
+        <Button
+          onClick={() => {
+            handleDownload(downloadLink);
+          }}
+          variant="ghost"
+          size="icon"
+          className="absolute bottom-0 right-0 z-10"
+        >
+          <FileDown className="w-7 h-7" />
+        </Button>
+      )}
+      <figure className="absolute top-0 left-0 pb-9 flex justify-center items-center overflow-hidden w-full h-full">
+        <Image className="w-full h-full object-contain" src={src} alt={alt} priority />
+      </figure>
+    </div>
+  );
+};
 
 const PhotosCarousel = ({ initialSlide }: { initialSlide?: number }) => {
   return (
@@ -24,12 +70,13 @@ const PhotosCarousel = ({ initialSlide }: { initialSlide?: number }) => {
         initialSlide={initialSlide}
         prevButtonClassName="fixed top-[50%] -translate-y-[42px] left-0 translate-x-[-46px] z-[1]"
         nextButtonClassName="fixed top-[50%] -translate-y-[42px] right-0 translate-x-[46px] z-[1]"
-        thumbs
-        elements={[
-          <div className="relative w-full pb-[100%]" key={1}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full object-contain" src={gallery1} alt="project" priority />
-            </figure>
+        thumbs={[
+          <div key={1} className="relative w-full flex gap-2 justify-center ">
+            <div className="relative w-full pb-[100%]">
+              <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
+                <Image className="w-full h-full object-contain" src={gallery1} alt="project" priority />
+              </figure>
+            </div>
           </div>,
           <div className="relative w-full pb-[100%]" key={2}>
             <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
@@ -72,6 +119,9 @@ const PhotosCarousel = ({ initialSlide }: { initialSlide?: number }) => {
             </figure>
           </div>,
         ]}
+        elements={GALLERY_PHOTOS.map((photo) => (
+          <CarouselPhoto key={photo.alt} src={photo.src} alt={photo.alt} downloadLink={photo.downloadLink} showDownloadButton />
+        ))}
       />
     </div>
   );
@@ -97,13 +147,11 @@ const PhotosDialog = ({
           </div>
         </div>
       }
-    >
-      <Button type="button">Edit</Button>
-    </Dialog>
+    />
   );
 };
 
-const Photo = ({ src, alt, onClick }: { src: StaticImageData; alt: string; onClick: () => void }) => {
+const GalleryPhoto = ({ src, alt, onClick }: { src: StaticImageData; alt: string; onClick: () => void }) => {
   return (
     <button className="relative w-full pb-[100%] group" onClick={onClick}>
       <figure className="absolute top-0 left-0 overflow-hidden w-full h-full">
@@ -116,86 +164,28 @@ const Photo = ({ src, alt, onClick }: { src: StaticImageData; alt: string; onCli
 const PhotosGallery = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [initialSlide, setInitialSlide] = useState(0);
+  const [photos, setPhotos] = useState(GALLERY_PHOTOS.slice(0, 8));
   return (
     <div className="space-y-4">
       <Typography.h3 className="border-b font-bold normal-case">Photos</Typography.h3>
       <div className="grid grid-cols-4 w-full gap-4">
-        <Photo
-          onClick={() => {
-            setInitialSlide(0);
-            setIsDialogOpen(true);
-          }}
-          src={gallery1}
-          alt="project"
-        />
-        <Photo
-          onClick={() => {
-            setInitialSlide(1);
-            setIsDialogOpen(true);
-          }}
-          src={gallery2}
-          alt="project"
-        />
-        <Photo
-          onClick={() => {
-            setInitialSlide(2);
-            setIsDialogOpen(true);
-          }}
-          src={gallery3}
-          alt="project"
-        />
-        <Photo
-          onClick={() => {
-            setInitialSlide(3);
-            setIsDialogOpen(true);
-          }}
-          src={gallery4}
-          alt="project"
-        />
-        <Photo
-          onClick={() => {
-            setInitialSlide(4);
-            setIsDialogOpen(true);
-          }}
-          src={gallery5}
-          alt="project"
-        />
-        <Photo
-          onClick={() => {
-            setInitialSlide(5);
-            setIsDialogOpen(true);
-          }}
-          src={gallery6}
-          alt="project"
-        />
-        <Photo
-          onClick={() => {
-            setInitialSlide(6);
-            setIsDialogOpen(true);
-          }}
-          src={gallery7}
-          alt="project"
-        />
-        <Photo
-          onClick={() => {
-            setInitialSlide(7);
-            setIsDialogOpen(true);
-          }}
-          src={gallery8}
-          alt="project"
-        />
-        <Photo
-          onClick={() => {
-            setInitialSlide(8);
-            setIsDialogOpen(true);
-          }}
-          src={gallery9}
-          alt="project"
-        />
+        {photos.map((photo, i) => (
+          <GalleryPhoto
+            key={photo.alt}
+            src={photo.src}
+            alt={photo.alt}
+            onClick={() => {
+              setInitialSlide(i);
+              setIsDialogOpen(true);
+            }}
+          />
+        ))}
       </div>
-      <Button variant="outline" className="ml-auto block">
-        See more
-      </Button>
+      {photos.length !== GALLERY_PHOTOS.length && (
+        <Button variant="outline" className="ml-auto block" onClick={() => setPhotos(GALLERY_PHOTOS)}>
+          See more
+        </Button>
+      )}
       <PhotosDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} initialSlide={initialSlide} />
     </div>
   );
