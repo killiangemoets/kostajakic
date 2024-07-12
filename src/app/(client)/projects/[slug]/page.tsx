@@ -1,6 +1,6 @@
 import { Typography } from "@/components/typography";
 import { Button } from "@/components/ui/button";
-import { PROJECTS } from "@/constants/projects";
+import { PROJECTS } from "@/content/projects";
 import { ArrowBigLeft } from "lucide-react";
 import Image from "next/image";
 import React from "react";

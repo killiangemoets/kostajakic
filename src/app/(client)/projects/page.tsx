@@ -1,5 +1,5 @@
 import { Typography } from "@/components/typography";
-import { PROJECTS } from "@/constants/projects";
+import { PROJECTS } from "@/content/projects";
 import type { Project } from "@/types/projects";
 import Image from "next/image";
 import Link from "next/link";

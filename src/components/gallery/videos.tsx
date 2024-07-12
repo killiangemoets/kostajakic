@@ -2,7 +2,7 @@
 
 import { Button } from "../ui/button";
 import { Typography } from "@/components/typography";
-import { GALLERY_VIDEOS } from "@/constants/gallery";
+import { GALLERY_VIDEOS } from "@/content/gallery";
 import { useState } from "react";
 
 const Video = ({ src, title }: { src: string; title: string }) => {

@@ -4,7 +4,7 @@ import { Typography } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import Carousel from "@/components/ui/carousel";
 import { Dialog } from "@/components/ui/dialog";
-import { GALLERY_PHOTOS } from "@/constants/gallery";
+import { GALLERY_PHOTOS } from "@/content/gallery";
 import { useScreenWidth } from "@/hooks/useScreenWidth";
 import type { GalleryPhoto } from "@/types/gallery";
 import { cn } from "@/utils/tailwind";
