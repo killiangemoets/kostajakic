@@ -4,7 +4,7 @@ import { Typography } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import Carousel from "@/components/ui/carousel";
 import { Dialog } from "@/components/ui/dialog";
-import { GALLERY_PHOTOS } from "@/constants/gallery";
+import { GALLERY_PHOTOS } from "@/content/gallery";
 import { useScreenWidth } from "@/hooks/useScreenWidth";
 import type { GalleryPhoto } from "@/types/gallery";
 import { cn } from "@/utils/tailwind";
@@ -135,7 +135,7 @@ const PhotosGallery = () => {
   return (
     <div className="space-y-4">
       <Typography.h3 className="border-b font-bold normal-case">Photos</Typography.h3>
-      <div className="grid grid-cols-2  sm:grid-cols-4 w-full gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 w-full gap-4">
         {photos.map((photo, i) => (
           <GalleryPhoto
             key={photo.alt}

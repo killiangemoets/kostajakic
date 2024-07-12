@@ -9,7 +9,7 @@ export const ConcertsSection = async ({ className, showActions }: { className?: 
   return (
     <div className={clsx("flex flex-col gap-8 items-center", className)}>
       <UpcomingConcertsSection initialConcerts={upcomingConcerts} showActions={showActions} />
-      <p className="text-heading-1 font-light sm:pr-[124px] font-din-pro">ф</p>
+      <p className="text-heading-1 font-light sm:pr-[124px] font-sans">ф</p>
       <PastConcertsSection initialConcerts={pastConcerts.concerts} initialNextCursor={pastConcerts.nextCursor} showActions={showActions} />
     </div>
   );

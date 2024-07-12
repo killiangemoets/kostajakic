@@ -2,13 +2,13 @@
 
 import { Button } from "../ui/button";
 import { Typography } from "@/components/typography";
-import { GALLERY_VIDEOS } from "@/constants/gallery";
+import { GALLERY_VIDEOS } from "@/content/gallery";
 import { useState } from "react";
 
 const Video = ({ src, title }: { src: string; title: string }) => {
   return (
     <iframe
-      className="w-full h-[220px] sm:h-[180px] md:h-[180px] lg:h-[200px] xl:h-[220px] 2xl:h-[260px]"
+      className="w-full h-[220px] sm:h-[180px] md:h-[180px] lg:h-[200px] xl:h-[220px] 2xl:h-[300px]"
       src={src}
       title={title}
       // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

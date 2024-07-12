@@ -1,9 +1,10 @@
-import { FacebookIcon } from "@/assets/icons/facebook";
-import { InstagramIcon } from "@/assets/icons/instagram";
-import { YoutubeIcon } from "@/assets/icons/youtube";
+import facebookIcon from "@/assets/icons/facebook.png";
+import instagramIcon from "@/assets/icons/instagram.png";
+import youtubeIcon from "@/assets/icons/youtube.png";
 import { Typography } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import { CONTACT_EMAIL, CONTACT_PHONE_NUMBER, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from "@/constants/contact";
+import Image from "next/image";
 
 export default async function Contact() {
   return (
@@ -18,14 +19,14 @@ export default async function Contact() {
         </Button>
       </div>
       <div className="mt-12 flex items-center gap-1.5">
-        <Button size="icon" className="h-8 w-8 rounded-lg" href={INSTAGRAM_URL} target="_blank">
-          <InstagramIcon className="w-6 h-6 text-primary-600" />
+        <Button size="icon" variant="ghost" className="h-9 w-9 p-0" href={INSTAGRAM_URL} target="_blank">
+          <Image className="w-8 h-8 hover:w-[34px] hover:h-[34px] duration-300" src={instagramIcon} alt="Instagram" />
         </Button>
-        <Button size="icon" className="h-8 w-8 rounded-lg" href={FACEBOOK_URL} target="_blank">
-          <FacebookIcon className="w-5 h-5 text-primary-600" />
+        <Button size="icon" variant="ghost" className="h-9 w-9 p-0" href={FACEBOOK_URL} target="_blank">
+          <Image className="w-8 h-8 hover:w-[34px] hover:h-[34px] duration-300" src={facebookIcon} alt="Facebook" />
         </Button>
-        <Button size="icon" className="h-8 w-8 rounded-lg" href={YOUTUBE_URL} target="_blank">
-          <YoutubeIcon className="w-6 h-6 text-primary-600" />
+        <Button size="icon" variant="ghost" className="h-9 w-9 p-0" href={YOUTUBE_URL} target="_blank">
+          <Image className="w-8 h-8 hover:w-[34px] hover:h-[34px] duration-300" src={youtubeIcon} alt="Youtube" />
         </Button>
       </div>
     </div>
