@@ -27,7 +27,7 @@ export default async function Projects() {
   return (
     <div className="w-full sm:w-[50%] sm:min-w-[500px] space-y-8">
       <Typography.h3 className="border-b font-bold normal-case">Projects</Typography.h3>
-      <div className="grid grid-cols-3 w-full gap-6">
+      <div className="grid grid-cols-2 xs:grid-cols-3 w-full gap-6">
         {PROJECTS.map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}

@@ -1,7 +1,5 @@
 import { useLayoutEffect, useState } from "react";
 
-type Breakpoint = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-
 export const useScreenWidth = () => {
   const [width, setWidth] = useState(Infinity);
 
@@ -14,7 +12,7 @@ export const useScreenWidth = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  let widthSize: Breakpoint = "xxs";
+  let widthSize: "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" = "xxs";
   if (width >= 1536) {
     widthSize = "2xl";
   } else if (width >= 1280) {
