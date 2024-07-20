@@ -27,7 +27,6 @@ async function uploadToS3(filePath, key) {
     Bucket: bucketName,
     Key: key,
     Body: fileContent,
-    ACL: "public-read",
   };
 
   return s3.upload(params).promise();
@@ -44,7 +43,8 @@ async function deleteFromS3(key) {
 
 async function syncImages() {
   try {
-    const files = fs.readdirSync(imagesDir);
+    // const files = fs.readdirSync(imagesDir);
+    const files = fs.readdirSync(imagesDir).filter((file) => [".jpeg", ".jpg", ".png"].includes(path.extname(file).toLowerCase()));
     const imagesInDb = await prisma.image.findMany();
 
     // 1. Create a set of filenames from the database
