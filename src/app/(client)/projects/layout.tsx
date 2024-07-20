@@ -1,4 +1,5 @@
 import bgProjects from "@/assets/images/backgrounds/bg-projects.webp";
+// import bgProjects from "@/assets/images/backgrounds/bg-projects.jpg";
 import { Layout } from "@/components/layout";
 import type { Metadata } from "next/types";
 
@@ -13,7 +14,7 @@ export default function GalleryLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Layout.Body className="px-0 sm:px-8 lg:px-20" bgFilter backgroundPosition="bottom right" backgroundImgSrc={bgProjects.src}>
+    <Layout.Body className="px-0 sm:px-8 lg:px-20" bgFilter backgroundPosition="bottom right" backgroundImg={bgProjects}>
       {children}
     </Layout.Body>
   );

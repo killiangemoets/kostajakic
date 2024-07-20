@@ -2,10 +2,12 @@ import { useLayoutEffect, useState } from "react";
 
 export const useScreenWidth = () => {
   const [width, setWidth] = useState(Infinity);
+  const [heigth, setHeigth] = useState(Infinity);
 
   useLayoutEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
+      setHeigth(window.innerHeight);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -27,5 +29,5 @@ export const useScreenWidth = () => {
     widthSize = "xs";
   }
 
-  return { width, widthSize };
+  return { width, widthSize, widthHeightRatio: width / heigth };
 };

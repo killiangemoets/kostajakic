@@ -13,7 +13,7 @@ export default function AboutLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Layout.Body className="px-0 sm:px-8 lg:px-20" bgFilter backgroundPosition="top right" backgroundImgSrc={bgAbout.src}>
+    <Layout.Body className="px-0 sm:px-8 lg:px-20" bgFilter backgroundPosition="top right" backgroundImg={bgAbout}>
       {children}
     </Layout.Body>
   );

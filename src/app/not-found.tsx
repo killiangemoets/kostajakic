@@ -8,7 +8,7 @@ export default function NotFound() {
     <Layout.Body
       className="px-0 sm:px-8 lg:px-20 flex flex-col gap-8 items-center justify-center"
       backgroundPosition="top right"
-      backgroundImgSrc={bgImage.src}
+      backgroundImg={bgImage}
     >
       <Typography.h3 className="normal-case text-center">Sorry, this page doesn&apos;t exist!</Typography.h3>
       <Button href="/" className="mb-16">

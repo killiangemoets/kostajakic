@@ -6,5 +6,5 @@ export default function HomeLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <Layout.Body backgroundImgSrc={bgHome.src}>{children}</Layout.Body>;
+  return <Layout.Body backgroundImg={bgHome}>{children}</Layout.Body>;
 }

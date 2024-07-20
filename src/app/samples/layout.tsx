@@ -13,5 +13,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <Layout.Body backgroundImgSrc={bgBackoffice.src}>{children}</Layout.Body>;
+  return <Layout.Body backgroundImg={bgBackoffice}>{children}</Layout.Body>;
 }
