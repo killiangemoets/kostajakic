@@ -45,12 +45,12 @@ export const concertsRouter = router({
   infiniteList: publicProcedure
     .input(
       concertFiltersSchema.extend({
-        limit: z.number().optional(),
+        limit: z.number().optional().default(CONCERTS_INFINITE_SCROLL_LIMIT),
         cursor: concertCursorSchema,
       })
     )
     .query(async ({ input }) => {
-      const { limit = CONCERTS_INFINITE_SCROLL_LIMIT, cursor, filters, orderDates } = input;
+      const { limit, cursor, filters, orderDates } = input;
 
       const data = await prisma.concert.findMany({
         ...getFilterConcertsClause({ filters, orderDates }),

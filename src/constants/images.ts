@@ -1,0 +1,1 @@
+export const IMAGES_INFINITE_SCROLL_LIMIT = 20;

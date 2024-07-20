@@ -19,8 +19,6 @@ const imagesDir = path.join(__dirname, ".images");
 
 const bucketName = process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME;
 
-console.log("bucketName", bucketName);
-
 async function uploadToS3(filePath, key) {
   const fileContent = fs.readFileSync(filePath);
   const params = {
@@ -58,7 +56,7 @@ async function syncImages() {
       if (!dbImageNames.has(name)) {
         try {
           // Convert image to WebP
-          await sharp(jpegPath).resize(500).toFormat("webp").webp({ quality: 90 }).toFile(webpPath);
+          await sharp(jpegPath).resize(800).toFormat("webp").webp({ quality: 95 }).toFile(webpPath);
 
           // Upload both images to S3
           const jpegUpload = await uploadToS3(jpegPath, `photos/${file}`);
