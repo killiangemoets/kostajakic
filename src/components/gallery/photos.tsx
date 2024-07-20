@@ -6,6 +6,7 @@ import Carousel from "@/components/ui/carousel";
 import { Dialog } from "@/components/ui/dialog";
 import { useScreenWidth } from "@/hooks/useScreenWidth";
 import type { Image as TImage } from "@/prisma/generated/client";
+import { getCarouselWidth } from "@/utils/gallery";
 import { cn } from "@/utils/tailwind";
 import { FileDown } from "lucide-react";
 import Image from "next/image";
@@ -41,13 +42,13 @@ const CarouselPhoto = ({ photo, showDownloadButton }: { photo: TImage; showDownl
 
 const PhotosCarousel = ({ photos, initialSlide }: { photos: TImage[]; initialSlide?: number }) => {
   const { widthSize } = useScreenWidth();
-  const isSmall = ["xxs", "xs", "sm"].includes(widthSize);
+  const isExtraSmall = ["xxs", "xs"].includes(widthSize);
   return (
     <div className="w-full scale-100">
       <Carousel
         initialSlide={initialSlide}
-        prevButtonClassName={cn("fixed top-[50%] -translate-y-[42px] left-0 translate-x-[-46px] z-[1]", { hidden: isSmall })}
-        nextButtonClassName={cn("fixed top-[50%] -translate-y-[42px] right-0 translate-x-[46px] z-[1]", { hidden: isSmall })}
+        prevButtonClassName={cn("fixed top-[50%] -translate-y-[42px] left-0 translate-x-[-46px] z-[1]", { hidden: isExtraSmall })}
+        nextButtonClassName={cn("fixed top-[50%] -translate-y-[42px] right-0 translate-x-[46px] z-[1]", { hidden: isExtraSmall })}
         thumbs={photos.map((photo) => (
           <CarouselPhoto key={photo.id} photo={photo} />
         ))}
@@ -70,12 +71,21 @@ const PhotosDialog = ({
   onOpenChange?: (open: boolean) => void;
   initialSlide?: number;
 }) => {
+  const { widthHeightRatio } = useScreenWidth();
+  const width = getCarouselWidth(widthHeightRatio);
+
   return (
     <Dialog
       open={open}
       onOpenChange={onOpenChange}
       modal={
-        <div className="w-[100vw] xs:w-[100vw] sm:w-[96vw] md:w-[84vw] lg:w-[70vw] xl:w-[54vw] 2xl:w-[54vw] h-full py-10 md:py-0 px-8 xs:px-16 sm:px-16 md:px-20 lg:px-24 2xl:px-28 flex items-center justify-center">
+        // <div className="w-[100vw] xs:w-[100vw] sm:w-[96vw] md:w-[84vw] lg:w-[70vw] xl:w-[54vw] 2xl:w-[54vw] h-full py-10 md:py-0 px-8 xs:px-16 sm:px-16 md:px-20 lg:px-24 2xl:px-28 flex items-center justify-center">
+        <div
+          style={{
+            width,
+          }}
+          className="h-full py-10 px-8 flex items-center justify-center"
+        >
           <div className="relative w-full flex items-center justify-center">
             <PhotosCarousel photos={photos} initialSlide={initialSlide} />
           </div>
