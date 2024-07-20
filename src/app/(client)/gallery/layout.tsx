@@ -13,7 +13,7 @@ export default function GalleryLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Layout.Body className="px-0 sm:px-8 lg:px-20" backgroundPosition="top right" backgroundImgSrc={bgGallery.src}>
+    <Layout.Body className="px-0 sm:px-8 lg:px-20" backgroundPosition="top right" backgroundImg={bgGallery}>
       {children}
     </Layout.Body>
   );
