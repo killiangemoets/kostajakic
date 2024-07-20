@@ -12,6 +12,9 @@ export const serverSchema = z.object({
   DATABASE_URL: z.string().url(),
   NEXTAUTH_SECRET: z.string().min(1),
   JWT_SECRET: z.string().min(1),
+  AWS_ACCESS_KEY_ID: z.string().min(1),
+  AWS_SECRET_ACCESS_KEY: z.string().min(1),
+  AWS_REGION: z.string().min(1),
 });
 
 /**
@@ -19,6 +22,7 @@ export const serverSchema = z.object({
  * middleware, so you have to do it manually here.
  * @type {{ [k in keyof z.input<typeof serverSchema>]: string | undefined }}
  */
+
 export const serverEnv = {
   APP_ENV: process.env.APP_ENV,
   NODE_ENV: process.env.NODE_ENV,
@@ -26,6 +30,9 @@ export const serverEnv = {
   DATABASE_URL: process.env.DATABASE_URL,
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   JWT_SECRET: process.env.JWT_SECRET,
+  AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+  AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+  AWS_REGION: process.env.AWS_REGION,
 };
 
 /**
@@ -34,7 +41,8 @@ export const serverEnv = {
  * To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 export const clientSchema = z.object({
-  // NEXT_PUBLIC_CLIENTVAR: z.string(),
+  NEXT_PUBLIC_AWS_S3_BUCKET_NAME: z.string().min(1),
+  NEXT_PUBLIC_AWS_S3_ENDPOINT: z.string().min(1),
 });
 
 /**
@@ -44,5 +52,6 @@ export const clientSchema = z.object({
  * @type {{ [k in keyof z.input<typeof clientSchema>]: string | undefined }}
  */
 export const clientEnv = {
-  // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+  NEXT_PUBLIC_AWS_S3_BUCKET_NAME: process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME,
+  NEXT_PUBLIC_AWS_S3_ENDPOINT: process.env.NEXT_PUBLIC_AWS_S3_ENDPOINT,
 };

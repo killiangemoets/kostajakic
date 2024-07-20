@@ -36,3 +36,10 @@ model Concert {
 
   @@unique([date, id])
 }
+
+model Image {
+  id               Int    @id @default(autoincrement())
+  name             String
+  best_quality_url String
+  webp_url         String
+}
