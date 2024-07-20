@@ -10,6 +10,7 @@ export default async function AdminLayout({
     <div className="min-h-screen flex flex-col gap-8 bg-fixed relative">
       <div className="fixed top-0 left-0 w-screen h-screen block">
         <Image
+          priority={true}
           src={bgBackoffice}
           layout="fill"
           objectFit="cover"

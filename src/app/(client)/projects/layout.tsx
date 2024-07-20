@@ -1,4 +1,5 @@
 import bgProjects from "@/assets/images/backgrounds/bg-projects.webp";
+// import bgProjects from "@/assets/images/backgrounds/bg-projects.jpg";
 import { Layout } from "@/components/layout";
 import type { Metadata } from "next/types";
 
