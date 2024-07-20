@@ -19,7 +19,6 @@ export default async function AdminLayout({
           blurDataURL={bgBackoffice.blurDataURL}
         />
       </div>
-
       <div className="z-10">{children}</div>
     </div>
   );
