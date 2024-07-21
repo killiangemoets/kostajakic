@@ -10,7 +10,7 @@ export const PhoneNavbar = ({ className }: { className?: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className={cn("flex flex-col gap-16 z-10", className)}>
+    <header className={cn("flex flex-col gap-16 z-10", className)}>
       <div className="flex justify-between">
         <Button size="lg" className="mt-0 bg-slate-400 rounded-full" variant="ghost" href="/">
           LOGO
@@ -40,22 +40,26 @@ export const PhoneNavbar = ({ className }: { className?: string }) => {
             <span className="hidden">close</span>
           </Button>
         </div>
-        <div className=" flex flex-col items-center gap-8">
-          {NAVBAR_ITEMS.map((item) => (
-            <Button
-              onClick={() => {
-                setIsMenuOpen(false);
-              }}
-              key={item.name}
-              size="lg"
-              variant="ghost"
-              href={item.href}
-            >
-              {item.name}
-            </Button>
-          ))}
-        </div>
+        <nav>
+          <ul className=" flex flex-col items-center gap-8">
+            {NAVBAR_ITEMS.map((item) => (
+              <li key={item.name}>
+                <Button
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                  key={item.name}
+                  size="lg"
+                  variant="ghost"
+                  href={item.href}
+                >
+                  {item.name}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
-    </div>
+    </header>
   );
 };

@@ -18,15 +18,27 @@ export default async function Contact() {
           <Typography.body>{CONTACT_PHONE_NUMBER}</Typography.body>
         </Button>
       </div>
-      <div className="mt-12 flex items-center gap-1.5">
-        <Button size="icon" variant="ghost" className="h-9 w-9 p-0" href={INSTAGRAM_URL} target="_blank">
-          <Image className="w-8 h-8 hover:w-[34px] hover:h-[34px] duration-300" src={instagramIcon} alt="Instagram" />
+      <div className="mt-8 md:12 flex items-center gap-1 md:gap-1.5">
+        <Button size="icon" variant="ghost" className="w-9 h-9 md:h-11 md:w-11 p-0" href={INSTAGRAM_URL} target="_blank">
+          <Image
+            className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300"
+            src={instagramIcon}
+            alt="Instagram"
+          />
         </Button>
-        <Button size="icon" variant="ghost" className="h-9 w-9 p-0" href={FACEBOOK_URL} target="_blank">
-          <Image className="w-8 h-8 hover:w-[34px] hover:h-[34px] duration-300" src={facebookIcon} alt="Facebook" />
+        <Button size="icon" variant="ghost" className="w-9 h-9 md:h-11 md:w-11 p-0" href={FACEBOOK_URL} target="_blank">
+          <Image
+            className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300"
+            src={facebookIcon}
+            alt="Facebook"
+          />
         </Button>
-        <Button size="icon" variant="ghost" className="h-9 w-9 p-0" href={YOUTUBE_URL} target="_blank">
-          <Image className="w-8 h-8 hover:w-[34px] hover:h-[34px] duration-300" src={youtubeIcon} alt="Youtube" />
+        <Button size="icon" variant="ghost" className="w-9 h-9 md:h-11 md:w-11 p-0" href={YOUTUBE_URL} target="_blank">
+          <Image
+            className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300"
+            src={youtubeIcon}
+            alt="Youtube"
+          />
         </Button>
       </div>
     </div>

@@ -5,19 +5,19 @@ import { ArrowDownToLine } from "lucide-react";
 const DownloadButtons = () => {
   return (
     <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 w-fit items-center gap-2">
-      <Button className="normal-case w-[104px] h-8 px-0 text-md" variant="outline" size="sm">
+      <Button className="normal-case w-[104px] h-8 px-0 text-base" variant="outline" size="sm">
         <ArrowDownToLine className="h-3.5 w-3.5 mr-2" />
         PDF - en
       </Button>
-      <Button className="normal-case w-[104px] h-8 px-0  text-md" variant="outline" size="sm">
+      <Button className="normal-case w-[104px] h-8 px-0  text-base" variant="outline" size="sm">
         <ArrowDownToLine className="h-3.5 w-3.5 mr-2" />
         PDF - fr
       </Button>
-      <Button className="normal-case w-[104px] h-8 px-0 text-md" variant="outline" size="sm">
+      <Button className="normal-case w-[104px] h-8 px-0 text-base" variant="outline" size="sm">
         <ArrowDownToLine className="h-3.5 w-3.5 mr-2" />
         PDF - nl
       </Button>
-      <Button className="normal-case w-[104px] h-8 px-0 text-md" variant="outline" size="sm">
+      <Button className="normal-case w-[104px] h-8 px-0 text-base" variant="outline" size="sm">
         <ArrowDownToLine className="h-3.5 w-3.5 mr-2" />
         PDF - sr
       </Button>

@@ -23,12 +23,12 @@ export const Typography = {
     </h4>
   ),
   body: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"p">) => (
-    <p className={cn("text-md md:text-lg xl:text-xl", className)} {...props}>
+    <p className={cn("text-base md:text-lg xl:text-xl", className)} {...props}>
       {children}
     </p>
   ),
   note: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"p">) => (
-    <p className={cn("text-sm font-medium", className)} {...props}>
+    <p className={cn("text-sm md:text-base xl:text-lg font-medium", className)} {...props}>
       {children}
     </p>
   ),
