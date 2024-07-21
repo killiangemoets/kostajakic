@@ -69,7 +69,7 @@ export const LoginForm = () => {
           <Button variant="default" disabled={methods.formState.isSubmitting} type="submit" className="w-full rounded-md">
             Login
           </Button>
-          <Typography.error className="text-l font-medium text-required/90">{error}</Typography.error>
+          <Typography.error>{error}</Typography.error>
         </div>
       </Form>
     </AuthCard>

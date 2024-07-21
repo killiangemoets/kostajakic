@@ -33,7 +33,7 @@ export const SidebarLink = ({
     <Link
       href={href}
       className={cn(
-        "text-md font-bold flex items-center gap-3 rounded-lg px-3 py-3 transition-all duration-300 hover:bg-primary hover:text-primary-700",
+        "outline-none text-md font-bold flex items-center gap-3 rounded-lg px-3 py-3 transition-all duration-300 hover:bg-primary hover:text-primary-700",
         isActive && "bg-primary text-primary-700"
       )}
     >

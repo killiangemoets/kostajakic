@@ -5,13 +5,14 @@ import { Sidebar } from "./sidebar";
 import { Typography } from "@/components/typography";
 import { useScreenWidth } from "@/hooks/useScreenWidth";
 import { cn } from "@/utils/tailwind";
+import Link from "next/link";
 import { type ReactNode } from "react";
 
 const Profile = ({ isPhone = false }: { isPhone?: boolean }) => {
   return (
-    <div>
+    <Link href="/backoffice">
       <Typography.body className="font-black italic">{isPhone ? "KJ" : "Kosta Jakic"}</Typography.body>
-    </div>
+    </Link>
   );
 };
 
