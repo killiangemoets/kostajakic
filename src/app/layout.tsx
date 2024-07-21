@@ -1,6 +1,5 @@
 import "@/styles/globals.scss";
 import { TRPCReactProvider } from "@/trpc/react";
-import clsx from "clsx";
 import type { Metadata } from "next/types";
 import { Toaster } from "react-hot-toast";
 
@@ -17,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <TRPCReactProvider>
-        <body className={clsx("min-h-screen")}>
+        <body>
           {children}
           <Toaster position="bottom-right" />
         </body>

@@ -6,7 +6,7 @@ import { cn } from "@/utils/tailwind";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
-export const PhonseNavbar = ({ className }: { className?: string }) => {
+export const PhoneNavbar = ({ className }: { className?: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -28,10 +28,11 @@ export const PhonseNavbar = ({ className }: { className?: string }) => {
         </Button>
       </div>
       <div
-        className={cn(
-          " bg-primary-700/60 backdrop-blur-lg w-full h-screen fixed top-0 left-0 flex flex-col gap-12",
-          !isMenuOpen && "hidden"
-        )}
+        style={{
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+        }}
+        className={cn(" bg-primary-700/60 w-full h-screen fixed top-0 left-0 flex flex-col gap-12", !isMenuOpen && "hidden")}
       >
         <div className="pt-8 flex items-center w-full justify-between px-8">
           <Button size="lg" variant="ghost" className="ml-auto" aria-label="close" onClick={() => setIsMenuOpen((value) => !value)}>
