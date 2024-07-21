@@ -1,5 +1,5 @@
 import { Typography } from "@/components/typography";
-import clsx from "clsx";
+import { cn } from "@/utils/tailwind";
 
 export const FormLabel: React.FC<
   React.ComponentPropsWithoutRef<"label"> & {
@@ -7,11 +7,7 @@ export const FormLabel: React.FC<
   }
 > = ({ children, required, className, ...props }) => (
   <label
-    className={clsx(
-      "text-lg font-metropolis font-bold whitespace-nowrap",
-      required && "after:text-required after:content-['_*']",
-      className
-    )}
+    className={cn("text-lg font-metropolis font-bold whitespace-nowrap", required && "after:text-required after:content-['_*']", className)}
     {...props}
   >
     {children}
@@ -28,7 +24,7 @@ type InputContainerProps = React.PropsWithChildren<{
 
 export const InputContainer: React.FC<InputContainerProps> = ({ name, label, required, className, error, children }) => {
   return (
-    <div className={clsx("flex gap-2 flex-col", className)}>
+    <div className={cn("flex gap-2 flex-col", className)}>
       {label && (
         <FormLabel required={required} htmlFor={name}>
           {label}

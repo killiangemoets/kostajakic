@@ -44,7 +44,7 @@ const ConcertActionButtons = ({ concertId }: { concertId: string }) => {
     deleteConcertMutation.mutate({ id: concertId });
   };
   return (
-    <>
+    <div className="flex items-center gap-2">
       <Button href={`/backoffice/concerts/edit/${concertId}`} variant="ghost" size="icon">
         <Pencil className="w-5 h-5" />
       </Button>
@@ -58,38 +58,41 @@ const ConcertActionButtons = ({ concertId }: { concertId: string }) => {
       >
         <Trash className="w-5 h-5" />
       </Button>
-    </>
+    </div>
   );
 };
 
 const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showActions?: boolean }) => {
   return (
-    <li className="flex gap-3 sm:gap-8 items-center flex-col sm:flex-row">
-      <div className="border-t border-b flex flex-col gap-2 flex-1">
-        <div className="flex justify-between border-b">
-          <Typography.body className="font-medium">{formatDateTime(concert.date, concert.timezone)}</Typography.body>
-          <Typography.body className="font-medium">{concert.location}</Typography.body>
+    <li className="flex gap-3 sm:gap-8 items-center flex-col lg:flex-row">
+      <div className="flex gap-3 sm:gap-8 items-center flex-col sm:flex-row w-full">
+        <div className="w-full border-t border-b flex flex-col gap-2 flex-1">
+          <div className="flex justify-between border-b">
+            <Typography.body className="font-medium">{formatDateTime(concert.date, concert.timezone)}</Typography.body>
+            <Typography.body className="font-medium">{concert.location}</Typography.body>
+          </div>
+          <div>
+            <Typography.h4>{concert.title}</Typography.h4>
+            <Typography.body className="italic text-md">
+              {concert.description?.split("\n").map((line, i) => (
+                <React.Fragment key={i}>
+                  {line}
+                  <br />
+                </React.Fragment>
+              ))}
+            </Typography.body>
+          </div>
         </div>
-        <div>
-          <Typography.h4>{concert.title}</Typography.h4>
-          <Typography.body className="italic text-md">
-            {concert.description?.split("\n").map((line, i) => (
-              <React.Fragment key={i}>
-                {line}
-                <br />
-              </React.Fragment>
-            ))}
-          </Typography.body>
-        </div>
+        <Button
+          variant="outline"
+          target="_blank"
+          className={cn("ml-auto h-9 px-2 sm:py-6 sm:px-4 w-[110px]", { "opacity-0 disabled:opacity-0": !concert?.url })}
+          {...(concert?.url ? { href: concert.url } : { disabled: true })}
+        >
+          {concert.soldout ? "Soldout" : "More info"}
+        </Button>
       </div>
-      <Button
-        variant="outline"
-        target="_blank"
-        className={cn("ml-auto h-9 px-2 sm:py-6 sm:px-4 w-[110px]", { "opacity-0 disabled:opacity-0": !concert?.url })}
-        {...(concert?.url ? { href: concert.url } : { disabled: true })}
-      >
-        {concert.soldout ? "Soldout" : "More info"}
-      </Button>
+
       {showActions && <ConcertActionButtons concertId={concert.id} />}
     </li>
   );
@@ -110,7 +113,6 @@ const ConcertsList = ({ title, concerts, showActions }: { title: string; concert
     </div>
   );
 };
-
 const now = new Date();
 
 export const UpcomingConcertsSection = ({ initialConcerts, showActions }: { initialConcerts: Concert[]; showActions?: boolean }) => {

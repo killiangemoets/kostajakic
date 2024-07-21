@@ -18,8 +18,8 @@ type ConcertFormProps<T extends CreateConcert | UpdateConcert> = {
 
 export const ConcertForm = <T extends CreateConcert | UpdateConcert>({ methods, onSubmit, isLoading }: ConcertFormProps<T>) => {
   return (
-    <Form className="flex flex-col gap-6 w-[80%] relative" onSubmit={onSubmit} methods={methods}>
-      <div className="flex gap-2">
+    <Form className="flex flex-col gap-6 w-full lg:w-[80%] relative" onSubmit={onSubmit} methods={methods}>
+      <div className="flex flex-col gap-6 lg:flex-row lg:gap-2">
         <RHFLabeledDateSelectInput label="Date" name="date" placeholder="Select the date" required />
         <RHFLabeledDropdownSelectInput label="Time" name="time" placeholder="Time" required options={CONCERTS_TIME_OPTIONS} />
         <RHFLabeledDropdownSelectInput
@@ -34,7 +34,7 @@ export const ConcertForm = <T extends CreateConcert | UpdateConcert>({ methods, 
       <RHFLabeledTextInput label="Location" name="location" placeholder="Enter the location" className="w-full" required />
       <RHFLabeledTextInput label="Title" name="title" placeholder="Enter the title" className="w-full" required />
       <RHFLabeledTextareaInput label="Description" name="description" placeholder="Enter the description" className="w-full" />
-      <div className="flex gap-4">
+      <div className="flex flex-col gap-6 lg:flex-row lg:gap-4">
         <RHFLabeledTextInput label="Url" name="url" placeholder="Enter the url" className="w-full" containerClassName="flex-1" />
         <RHFLabeledCheckboxInput label="Tickets" name="soldout" containerClassName="gap-4" />
       </div>
