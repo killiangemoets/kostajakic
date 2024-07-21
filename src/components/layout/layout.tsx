@@ -13,7 +13,7 @@ export const Layout = {
     ...props
   }: { backgroundImg?: StaticImageData; bgFilter?: boolean; backgroundPosition?: string } & React.ComponentPropsWithoutRef<"div">) => (
     <div className="min-h-dvh px-8 pt-8 pb-16 overflow-hidden flex flex-col gap-16 relative" {...props}>
-      {/* {!!backgroundImg && (
+      {!!backgroundImg && (
         <div className="fixed top-0 left-0 w-full h-full">
           <Image
             priority={true}
@@ -28,7 +28,7 @@ export const Layout = {
           />
           {bgFilter && <div className="bg-primary-700/60 md:bg-primary-700/20 lg:bg-primary-700/0 absolute top-0 left-0 w-full h-full" />}
         </div>
-      )} */}
+      )}
       <Navbar />
       <main className={cn("relative px-20 flex-1", className)}>{children}</main>
     </div>
