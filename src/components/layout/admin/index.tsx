@@ -10,7 +10,7 @@ import { type ReactNode } from "react";
 
 const Profile = ({ isPhone = false }: { isPhone?: boolean }) => {
   return (
-    <Link href="/backoffice">
+    <Link href="/backoffice" className="outline-none">
       <Typography.body className="font-black italic">{isPhone ? "KJ" : "Kosta Jakic"}</Typography.body>
     </Link>
   );
