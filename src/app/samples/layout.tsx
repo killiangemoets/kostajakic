@@ -1,4 +1,4 @@
-import bgBackoffice from "@/assets/images/backgrounds/bg-backoffice.webp";
+import bgBackoffice from "@/assets/images/backgrounds/bg-backoffice.jpg";
 import { Layout } from "@/components/layout";
 import "@/styles/globals.scss";
 import type { Metadata } from "next/types";

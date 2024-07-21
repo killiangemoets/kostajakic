@@ -1,4 +1,4 @@
-import bgGallery from "@/assets/images/backgrounds/bg-gallery.webp";
+import bgGallery from "@/assets/images/backgrounds/bg-gallery.jpg";
 import { Layout } from "@/components/layout";
 import type { Metadata } from "next/types";
 

@@ -1,14 +1,6 @@
 "use client";
 
-import gallery1 from "@/assets/images/gallery/gallery_1.webp";
-import gallery2 from "@/assets/images/gallery/gallery_2.webp";
-import gallery3 from "@/assets/images/gallery/gallery_3.webp";
-import gallery4 from "@/assets/images/gallery/gallery_4.webp";
-import gallery5 from "@/assets/images/gallery/gallery_5.webp";
-import gallery6 from "@/assets/images/gallery/gallery_6.webp";
-import gallery7 from "@/assets/images/gallery/gallery_7.webp";
-import gallery8 from "@/assets/images/gallery/gallery_8.webp";
-import gallery9 from "@/assets/images/gallery/gallery_9.webp";
+import project1 from "@/assets/images/projects/project_1.webp";
 import { LabeledCheckboxInput } from "@/components/inputs/checkbox";
 import { LabeledDatePickerInput } from "@/components/inputs/datepicker";
 import { LabeledDropdownSelectInput } from "@/components/inputs/dropdown-select";
@@ -147,47 +139,7 @@ const CarouselDemo = () => {
         elements={[
           <div className="relative w-full pb-[100%]" key={1}>
             <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full object-contain" src={gallery1} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={2}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full object-contain" src={gallery2} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={3}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full  object-contain" src={gallery3} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={4}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full object-contain" src={gallery4} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={5}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full object-contain" src={gallery5} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={6}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full object-contain" src={gallery6} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={7}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full object-contain" src={gallery7} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={8}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full object-contain" src={gallery8} alt="project" priority />
-            </figure>
-          </div>,
-          <div className="relative w-full pb-[100%]" key={9}>
-            <figure className="absolute top-0 left-0 flex justify-center items-center overflow-hidden w-full h-full">
-              <Image className="w-full h-full  object-contain" src={gallery9} alt="project" priority />
+              <Image className="w-full h-full object-contain" src={project1} alt="project" priority />
             </figure>
           </div>,
         ]}

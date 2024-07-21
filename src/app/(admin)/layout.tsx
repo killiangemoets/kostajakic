@@ -10,14 +10,16 @@ export default async function AdminLayout({
     <div className="min-h-dvh flex flex-col gap-8 bg-fixed relative">
       <div className="fixed top-0 left-0 w-full h-full">
         <Image
-          priority={true}
+          priority
           src={bgBackoffice}
-          layout="fill"
+          fill
+          quality={100}
           objectFit="cover"
           objectPosition="top"
           alt="background image"
           placeholder="blur"
           blurDataURL={bgBackoffice.blurDataURL}
+          className="w-full h-full"
         />
       </div>
       <div className="z-10">{children}</div>
