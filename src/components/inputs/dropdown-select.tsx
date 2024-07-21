@@ -16,7 +16,7 @@ export const DropdownSelectInput = <T extends string>({
     <Select.Root disabled={readOnly} {...props}>
       <Select.Trigger
         className={cn(
-          "min-w-[240px] bg-primary-700/70 rounded-md text-primary font-medium border-[0.5px] px-4 py-2 h-10",
+          "w-full bg-primary-700/70 rounded-md text-primary font-medium border-[0.5px] px-4 py-2 h-10",
           !props.value && "text-primary/80",
           isError ? "border-destructive border focus:border-destructive hover:border-destructive" : " border-neutral-300"
         )}
@@ -47,7 +47,7 @@ export const LabeledDropdownSelectInput = <T extends string>({
   ...props
 }: LabeledDropdownSelectInputProps<T>) => {
   return (
-    <InputContainer name={name} label={label} required={required} error={error} className={containerClassName}>
+    <InputContainer name={name} label={label} required={required} error={error} className={cn("w-full", containerClassName)}>
       <DropdownSelectInput name={name} isError={Boolean(error)} {...props} />
     </InputContainer>
   );

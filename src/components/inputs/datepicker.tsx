@@ -15,11 +15,11 @@ export type DatePickerInputProps = DatePickerDefaultProps & InputProps;
 export const DatePickerInput: FC<DatePickerInputProps> = ({ name, placeholder, value, onChange, isError, readOnly, className }) => {
   return (
     <Popover.Root>
-      <Popover.Trigger disabled={readOnly} asChild name={name} className={className}>
+      <Popover.Trigger disabled={readOnly} asChild name={name} className={cn("w-full", className)}>
         <Button
           variant={"outline"}
           className={cn(
-            "w-[240px] rounded-md focus:outline-none py-2.5 text-primary font-medium justify-start text-left",
+            "w-full rounded-md focus:outline-none py-2.5 text-primary font-medium justify-start text-left",
             readOnly ? "rounded-lg bg-transparent border-none" : "bg-primary-700/70 border-[0.5px] px-5",
             !value && "text-primary/80",
             !readOnly && isError ? "border-destructive  border focus:border-destructive hover:border-destructive" : "border-neutral-300"
@@ -47,7 +47,7 @@ export const LabeledDatePickerInput: React.FC<LabeledDatePickerInputProps> = ({
   ...props
 }) => {
   return (
-    <InputContainer name={name} label={label} required={required} error={error} className={containerClassName}>
+    <InputContainer name={name} label={label} required={required} error={error} className={cn("w-full", containerClassName)}>
       <DatePickerInput name={name} isError={Boolean(error)} {...props} />
     </InputContainer>
   );

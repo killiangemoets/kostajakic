@@ -15,8 +15,8 @@ import { useForm } from "react-hook-form";
 
 export const AuthCard = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] bg-primary-700/50 px-20 py-12 rounded-xl flex flex-col gap-4 min-w-[480px]">
-      {children}
+    <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] px-4 gap-4 max-w-[480px] w-full">
+      <div className="bg-primary-700/50 px-10 xs:px-20 py-12 rounded-xl flex flex-col">{children}</div>
     </div>
   );
 };
@@ -69,7 +69,7 @@ export const LoginForm = () => {
           <Button variant="default" disabled={methods.formState.isSubmitting} type="submit" className="w-full rounded-md">
             Login
           </Button>
-          <Typography.error className="text-l font-medium text-required/90">{error}</Typography.error>
+          <Typography.error>{error}</Typography.error>
         </div>
       </Form>
     </AuthCard>
