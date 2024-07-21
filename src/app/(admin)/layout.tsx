@@ -8,7 +8,7 @@ export default async function AdminLayout({
 }>) {
   return (
     <div className="min-h-dvh flex flex-col gap-8 bg-fixed relative">
-      <div className="fixed top-0 left-0 w-screen h-dvh block">
+      <div className="fixed top-0 left-0 w-full h-full">
         <Image
           priority={true}
           src={bgBackoffice}
