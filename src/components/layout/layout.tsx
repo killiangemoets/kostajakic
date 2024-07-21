@@ -12,9 +12,9 @@ export const Layout = {
     bgFilter = false,
     ...props
   }: { backgroundImg?: StaticImageData; bgFilter?: boolean; backgroundPosition?: string } & React.ComponentPropsWithoutRef<"div">) => (
-    <div className="min-h-screen px-8 pt-8 pb-16 overflow-hidden flex flex-col gap-16 bg-fixed relative" {...props}>
+    <div className="min-h-dvh px-8 pt-8 pb-16 overflow-hidden flex flex-col gap-16 bg-fixed relative" {...props}>
       {!!backgroundImg && (
-        <div className="fixed top-0 left-0 w-screen h-screen">
+        <div className="fixed top-0 left-0 w-screen h-dvh">
           <Image
             priority={true}
             src={backgroundImg}
