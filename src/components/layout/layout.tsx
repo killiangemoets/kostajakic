@@ -24,6 +24,7 @@ export const Layout = {
             alt="background image"
             placeholder="blur"
             blurDataURL={backgroundImg.blurDataURL}
+            className="w-full h-full"
           />
           {bgFilter && <div className="bg-primary-700/60 md:bg-primary-700/20 lg:bg-primary-700/0 absolute top-0 left-0 w-full h-full" />}
         </div>
