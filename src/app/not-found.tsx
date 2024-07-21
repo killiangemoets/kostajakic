@@ -1,4 +1,4 @@
-import bgImage from "@/assets/images/backgrounds/bg-contact.webp";
+import bgImage from "@/assets/images/backgrounds/bg-contact.jpg";
 import { Layout } from "@/components/layout";
 import { Typography } from "@/components/typography";
 import { Button } from "@/components/ui/button";

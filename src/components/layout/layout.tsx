@@ -16,9 +16,10 @@ export const Layout = {
       {!!backgroundImg && (
         <div className="fixed top-0 left-0 w-full h-full">
           <Image
-            priority={true}
+            priority
             src={backgroundImg}
-            layout="fill"
+            fill
+            quality={100}
             objectFit="cover"
             objectPosition={backgroundPosition}
             alt="background image"
