@@ -3,7 +3,9 @@
 import { Header } from "./header";
 import { Sidebar } from "./sidebar";
 import { Typography } from "@/components/typography";
+import { FULL_NAME } from "@/constants/contact";
 import { useScreenWidth } from "@/hooks/useScreenWidth";
+import { getInitials } from "@/utils/format";
 import { cn } from "@/utils/tailwind";
 import Link from "next/link";
 import { type ReactNode } from "react";
@@ -11,7 +13,7 @@ import { type ReactNode } from "react";
 const Profile = ({ isPhone = false }: { isPhone?: boolean }) => {
   return (
     <Link href="/backoffice" className="outline-none">
-      <Typography.body className="font-black italic">{isPhone ? "KJ" : "Kosta Jakic"}</Typography.body>
+      <Typography.body className="font-black italic">{isPhone ? getInitials(FULL_NAME) : FULL_NAME}</Typography.body>
     </Link>
   );
 };

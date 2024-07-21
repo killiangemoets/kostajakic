@@ -1,3 +1,5 @@
+export const FULL_NAME = "Kosta Jakic";
+
 export const CONTACT_EMAIL = "kosta.jakic@gmail.com";
 export const CONTACT_PHONE_NUMBER = "+32 474 93 71 11";
 

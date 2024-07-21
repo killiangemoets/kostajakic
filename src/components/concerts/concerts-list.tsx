@@ -73,7 +73,7 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
           </div>
           <div>
             <Typography.h4>{concert.title}</Typography.h4>
-            <Typography.body className="italic text-md">
+            <Typography.body className="italic text-base">
               {concert.description?.split("\n").map((line, i) => (
                 <React.Fragment key={i}>
                   {line}
