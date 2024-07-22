@@ -21,21 +21,21 @@ export default async function Contact() {
       <div className="mt-8 md:12 flex items-center gap-1 md:gap-1.5">
         <Button size="icon" variant="ghost" className="w-9 h-9 md:h-11 md:w-11 p-0" href={INSTAGRAM_URL} target="_blank">
           <Image
-            className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300"
+            className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300 ease-in-out"
             src={instagramIcon}
             alt="Instagram"
           />
         </Button>
         <Button size="icon" variant="ghost" className="w-9 h-9 md:h-11 md:w-11 p-0" href={FACEBOOK_URL} target="_blank">
           <Image
-            className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300"
+            className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300 ease-in-out"
             src={facebookIcon}
             alt="Facebook"
           />
         </Button>
         <Button size="icon" variant="ghost" className="w-9 h-9 md:h-11 md:w-11 p-0" href={YOUTUBE_URL} target="_blank">
           <Image
-            className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300"
+            className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300 ease-in-out"
             src={youtubeIcon}
             alt="Youtube"
           />
