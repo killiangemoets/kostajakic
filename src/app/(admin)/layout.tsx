@@ -13,7 +13,7 @@ export default async function AdminLayout({
           priority
           src={bgBackoffice}
           fill
-          quality={100}
+          quality={90}
           objectFit="cover"
           objectPosition="top"
           alt="background image"
