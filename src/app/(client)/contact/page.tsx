@@ -23,7 +23,7 @@ export default async function Contact() {
           <Image
             className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300 ease-in-out"
             src={instagramIcon}
-            alt="Instagram"
+            alt="Instagram url"
           />
           <span className="sr-only">Instagram</span>
         </Button>
@@ -31,7 +31,7 @@ export default async function Contact() {
           <Image
             className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300 ease-in-out"
             src={facebookIcon}
-            alt="Facebook"
+            alt="Facebook url"
           />
           <span className="sr-only">Facebook</span>
         </Button>
@@ -39,7 +39,7 @@ export default async function Contact() {
           <Image
             className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300 ease-in-out"
             src={youtubeIcon}
-            alt="Youtube"
+            alt="Youtube url"
           />
           <span className="sr-only">Youtube</span>
         </Button>

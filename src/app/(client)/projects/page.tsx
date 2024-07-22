@@ -12,7 +12,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           <Image
             className="w-full h-full object-cover object-center group-hover:scale-110 duration-300"
             src={project.image}
-            alt={project.title}
+            alt="project image"
             priority
           />
         </figure>
