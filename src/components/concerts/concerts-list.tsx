@@ -83,14 +83,19 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
             </Typography.body>
           </div>
         </div>
-        <Button
-          variant="outline"
-          target="_blank"
-          className={cn("ml-auto h-9 px-2 sm:py-6 sm:px-4 w-[110px]", { "opacity-0 disabled:opacity-0": !concert?.url })}
-          {...(concert?.url ? { href: concert.url } : { disabled: true })}
-        >
-          {concert.soldout ? "Soldout" : "More info"}
-        </Button>
+        <div className="ml-auto w-[110px]">
+          {!!concert?.url && (
+            <Button
+              variant="outline"
+              target="_blank"
+              className={cn("h-9 px-2 sm:py-6 sm:px-4 w-full")}
+              {...(!!concert?.url && { href: concert.url })}
+            >
+              {concert.soldout ? "Soldout" : "More info"}
+              <span className="sr-only">tickets available on {concert.url}</span>
+            </Button>
+          )}
+        </div>
       </div>
 
       {showActions && <ConcertActionButtons concertId={concert.id} />}
