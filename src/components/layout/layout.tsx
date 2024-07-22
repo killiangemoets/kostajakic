@@ -47,7 +47,7 @@ export const Layout = {
               priority
               src={backgroundImg}
               fill
-              quality={100}
+              quality={90}
               objectFit="cover"
               objectPosition={backgroundPosition}
               alt="background image"
