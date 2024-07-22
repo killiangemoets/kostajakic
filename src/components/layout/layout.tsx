@@ -42,7 +42,7 @@ export const Layout = {
     <>
       <div className="min-h-dvh overflow-hidden px-5 sm:px-6 md:px-8 pt-8 pb-4 sm:pb-6 flex flex-col gap-16 relative" {...props}>
         {!!backgroundImg && (
-          <div className="fixed top-0 left-0 w-full h-full">
+          <div className="fixed top-0 left-0 w-full h-screen">
             <Image
               priority
               src={backgroundImg}
