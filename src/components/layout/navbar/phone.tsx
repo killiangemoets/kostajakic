@@ -14,6 +14,7 @@ export const PhoneNavbar = ({ className }: { className?: string }) => {
       <div className="flex justify-between">
         <Button size="lg" className="mt-0 bg-slate-400 rounded-full" variant="ghost" href="/">
           LOGO
+          <span className="sr-only">Home</span>
         </Button>
         <Button
           aria-label="menu"

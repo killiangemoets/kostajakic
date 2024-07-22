@@ -25,6 +25,7 @@ const DownloadPhotoButton = ({ downloadLink, small }: { downloadLink: string; sm
       className="absolute bottom-0 right-0 z-10"
     >
       <FileDown className={cn(small ? "w-5 h-5" : "w-7 h-7")} />
+      <span className="sr-only">Download Image</span>
     </Button>
   );
 };

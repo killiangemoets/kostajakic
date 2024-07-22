@@ -8,18 +8,22 @@ const DownloadButtons = () => {
       <Button className="normal-case w-[104px] h-8 px-0 text-base" variant="outline" size="sm">
         <ArrowDownToLine className="h-3.5 w-3.5 mr-2" />
         PDF - en
+        <span className="sr-only">Download PDF - en</span>
       </Button>
       <Button className="normal-case w-[104px] h-8 px-0  text-base" variant="outline" size="sm">
         <ArrowDownToLine className="h-3.5 w-3.5 mr-2" />
         PDF - fr
+        <span className="sr-only">Download PDF - fr</span>
       </Button>
       <Button className="normal-case w-[104px] h-8 px-0 text-base" variant="outline" size="sm">
         <ArrowDownToLine className="h-3.5 w-3.5 mr-2" />
         PDF - nl
+        <span className="sr-only">Download PDF - nl</span>
       </Button>
       <Button className="normal-case w-[104px] h-8 px-0 text-base" variant="outline" size="sm">
         <ArrowDownToLine className="h-3.5 w-3.5 mr-2" />
         PDF - sr
+        <span className="sr-only">Download PDF - sr</span>
       </Button>
     </div>
   );

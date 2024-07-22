@@ -29,6 +29,7 @@ const SlidePrevButton = ({ className }: { className?: string }) => {
           swiper.isBeginning && !swiper.loopedSlides ? "text-white/50" : "text-primary duration-300 ease-in-out hover:text-primary-200"
         )}
       />
+      <span className="sr-only">Previous slide</span>
     </Button>
   );
 };
@@ -50,6 +51,7 @@ const SlideNextButton = ({ className }: { className?: string }) => {
           swiper.isEnd && !swiper.loopedSlides ? "text-white/50" : "text-primary duration-300 ease-in-out hover:text-primary-200"
         )}
       />
+      <span className="sr-only">Next slide</span>
     </Button>
   );
 };

@@ -33,6 +33,7 @@ export default async function Projects({ params }: Readonly<{ params: { slug: st
     <div className="w-full sm:w-[56%] sm:min-w-[500px] space-y-0 flex flex-col sm:flex-row gap-4">
       <Button href="/projects" variant="outline" size="icon" className="h-fit w-fit rounded-full border-[1.5px] px-1 py-1">
         <ArrowBigLeft className="h-6 w-6 stroke-[1.5px]" />
+        <span className="sr-only">Back</span>
       </Button>
       <div className="space-y-8">
         <Typography.h3 className="font-bold border-b normal-case">{project.title}</Typography.h3>

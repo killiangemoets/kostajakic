@@ -15,12 +15,15 @@ const Footer = () => {
       <div className="flex items-center gap-1.5 md:gap-2">
         <Button size="icon" variant="ghost" className="w-5 h-5 md:w-7 md:h-7 p-0" href={INSTAGRAM_URL} target="_blank">
           <Image className="w-5 h-5 md:w-7 md:h-7 duration-300" src={instagramIcon} alt="Instagram" />
+          <span className="sr-only">Instagram</span>
         </Button>
         <Button size="icon" variant="ghost" className="w-5 h-5 md:w-7 md:h-7 p-0" href={FACEBOOK_URL} target="_blank">
           <Image className="w-5 h-5 md:w-7 md:h-7 duration-300" src={facebookIcon} alt="Facebook" />
+          <span className="sr-only">Facebook</span>
         </Button>
         <Button size="icon" variant="ghost" className="w-5 h-5 md:w-7 md:h-7 p-0" href={YOUTUBE_URL} target="_blank">
           <Image className="w-5 h-5 md:w-7 md:h-7 duration-300" src={youtubeIcon} alt="Youtube" />
+          <span className="sr-only">Youtube</span>
         </Button>
       </div>
       <div>

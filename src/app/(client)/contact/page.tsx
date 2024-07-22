@@ -25,6 +25,7 @@ export default async function Contact() {
             src={instagramIcon}
             alt="Instagram"
           />
+          <span className="sr-only">Instagram</span>
         </Button>
         <Button size="icon" variant="ghost" className="w-9 h-9 md:h-11 md:w-11 p-0" href={FACEBOOK_URL} target="_blank">
           <Image
@@ -32,6 +33,7 @@ export default async function Contact() {
             src={facebookIcon}
             alt="Facebook"
           />
+          <span className="sr-only">Facebook</span>
         </Button>
         <Button size="icon" variant="ghost" className="w-9 h-9 md:h-11 md:w-11 p-0" href={YOUTUBE_URL} target="_blank">
           <Image
@@ -39,6 +41,7 @@ export default async function Contact() {
             src={youtubeIcon}
             alt="Youtube"
           />
+          <span className="sr-only">Youtube</span>
         </Button>
       </div>
     </div>
