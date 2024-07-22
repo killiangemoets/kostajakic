@@ -39,6 +39,7 @@ export const SidebarLink = ({
     >
       <Icon className="h-4 w-4" />
       {!isPhone && name}
+      <span className="sr-only">{name}</span>
     </Link>
   );
 };

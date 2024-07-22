@@ -83,14 +83,19 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
             </Typography.body>
           </div>
         </div>
-        <Button
-          variant="outline"
-          target="_blank"
-          className={cn("ml-auto h-9 px-2 sm:py-6 sm:px-4 w-[110px]", { "opacity-0 disabled:opacity-0": !concert?.url })}
-          {...(concert?.url ? { href: concert.url } : { disabled: true })}
-        >
-          {concert.soldout ? "Soldout" : "More info"}
-        </Button>
+        <div className="ml-auto w-[110px]">
+          {!!concert?.url && (
+            <Button
+              variant="outline"
+              target="_blank"
+              className={cn("h-9 px-2 sm:py-6 sm:px-4 w-full")}
+              {...(!!concert?.url && { href: concert.url })}
+            >
+              {concert.soldout ? "Soldout" : "More info"}
+              <span className="sr-only">tickets available on {concert.url}</span>
+            </Button>
+          )}
+        </div>
       </div>
 
       {showActions && <ConcertActionButtons concertId={concert.id} />}
@@ -101,7 +106,7 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
 const ConcertsList = ({ title, concerts, showActions }: { title: string; concerts: Concert[]; showActions?: boolean }) => {
   return (
     <div className="flex flex-col gap-6 w-full">
-      <Typography.h2>{title}</Typography.h2>
+      <Typography.h3>{title}</Typography.h3>
       <ul className="flex flex-col gap-8">
         {concerts.map((concert) => (
           <ConcertCard key={concert.id} concert={concert} showActions={showActions} />

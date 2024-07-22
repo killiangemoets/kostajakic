@@ -9,7 +9,7 @@ export default function Home() {
         <Typography.h1 className="drop-shadow-md md:drop-shadow-none">{getFistName(FULL_NAME)}</Typography.h1>
         <Typography.h1 className="pl-[98px] drop-shadow-md md:drop-shadow-none">{getLastName(FULL_NAME)}</Typography.h1>
       </div>
-      <Typography.h3 className="drop-shadow-md md:drop-shadow-none">Pianist</Typography.h3>
+      <Typography.h2 className="drop-shadow-md md:drop-shadow-none">Pianist</Typography.h2>
     </div>
   );
 }

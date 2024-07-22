@@ -6,6 +6,7 @@ export const DesktopNavbar = () => {
     <header className="flex gap-6 xl:gap-8 z-10">
       <Button size="lg" className="mt-0 bg-slate-400 rounded-full" variant="ghost" href="/">
         LOGO
+        <span className="sr-only">Home</span>
       </Button>
       <nav>
         <ul className="flex gap-6 xl:gap-8">

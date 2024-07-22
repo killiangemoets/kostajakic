@@ -21,7 +21,7 @@ const VideosGallery = () => {
   const [videos, setVideos] = useState(GALLERY_VIDEOS.slice(0, 4));
   return (
     <div className="space-y-4">
-      <Typography.h3 className="border-b font-bold normal-case">Videos</Typography.h3>
+      <Typography.h2 className="border-b font-bold normal-case">Videos</Typography.h2>
       <div className="grid grid-col-1 sm:grid-cols-2 w-full gap-4">
         {videos.map((video, i) => (
           <Video key={i} src={video.src} title={video.title} />

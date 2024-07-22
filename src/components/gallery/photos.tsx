@@ -25,6 +25,7 @@ const DownloadPhotoButton = ({ downloadLink, small }: { downloadLink: string; sm
       className="absolute bottom-0 right-0 z-10"
     >
       <FileDown className={cn(small ? "w-5 h-5" : "w-7 h-7")} />
+      <span className="sr-only">Download Image</span>
     </Button>
   );
 };
@@ -133,7 +134,7 @@ const PhotosGallery = ({ photos }: { photos: TImage[] }) => {
 
   return (
     <div className="space-y-4">
-      <Typography.h3 className="border-b font-bold normal-case">Photos</Typography.h3>
+      <Typography.h2 className="border-b font-bold normal-case">Photos</Typography.h2>
       <div className="grid grid-cols-2 sm:grid-cols-4 w-full gap-4">
         {photosShown.map((photo, i) => (
           <GalleryPhoto
@@ -163,7 +164,7 @@ export const PhotosGallery2 = ({ photos }: { photos: TImage[] }) => {
 
   return (
     <div className="space-y-4">
-      <Typography.h3 className="border-b font-bold normal-case">Photos</Typography.h3>
+      <Typography.h2 className="border-b font-bold normal-case">Photos</Typography.h2>
       <div className="grid grid-cols-2 sm:grid-cols-4 w-full gap-4">
         {photosShown.map((photo, i) => (
           <GalleryPhoto
@@ -201,7 +202,7 @@ export const PhotosGallery3 = ({ photos }: { photos: TImage[] }) => {
 
   return (
     <div className="space-y-4">
-      <Typography.h3 className="border-b font-bold normal-case">Photos</Typography.h3>
+      <Typography.h2 className="border-b font-bold normal-case">Photos</Typography.h2>
       <div className="grid grid-cols-3 sm:grid-cols-5 w-full gap-4">
         {photosShown.map((photo, i) => (
           <GalleryPhoto

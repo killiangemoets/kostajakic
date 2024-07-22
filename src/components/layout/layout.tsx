@@ -14,13 +14,16 @@ const Footer = () => {
     <footer className="w-full flex items-center justify-between z-10">
       <div className="flex items-center gap-1.5 md:gap-2">
         <Button size="icon" variant="ghost" className="w-5 h-5 md:w-7 md:h-7 p-0" href={INSTAGRAM_URL} target="_blank">
-          <Image className="w-5 h-5 md:w-7 md:h-7 duration-300" src={instagramIcon} alt="Instagram" />
+          <Image className="w-5 h-5 md:w-7 md:h-7 duration-300" src={instagramIcon} alt="Instagram url" />
+          <span className="sr-only">Instagram</span>
         </Button>
         <Button size="icon" variant="ghost" className="w-5 h-5 md:w-7 md:h-7 p-0" href={FACEBOOK_URL} target="_blank">
-          <Image className="w-5 h-5 md:w-7 md:h-7 duration-300" src={facebookIcon} alt="Facebook" />
+          <Image className="w-5 h-5 md:w-7 md:h-7 duration-300" src={facebookIcon} alt="Facebook url" />
+          <span className="sr-only">Facebook</span>
         </Button>
         <Button size="icon" variant="ghost" className="w-5 h-5 md:w-7 md:h-7 p-0" href={YOUTUBE_URL} target="_blank">
-          <Image className="w-5 h-5 md:w-7 md:h-7 duration-300" src={youtubeIcon} alt="Youtube" />
+          <Image className="w-5 h-5 md:w-7 md:h-7 duration-300" src={youtubeIcon} alt="Youtube url" />
+          <span className="sr-only">Youtube</span>
         </Button>
       </div>
       <div>

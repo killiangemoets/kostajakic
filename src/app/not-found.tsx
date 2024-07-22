@@ -10,7 +10,7 @@ export default function NotFound() {
       backgroundPosition="top right"
       backgroundImg={bgImage}
     >
-      <Typography.h3 className="normal-case text-center">Sorry, this page doesn&apos;t exist!</Typography.h3>
+      <Typography.h2 className="normal-case text-center">Sorry, this page doesn&apos;t exist!</Typography.h2>
       <Button href="/" className="mb-16">
         Go Home
       </Button>

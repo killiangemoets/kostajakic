@@ -9,7 +9,7 @@ import Image from "next/image";
 export default async function Contact() {
   return (
     <div className="w-full sm:w-[50%] sm:min-w-[500px] pt-32">
-      <Typography.h2 className="mb-1.5">Kosta Jakic</Typography.h2>
+      <Typography.h3 className="mb-1.5">Kosta Jakic</Typography.h3>
       <div className="flex justify-between border-t border-b py-0.5">
         <Button variant="ghost" className="normal-case font-medium p-0 h-fit" href={`mailto:${CONTACT_EMAIL}`}>
           <Typography.body>{CONTACT_EMAIL}</Typography.body>
@@ -23,22 +23,25 @@ export default async function Contact() {
           <Image
             className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300 ease-in-out"
             src={instagramIcon}
-            alt="Instagram"
+            alt="Instagram url"
           />
+          <span className="sr-only">Instagram</span>
         </Button>
         <Button size="icon" variant="ghost" className="w-9 h-9 md:h-11 md:w-11 p-0" href={FACEBOOK_URL} target="_blank">
           <Image
             className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300 ease-in-out"
             src={facebookIcon}
-            alt="Facebook"
+            alt="Facebook url"
           />
+          <span className="sr-only">Facebook</span>
         </Button>
         <Button size="icon" variant="ghost" className="w-9 h-9 md:h-11 md:w-11 p-0" href={YOUTUBE_URL} target="_blank">
           <Image
             className="w-8 h-8 hover:w-[34px] hover:h-[34px] md:w-10 md:h-10 md:hover:w-[42px] md:hover:h-[42px] duration-300 ease-in-out"
             src={youtubeIcon}
-            alt="Youtube"
+            alt="Youtube url"
           />
+          <span className="sr-only">Youtube</span>
         </Button>
       </div>
     </div>
