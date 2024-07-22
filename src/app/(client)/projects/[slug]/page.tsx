@@ -36,7 +36,7 @@ export default async function Projects({ params }: Readonly<{ params: { slug: st
         <span className="sr-only">Back</span>
       </Button>
       <div className="space-y-8">
-        <Typography.h3 className="font-bold border-b normal-case">{project.title}</Typography.h3>
+        <Typography.h2 className="font-bold border-b normal-case">{project.title}</Typography.h2>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-[68%_32%] lg:gap-0 w-full">
           <Typography.body className="font-medium lg:mr-4">
             {project.description?.split("\n").map((line, i) => (

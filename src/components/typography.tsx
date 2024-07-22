@@ -8,12 +8,12 @@ export const Typography = {
     </h1>
   ),
   h2: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"h2">) => (
-    <h2 className={cn("text-heading-2 uppercase", className)} {...props}>
+    <h2 className={cn("text-heading-3 uppercase", className)} {...props}>
       {children}
     </h2>
   ),
   h3: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"h3">) => (
-    <h3 className={cn("text-heading-3 uppercase", className)} {...props}>
+    <h3 className={cn("text-heading-2 uppercase", className)} {...props}>
       {children}
     </h3>
   ),

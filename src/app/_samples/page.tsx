@@ -17,7 +17,7 @@ import { useState } from "react";
 const Buttons = () => {
   return (
     <div className="flex flex-col gap-8">
-      <Typography.h2>Buttons</Typography.h2>
+      <Typography.h3>Buttons</Typography.h3>
       <div className="flex gap-8">
         <Button>Default</Button>
         <Button variant="destructive">Destructive</Button>
@@ -81,7 +81,7 @@ const Buttons = () => {
 const Typographies = () => {
   return (
     <div className="flex flex-col gap-8">
-      <Typography.h2>Typography</Typography.h2>
+      <Typography.h3>Typography</Typography.h3>
       <div className="flex flex-col gap-2">
         <Typography.h1>Title H1</Typography.h1>
         <Typography.h2>Title H2</Typography.h2>
@@ -100,7 +100,7 @@ const Inputs = () => {
 
   return (
     <div className="flex flex-col gap-8">
-      <Typography.h2>Form</Typography.h2>
+      <Typography.h3>Form</Typography.h3>
       <div className="flex flex-col gap-4">
         <LabeledTextInput readOnly name="email" label="Email" value="test 1212" placeholder="enter your email" required />
         <LabeledTextareaInput

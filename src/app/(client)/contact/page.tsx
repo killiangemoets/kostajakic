@@ -9,7 +9,7 @@ import Image from "next/image";
 export default async function Contact() {
   return (
     <div className="w-full sm:w-[50%] sm:min-w-[500px] pt-32">
-      <Typography.h2 className="mb-1.5">Kosta Jakic</Typography.h2>
+      <Typography.h3 className="mb-1.5">Kosta Jakic</Typography.h3>
       <div className="flex justify-between border-t border-b py-0.5">
         <Button variant="ghost" className="normal-case font-medium p-0 h-fit" href={`mailto:${CONTACT_EMAIL}`}>
           <Typography.body>{CONTACT_EMAIL}</Typography.body>

@@ -101,7 +101,7 @@ const ConcertCard = ({ concert, showActions = false }: { concert: Concert; showA
 const ConcertsList = ({ title, concerts, showActions }: { title: string; concerts: Concert[]; showActions?: boolean }) => {
   return (
     <div className="flex flex-col gap-6 w-full">
-      <Typography.h2>{title}</Typography.h2>
+      <Typography.h3>{title}</Typography.h3>
       <ul className="flex flex-col gap-8">
         {concerts.map((concert) => (
           <ConcertCard key={concert.id} concert={concert} showActions={showActions} />
