@@ -13,6 +13,7 @@ const Video = ({ src, title }: { src: string; title: string }) => {
       title={title}
       // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
+      sandbox="allow-scripts allow-same-origin allow-popups"
     />
   );
 };
