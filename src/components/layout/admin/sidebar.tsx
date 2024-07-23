@@ -44,9 +44,9 @@ export const SidebarLink = ({
   );
 };
 
-export const Sidebar = ({ isPhone = false }: { isPhone?: boolean }) => {
+export const Sidebar = ({ isPhone = false, className }: { isPhone?: boolean; className?: string }) => {
   return (
-    <nav className="flex flex-col justify-between pb-8 px-2 h-full text-sm font-medium lg:px-4 space-y-1">
+    <nav className={cn("flex flex-col justify-between pb-8 px-2 h-full text-sm font-medium lg:px-4 space-y-1", className)}>
       <div className="grid gap-2 items-start ">
         {SIDEBAR_ITEMS.map((item) => (
           <SidebarLink key={item.name} name={item.name} href={item.href} Icon={item.icon} isPhone={isPhone} />
