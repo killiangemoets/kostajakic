@@ -4,7 +4,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About | Kosta Jakic",
-  description: "Kosta Jakic's personal website.",
+  description:
+    "Learn about Kosta Jakic, a Belgian pianist and conductor of Yugoslav origin. Discover his unique approach to music, collaborations with renowned artists, and his research on the role of music in historical contexts.",
 };
 
 export default function AboutLayout({

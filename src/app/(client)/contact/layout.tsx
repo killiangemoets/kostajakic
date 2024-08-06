@@ -4,7 +4,8 @@ import type { Metadata } from "next/types";
 
 export const metadata: Metadata = {
   title: "Contact | Kosta Jakic",
-  description: "Kosta Jakic's personal website.",
+  description:
+    "Get in touch with Kosta Jakic. Find his email, phone number, and social media profiles including Instagram, Facebook, and YouTube.",
 };
 
 export default function ConcertsLayout({

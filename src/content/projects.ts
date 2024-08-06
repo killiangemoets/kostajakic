@@ -5,6 +5,8 @@ import type { Project } from "@/types/projects";
 export const PROJECTS: Project[] = [
   {
     title: "Collaboration with Simon Gronowski: Life without music is impossible",
+    meta_description:
+      'Explore the "Life without Music is Impossible" project by Kosta Jakic and Simon Gronowski. This intergenerational project promotes peace and memory through jazz and classical music.',
     slug: "life-without-music-is-impossible",
     image: project1,
     description:
@@ -12,6 +14,8 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Belgian Doctor Symphonny Orchestra",
+    meta_description:
+      "Learn about the Belgian Doctor Symphony Orchestra, co-initiated by Kosta Jakic. This project combines classical music and medicine to raise awareness and break stereotypes.",
     slug: "belgian-doctor-symphonny-orchestra",
     image: project2,
     description:

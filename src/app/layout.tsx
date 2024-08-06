@@ -5,7 +5,8 @@ import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Kosta Jakic | Pianist",
-  description: "Kosta Jakic's personal website.",
+  description:
+    "Discover the official website of Kosta Jakic, a Belgian pianist and conductor of Yugoslav origin. Learn about his unique musical journey and upcoming concerts.",
 };
 
 export default function RootLayout({

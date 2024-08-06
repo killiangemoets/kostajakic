@@ -4,7 +4,8 @@ import type { Metadata } from "next/types";
 
 export const metadata: Metadata = {
   title: "Concerts | Kosta Jakic",
-  description: "Kosta Jakic's personal website.",
+  description:
+    "Stay updated with Kosta Jakic's concert schedule. Find information about his upcoming performances and browse through his past concerts across Belgium and Europe.",
 };
 
 export default function ConcertsLayout({

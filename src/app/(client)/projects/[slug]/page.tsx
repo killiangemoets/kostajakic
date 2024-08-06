@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: Readonly<{ params: { slug: st
 
   return {
     title: `${project?.title} | Kosta Jakic`,
-    description: "Kosta Jakic's personal website.",
+    description: project?.meta_description,
   };
 }
 
