@@ -15,7 +15,7 @@ export const PhoneNavbar = ({ className }: { className?: string }) => {
     <header className={cn("flex flex-col gap-16 z-10", className)}>
       <div className="flex justify-between">
         {/* <Button size="lg" className="mt-0" variant="ghost" href="/">
-          Kosta
+          Kosta.
           <span className="sr-only">Home</span>
         </Button> */}
         <Button size="lg" className="mt-0" variant="ghost" href="/">
