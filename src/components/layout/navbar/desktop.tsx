@@ -12,7 +12,7 @@ export const DesktopNavbar = () => {
         <span className="sr-only">Home</span>
       </Button>
       {/* <Button size="lg" className="mt-0" variant="ghost" href="/">
-        <Image className="w-14" src={kostaJakicLogo} alt="Instagram url" />
+        <Image className="w-14" src={kostaJakicLogo} alt="kosta jakic logo" />
         <span className="sr-only">Home</span>
       </Button> */}
 

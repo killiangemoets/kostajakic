@@ -19,7 +19,7 @@ export const PhoneNavbar = ({ className }: { className?: string }) => {
           <span className="sr-only">Home</span>
         </Button> */}
         <Button size="lg" className="mt-0" variant="ghost" href="/">
-          <Image className="w-12" src={kostaJakicLogo} alt="Instagram url" />
+          <Image className="w-12" src={kostaJakicLogo} alt="kosta jakic logo" />
           <span className="sr-only">Home</span>
         </Button>
         <Button
