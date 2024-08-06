@@ -1,9 +1,11 @@
 "use client";
 
+import kostaJakicLogo from "@/assets/icons/kj.png";
 import { Button } from "@/components/ui/button";
 import { NAVBAR_ITEMS } from "@/constants/navigation";
 import { cn } from "@/utils/tailwind";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
 export const PhoneNavbar = ({ className }: { className?: string }) => {
@@ -12,8 +14,12 @@ export const PhoneNavbar = ({ className }: { className?: string }) => {
   return (
     <header className={cn("flex flex-col gap-16 z-10", className)}>
       <div className="flex justify-between">
-        <Button size="lg" className="mt-0 bg-slate-400 rounded-full" variant="ghost" href="/">
-          LOGO
+        {/* <Button size="lg" className="mt-0" variant="ghost" href="/">
+          Kosta
+          <span className="sr-only">Home</span>
+        </Button> */}
+        <Button size="lg" className="mt-0" variant="ghost" href="/">
+          <Image className="w-12" src={kostaJakicLogo} alt="Instagram url" />
           <span className="sr-only">Home</span>
         </Button>
         <Button
