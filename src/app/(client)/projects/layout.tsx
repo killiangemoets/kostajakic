@@ -3,8 +3,9 @@ import { Layout } from "@/components/layout";
 import type { Metadata } from "next/types";
 
 export const metadata: Metadata = {
-  title: "Gallery | Kosta Jakic",
-  description: "Kosta Jakic's personal website.",
+  title: "Projects | Kosta Jakic",
+  description:
+    "Discover Kosta Jakic's ongoing projects. Learn about his interdisciplinary and intergenerational collaborations, and his research on the role of music in extreme conditions.",
 };
 
 export default function GalleryLayout({

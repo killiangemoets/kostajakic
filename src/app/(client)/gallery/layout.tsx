@@ -4,7 +4,7 @@ import type { Metadata } from "next/types";
 
 export const metadata: Metadata = {
   title: "Gallery | Kosta Jakic",
-  description: "Kosta Jakic's personal website.",
+  description: "Explore the photo and video gallery of Kosta Jakic. See highlights from his concerts, collaborations, and special events",
 };
 
 export default function GalleryLayout({
