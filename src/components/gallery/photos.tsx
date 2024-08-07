@@ -131,39 +131,6 @@ const PhotosGallery = ({ photos }: { photos: TImage[] }) => {
   const initialPhotosShown = useMemo(() => photos.slice(0, 8), [photos]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [initialSlide, setInitialSlide] = useState(0);
-  const [photosShown, setPhotosShown] = useState(photos.slice(0, 8));
-
-  return (
-    <div className="space-y-4">
-      <Typography.h2 className="border-b font-bold normal-case">Photos</Typography.h2>
-      <div className="grid grid-cols-2 sm:grid-cols-4 w-full gap-4">
-        {photosShown.map((photo, i) => (
-          <GalleryPhoto
-            key={photo.id}
-            photo={photo}
-            onClick={() => {
-              setInitialSlide(i);
-              setIsDialogOpen(true);
-            }}
-          />
-        ))}
-      </div>
-      <Button
-        variant="outline"
-        className="ml-auto block"
-        onClick={() => setPhotosShown(photosShown.length !== photos.length ? photos : initialPhotosShown)}
-      >
-        {photosShown.length !== photos.length ? "See more" : "See less"}
-      </Button>
-      <PhotosDialog photos={photos} open={isDialogOpen} onOpenChange={setIsDialogOpen} initialSlide={initialSlide} />
-    </div>
-  );
-};
-
-export const PhotosGallery2 = ({ photos }: { photos: TImage[] }) => {
-  const initialPhotosShown = useMemo(() => photos.slice(0, 8), [photos]);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [initialSlide, setInitialSlide] = useState(0);
   const [photosShown, setPhotosShown] = useState(initialPhotosShown);
 
   return (
@@ -173,55 +140,12 @@ export const PhotosGallery2 = ({ photos }: { photos: TImage[] }) => {
         {photosShown.map((photo, i) => (
           <GalleryPhoto
             className={cn("md:col-span-1 md:row-span-1", {
-              "md:col-span-2 md:row-span-2": [0, 23].includes(i),
+              "md:col-span-2 md:row-span-2": [0].includes(i),
               "md:col-span-2 md:row-span-3": [13].includes(i),
-              "md:row-span-2": [4, 31].includes(i),
-              "col-span-2 row-span-2": [0, 23].includes(i),
+              "md:row-span-2": [4, 19, 20].includes(i),
+              "col-span-2 row-span-2": [0].includes(i),
               "col-span-2 row-span-3": [12].includes(i),
-              "row-span-2": [4, 31].includes(i),
-            })}
-            key={photo.id}
-            photo={photo}
-            onClick={() => {
-              setInitialSlide(i);
-              setIsDialogOpen(true);
-            }}
-          />
-        ))}
-      </div>
-      <Button
-        variant="outline"
-        className="ml-auto block"
-        onClick={() => setPhotosShown(photosShown.length !== photos.length ? photos : initialPhotosShown)}
-      >
-        {photosShown.length !== photos.length ? "See more" : "See less"}
-      </Button>
-      <PhotosDialog photos={photos} open={isDialogOpen} onOpenChange={setIsDialogOpen} initialSlide={initialSlide} />
-    </div>
-  );
-};
-
-export const PhotosGallery3 = ({ photos }: { photos: TImage[] }) => {
-  const initialPhotosShown = useMemo(() => photos.slice(0, 8), [photos]);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [initialSlide, setInitialSlide] = useState(0);
-  const [photosShown, setPhotosShown] = useState(photos.slice(0, 11));
-
-  return (
-    <div className="space-y-4">
-      <Typography.h2 className="border-b font-bold normal-case">Photos</Typography.h2>
-      <div className="grid grid-cols-3 sm:grid-cols-5 w-full gap-4">
-        {photosShown.map((photo, i) => (
-          <GalleryPhoto
-            className={cn("md:col-span-1 md:row-span-1", {
-              "md:col-span-2 md:row-span-2": [0, 23].includes(i),
-              "md:col-span-2 md:row-span-3": [12].includes(i),
-              "md:col-span-3 md:row-span-2": [28].includes(i),
-              "md:row-span-2": [3, 32, 35].includes(i),
-              "col-span-2 row-span-2": [0, 18].includes(i),
-              "col-span-2 row-span-3": [12].includes(i),
-              "col-span-3 row-span-2": [27].includes(i),
-              "row-span-2": [3, 32, 35].includes(i),
+              "row-span-2": [4, 19, 23].includes(i),
             })}
             key={photo.id}
             photo={photo}
@@ -245,3 +169,79 @@ export const PhotosGallery3 = ({ photos }: { photos: TImage[] }) => {
 };
 
 export default PhotosGallery;
+
+// const PhotosGallery = ({ photos }: { photos: TImage[] }) => {
+//   const initialPhotosShown = useMemo(() => photos.slice(0, 8), [photos]);
+//   const [isDialogOpen, setIsDialogOpen] = useState(false);
+//   const [initialSlide, setInitialSlide] = useState(0);
+//   const [photosShown, setPhotosShown] = useState(photos.slice(0, 8));
+
+//   return (
+//     <div className="space-y-4">
+//       <Typography.h2 className="border-b font-bold normal-case">Photos</Typography.h2>
+//       <div className="grid grid-cols-2 sm:grid-cols-4 w-full gap-4">
+//         {photosShown.map((photo, i) => (
+//           <GalleryPhoto
+//             key={photo.id}
+//             photo={photo}
+//             onClick={() => {
+//               setInitialSlide(i);
+//               setIsDialogOpen(true);
+//             }}
+//           />
+//         ))}
+//       </div>
+//       <Button
+//         variant="outline"
+//         className="ml-auto block"
+//         onClick={() => setPhotosShown(photosShown.length !== photos.length ? photos : initialPhotosShown)}
+//       >
+//         {photosShown.length !== photos.length ? "See more" : "See less"}
+//       </Button>
+//       <PhotosDialog photos={photos} open={isDialogOpen} onOpenChange={setIsDialogOpen} initialSlide={initialSlide} />
+//     </div>
+//   );
+// };
+
+// const PhotosGallery = ({ photos }: { photos: TImage[] }) => {
+//   const initialPhotosShown = useMemo(() => photos.slice(0, 8), [photos]);
+//   const [isDialogOpen, setIsDialogOpen] = useState(false);
+//   const [initialSlide, setInitialSlide] = useState(0);
+//   const [photosShown, setPhotosShown] = useState(photos.slice(0, 11));
+
+//   return (
+//     <div className="space-y-4">
+//       <Typography.h2 className="border-b font-bold normal-case">Photos</Typography.h2>
+//       <div className="grid grid-cols-3 sm:grid-cols-5 w-full gap-4">
+//         {photosShown.map((photo, i) => (
+//           <GalleryPhoto
+//             className={cn("md:col-span-1 md:row-span-1", {
+//               "md:col-span-2 md:row-span-2": [0, 23].includes(i),
+//               "md:col-span-2 md:row-span-3": [12].includes(i),
+//               "md:col-span-3 md:row-span-2": [28].includes(i),
+//               "md:row-span-2": [3, 32, 35].includes(i),
+//               "col-span-2 row-span-2": [0, 18].includes(i),
+//               "col-span-2 row-span-3": [12].includes(i),
+//               "col-span-3 row-span-2": [27].includes(i),
+//               "row-span-2": [3, 32, 35].includes(i),
+//             })}
+//             key={photo.id}
+//             photo={photo}
+//             onClick={() => {
+//               setInitialSlide(i);
+//               setIsDialogOpen(true);
+//             }}
+//           />
+//         ))}
+//       </div>
+//       <Button
+//         variant="outline"
+//         className="ml-auto block"
+//         onClick={() => setPhotosShown(photosShown.length !== photos.length ? photos : initialPhotosShown)}
+//       >
+//         {photosShown.length !== photos.length ? "See more" : "See less"}
+//       </Button>
+//       <PhotosDialog photos={photos} open={isDialogOpen} onOpenChange={setIsDialogOpen} initialSlide={initialSlide} />
+//     </div>
+//   );
+// };
