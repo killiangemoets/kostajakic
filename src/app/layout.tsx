@@ -1,4 +1,3 @@
-// import Favicon from "/public/images/Metadata/favicon.ico";
 import "@/styles/globals.scss";
 import { TRPCReactProvider } from "@/trpc/react";
 import type { Metadata } from "next/types";

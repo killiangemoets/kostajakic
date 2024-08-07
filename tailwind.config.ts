@@ -30,7 +30,7 @@ const config: Config = {
       },
       fontSize: {
         "heading-1": ["52px", { lineHeight: "56px", fontWeight: "700" }],
-        "heading-2": ["26px", { lineHeight: "36px", fontWeight: "900" }],
+        "heading-2": ["26px", { lineHeight: "36px", fontWeight: "700" }],
         "heading-3": ["24px", { lineHeight: "33px", fontWeight: "700" }],
         "heading-4": ["20px", { lineHeight: "28px", fontWeight: "700" }],
       },
