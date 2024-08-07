@@ -11,7 +11,7 @@ import { cn } from "@/utils/tailwind";
 import { FileDown } from "lucide-react";
 import Image from "next/image";
 import type { KeyboardEvent } from "react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 const DownloadPhotoButton = ({ downloadLink, small }: { downloadLink: string; small?: boolean }) => {
   return (
@@ -128,6 +128,7 @@ const GalleryPhoto = ({ photo, onClick, className }: { photo: TImage; onClick: (
 };
 
 const PhotosGallery = ({ photos }: { photos: TImage[] }) => {
+  const initialPhotosShown = useMemo(() => photos.slice(0, 8), [photos]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [initialSlide, setInitialSlide] = useState(0);
   const [photosShown, setPhotosShown] = useState(photos.slice(0, 8));
@@ -147,20 +148,23 @@ const PhotosGallery = ({ photos }: { photos: TImage[] }) => {
           />
         ))}
       </div>
-      {photosShown.length !== photos.length && (
-        <Button variant="outline" className="ml-auto block" onClick={() => setPhotosShown(photos)}>
-          See more
-        </Button>
-      )}
+      <Button
+        variant="outline"
+        className="ml-auto block"
+        onClick={() => setPhotosShown(photosShown.length !== photos.length ? photos : initialPhotosShown)}
+      >
+        {photosShown.length !== photos.length ? "See more" : "See less"}
+      </Button>
       <PhotosDialog photos={photos} open={isDialogOpen} onOpenChange={setIsDialogOpen} initialSlide={initialSlide} />
     </div>
   );
 };
 
 export const PhotosGallery2 = ({ photos }: { photos: TImage[] }) => {
+  const initialPhotosShown = useMemo(() => photos.slice(0, 8), [photos]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [initialSlide, setInitialSlide] = useState(0);
-  const [photosShown, setPhotosShown] = useState(photos.slice(0, 8));
+  const [photosShown, setPhotosShown] = useState(initialPhotosShown);
 
   return (
     <div className="space-y-4">
@@ -185,17 +189,20 @@ export const PhotosGallery2 = ({ photos }: { photos: TImage[] }) => {
           />
         ))}
       </div>
-      {photosShown.length !== photos.length && (
-        <Button variant="outline" className="ml-auto block" onClick={() => setPhotosShown(photos)}>
-          See more
-        </Button>
-      )}
+      <Button
+        variant="outline"
+        className="ml-auto block"
+        onClick={() => setPhotosShown(photosShown.length !== photos.length ? photos : initialPhotosShown)}
+      >
+        {photosShown.length !== photos.length ? "See more" : "See less"}
+      </Button>
       <PhotosDialog photos={photos} open={isDialogOpen} onOpenChange={setIsDialogOpen} initialSlide={initialSlide} />
     </div>
   );
 };
 
 export const PhotosGallery3 = ({ photos }: { photos: TImage[] }) => {
+  const initialPhotosShown = useMemo(() => photos.slice(0, 8), [photos]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [initialSlide, setInitialSlide] = useState(0);
   const [photosShown, setPhotosShown] = useState(photos.slice(0, 11));
@@ -225,11 +232,13 @@ export const PhotosGallery3 = ({ photos }: { photos: TImage[] }) => {
           />
         ))}
       </div>
-      {photosShown.length !== photos.length && (
-        <Button variant="outline" className="ml-auto block" onClick={() => setPhotosShown(photos)}>
-          See more
-        </Button>
-      )}
+      <Button
+        variant="outline"
+        className="ml-auto block"
+        onClick={() => setPhotosShown(photosShown.length !== photos.length ? photos : initialPhotosShown)}
+      >
+        {photosShown.length !== photos.length ? "See more" : "See less"}
+      </Button>
       <PhotosDialog photos={photos} open={isDialogOpen} onOpenChange={setIsDialogOpen} initialSlide={initialSlide} />
     </div>
   );

@@ -133,7 +133,7 @@ export const UpcomingConcertsSection = ({ initialConcerts, showActions }: { init
   if (upcomingConcertsQuery.isError)
     return <Typography.error className="sm:pr-[124px] py-6">Something went wrong, please try again!</Typography.error>;
 
-  return <ConcertsList title="Upcoming Concerts" concerts={upcomingConcertsQuery.data} showActions={showActions} />;
+  return <ConcertsList title="Upcoming" concerts={upcomingConcertsQuery.data} showActions={showActions} />;
 };
 
 export const PastConcertsSection = ({
@@ -175,7 +175,7 @@ export const PastConcertsSection = ({
       hasMore={pastConcertsQuery.hasNextPage}
       loader={<Spinner className="sm:pr-[124px]" />}
     >
-      <ConcertsList title="Past Concerts" concerts={concerts} showActions={showActions} />
+      <ConcertsList title="Previous" concerts={concerts} showActions={showActions} />
     </InfiniteScroll>
   );
 };
