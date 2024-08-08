@@ -45,9 +45,8 @@ async function syncImages() {
     const files = fs.readdirSync(imagesDir).filter((file) => [".jpeg", ".jpg", ".png"].includes(path.extname(file).toLowerCase()));
     const imagesInDb = await prisma.image.findMany();
 
-    // 1. Create a set of filenames from the database
+    // 1. Upload new images to S3 and add them to the database
     const dbImageNames = new Set(imagesInDb.map((image) => image.name));
-
     for (const file of files) {
       const name = path.basename(file, path.extname(file));
       const jpegPath = path.join(imagesDir, file);
@@ -83,6 +82,7 @@ async function syncImages() {
     for (const dbImage of imagesInDb) {
       if (!fileSet.has(dbImage.name)) {
         try {
+          // Remove image from DB
           await prisma.image.delete({ where: { id: dbImage.id } });
 
           // Remove images from S3
