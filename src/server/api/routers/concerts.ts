@@ -4,7 +4,7 @@ import type { Prisma } from "@/prisma/generated/client";
 import { concertCursorSchema, concertFiltersSchema, createConcertBESchema, idSchema, updateConcertBESchema } from "@/schemas/concerts";
 import { prisma } from "@/server/db";
 import type { ConcertFilters } from "@/types/concerts";
-import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 type FilterConcertsClause = {
@@ -88,7 +88,7 @@ export const concertsRouter = router({
     const createdConcert = await prisma.concert.create({
       data: input,
     });
-    revalidatePath("/concerts");
+    // revalidatePath("/concerts");
     return createdConcert;
   }),
   update: adminProcedure.input(updateConcertBESchema).mutation(async ({ input }) => {
@@ -97,14 +97,14 @@ export const concertsRouter = router({
       where: { id },
       data: rest,
     });
-    revalidatePath("/concerts");
+    // revalidatePath("/concerts");
     return updatedConcert;
   }),
   delete: adminProcedure.input(z.object({ id: idSchema })).mutation(async ({ input }) => {
     const deletedConcert = await prisma.concert.delete({
       where: { id: input.id },
     });
-    revalidatePath("/concerts");
+    // revalidatePath("/concerts");
     return deletedConcert;
   }),
 });
